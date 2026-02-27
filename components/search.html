@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI T1 Search — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+    /* demo width constraint — not part of the component */
+    .search-field { width: 320px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item active" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+  <div class="page-header">
+  <p class="page-eyebrow">AI Components</p>
+  <h1 class="page-title">Search</h1>
+  <p class="page-desc">Search input with live results, suggestions, and keyboard navigation.</p>
+  </div>
+
+
+  <!-- ── Default ─────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Default</span>
+    <div class="search-field">
+      <label class="search-field__label" for="s-default">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-default" type="search" placeholder="Search…">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── With Value ──────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">With Value</span>
+    <div class="search-field">
+      <label class="search-field__label" for="s-value">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-value" type="search" value="Chat history">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Focus + Results ─────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Focus + Results</span>
+    <div class="search-field search-field--focused" style="z-index: 10;">
+      <label class="search-field__label" for="s-focus">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-focus" type="search" placeholder="Search…">
+      </div>
+      <div class="search-results" style="position: relative; top: auto; margin-top: var(--space-2xs);">
+        <button class="search-results__item search-results__item--highlighted">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Focus + Results (with value) ───────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Focus + Results (with value)</span>
+    <div class="search-field search-field--focused" style="z-index: 9;">
+      <label class="search-field__label" for="s-focus-val">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-focus-val" type="search" value="Chat history">
+      </div>
+      <div class="search-results" style="position: relative; top: auto; margin-top: var(--space-2xs);">
+        <button class="search-results__item search-results__item--highlighted">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+        <button class="search-results__item">Option</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Disabled ────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Disabled</span>
+    <div class="search-field search-field--disabled">
+      <label class="search-field__label" for="s-disabled">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-disabled" type="search" placeholder="Search…" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Error ───────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Error</span>
+    <div class="search-field search-field--error">
+      <label class="search-field__label" for="s-error">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-error" type="search" value="Bad query">
+      </div>
+      <span class="search-field__assistive">Assistive text</span>
+    </div>
+  </div>
+
+  <!-- ── Size: SM ────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Small</span>
+    <div class="search-field search-field--sm">
+      <label class="search-field__label" for="s-sm">Search</label>
+      <div class="search-field__wrap">
+        <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+        <input class="search-field__input" id="s-sm" type="search" placeholder="Search…">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

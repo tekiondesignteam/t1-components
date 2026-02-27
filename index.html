@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T1 · AI Design Library — Tekion</title>
+  <link rel="stylesheet" href="./css/app-tokens.css">
+  <style>
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin:      0;
+      min-height:  100vh;
+      background:  var(--color-bg-secondary);
+      font-family: var(--font-family);
+      color:       var(--color-text-primary);
+    }
+
+    /* ── Sticky header ─────────────────────────────────────── */
+
+    .header {
+      position:      sticky;
+      top:           0;
+      z-index:       100;
+      padding:       24px 48px 20px;
+      background:    #ffffff;
+      border-bottom: 1px solid #edeef0;
+      box-shadow:    0 1px 8px rgba(0,0,0,0.06);
+    }
+
+    .header__top {
+      display:     flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap:         32px;
+      margin-bottom: 16px;
+    }
+
+    .header__info { flex: 1; }
+
+    .header__eyebrow {
+      font-size:      11px;
+      font-weight:    var(--font-weight-semibold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color:          var(--color-text-tertiary);
+      margin:         0 0 6px;
+    }
+
+    .header__title {
+      display:     flex;
+      align-items: center;
+      gap:         10px;
+      margin:      0 0 6px;
+    }
+
+    .header__title img {
+      width:  24px;
+      height: 24px;
+    }
+
+    .header__title h1 {
+      margin:         0;
+      font-size:      22px;
+      font-weight:    var(--font-weight-bold);
+      line-height:    1.2;
+      color:          var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .header__sub {
+      margin:      0;
+      font-size:   13px;
+      color:       var(--color-text-secondary);
+      line-height: 1.5;
+      max-width:   520px;
+    }
+
+    /* ── Search inside header ──────────────────────────────── */
+
+    .search-wrap {
+      position:   relative;
+      width:      320px;
+      flex-shrink: 0;
+    }
+
+    .search-icon {
+      position:       absolute;
+      left:           11px;
+      top:            50%;
+      transform:      translateY(-50%);
+      width:          15px;
+      height:         15px;
+      color:          var(--color-text-tertiary);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width:        100%;
+      height:       38px;
+      padding:      0 44px 0 34px;
+      border:       1px solid #edeef0;
+      border-radius: 8px;
+      background:   var(--color-bg-secondary);
+      font-size:    13px;
+      color:        var(--color-text-primary);
+      font-family:  var(--font-family);
+      outline:      none;
+      transition:   border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+
+    .search-input::placeholder { color: var(--color-text-tertiary); }
+
+    .search-input:focus {
+      border-color: #2157f5;
+      background:   #ffffff;
+      box-shadow:   0 0 0 3px rgba(33, 87, 245, 0.1);
+    }
+
+    .search-kbd {
+      position:       absolute;
+      right:          10px;
+      top:            50%;
+      transform:      translateY(-50%);
+      padding:        1px 6px;
+      background:     rgba(0,0,0,0.05);
+      border:         1px solid rgba(0,0,0,0.10);
+      border-radius:  4px;
+      font-size:      11px;
+      font-family:    monospace;
+      color:          var(--color-text-tertiary);
+      pointer-events: none;
+      transition:     opacity 0.15s;
+      line-height:    18px;
+    }
+
+    .search-input:focus ~ .search-kbd,
+    .search-input:not(:placeholder-shown) ~ .search-kbd {
+      opacity: 0;
+    }
+
+    /* ── Grid ─────────────────────────────────────────────── */
+
+    .section {
+      padding: 28px 48px 48px;
+    }
+
+    .section-label {
+      font-size:      11px;
+      font-weight:    var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color:          var(--color-text-tertiary);
+      margin:         0 0 14px;
+    }
+
+    .grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap:                   14px;
+    }
+
+    /* ── Card ─────────────────────────────────────────────── */
+
+    .card {
+      background:      #ffffff;
+      border:          1px solid #edeef0;
+      border-radius:   12px;
+      overflow:        hidden;
+      text-decoration: none;
+      display:         flex;
+      flex-direction:  column;
+      transition:      box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #c6d4fd;
+      box-shadow:   0 8px 24px rgba(33, 87, 245, 0.10), 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* ── Card preview (thumbnail) ─────────────────────────── */
+
+    .card__preview {
+      height:        120px;
+      border-bottom: 1px solid #edeef0;
+      flex-shrink:   0;
+      overflow:      hidden;
+      position:      relative;
+    }
+
+    .card__preview-inner {
+      width:      100%;
+      height:     100%;
+      display:    flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+
+    .card:hover .card__preview-inner {
+      transform: scale(1.07);
+    }
+
+    /* ── Card body ────────────────────────────────────────── */
+
+    .card__body {
+      padding: 14px 16px;
+    }
+
+    .card__name {
+      margin:      0 0 4px;
+      font-size:   13px;
+      font-weight: var(--font-weight-semibold);
+      color:       var(--color-text-primary);
+    }
+
+    .card__desc {
+      margin:      0;
+      font-size:   12px;
+      color:       var(--color-text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ── No results ───────────────────────────────────────── */
+
+    .empty {
+      display:   none;
+      padding:   0 48px 48px;
+      font-size: 14px;
+      color:     var(--color-text-tertiary);
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__top">
+      <div class="header__info">
+        <p class="header__eyebrow">Tekion</p>
+        <div class="header__title">
+          <img src="./assets/aiLogo.svg" alt="Tekion AI">
+          <h1>T1 · AI Design Library</h1>
+        </div>
+        <p class="header__sub">Component library derived from the Alloy Design System — tokens, specs, and interactive previews for Tekion AI T1.</p>
+      </div>
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input class="search-input" id="search" type="search" placeholder="Search components…" aria-label="Search components" autocomplete="off">
+        <kbd class="search-kbd">/</kbd>
+      </div>
+    </div>
+  </header>
+
+  <div class="empty" id="empty">No components match your search.</div>
+
+  <!-- Foundation -->
+  <section class="section" id="section-foundation">
+    <p class="section-label">Foundation</p>
+    <div class="grid">
+
+      <!-- Colors -->
+      <a class="card" href="./components/colors.html" data-name="colors semantic color tokens palette swatches">
+        <div class="card__preview" style="background:#ffffff;">
+          <div class="card__preview-inner" style="gap:8px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:#2c70f5;flex-shrink:0;"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:#c87ae7;flex-shrink:0;"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:#60d156;flex-shrink:0;"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:#ffd500;flex-shrink:0;"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:#c42106;flex-shrink:0;"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:#f0f0f2;border:1px solid #e0e0e2;flex-shrink:0;"></div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Colors</p>
+          <p class="card__desc">Semantic color tokens organized by role — text, background, border, AI brand.</p>
+        </div>
+      </a>
+
+      <!-- Typography -->
+      <a class="card" href="./components/typography.html" data-name="typography type scale font heading paragraph label">
+        <div class="card__preview" style="background:#ffffff;">
+          <div class="card__preview-inner" style="flex-direction:column; align-items:flex-start; padding:16px 22px; gap:5px;">
+            <span style="font-family:'Manrope',sans-serif; font-size:20px; font-weight:700; color:#161616; line-height:1.2; letter-spacing:-0.02em;">Heading</span>
+            <span style="font-family:'Manrope',sans-serif; font-size:13px; font-weight:400; color:#444f5c; line-height:1.5;">Body paragraph text</span>
+            <span style="font-family:'Manrope',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:#969aa3;">LABEL OVERLINE</span>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Typography</p>
+          <p class="card__desc">Type scale, font families, weights, and semantic text style tokens.</p>
+        </div>
+      </a>
+
+      <!-- Tokens -->
+      <a class="card" href="./components/tokens.html" data-name="tokens css variables primitives design system reference">
+        <div class="card__preview" style="background:#ffffff;">
+          <div class="card__preview-inner" style="flex-direction:column; align-items:flex-start; gap:7px; padding: 0 24px;">
+            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--color-bg-primary</span>
+            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--font-size-md</span>
+            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--space-xs</span>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Tokens</p>
+          <p class="card__desc">Complete CSS variable reference — searchable, click-to-copy, organized by layer.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="section" id="section-ai">
+    <p class="section-label">AI Components</p>
+    <div class="grid" id="grid">
+
+      <a class="card" href="./components/action-overflow-menu.html" data-name="action overflow menu dropdown contextual">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Action Overflow Menu</p>
+          <p class="card__desc">Contextual action dropdown for chat and message-level actions.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/app-bar.html" data-name="app bar title header navigation window">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">App Bar</p>
+          <p class="card__desc">AI assistant title bar — default, expanded, mobile drag, and minimized.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/button.html" data-name="button primary secondary tertiary">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Button</p>
+          <p class="card__desc">Primary, secondary, and tertiary button variants with all states.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/fab.html" data-name="fab floating action button">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">FAB</p>
+          <p class="card__desc">Floating action button that opens the AI assistant panel.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/fav-bar-icon.html" data-name="fav bar icon favourite sidebar">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Fav Bar Icon</p>
+          <p class="card__desc">Favorite bar entry point with branded gradient logo tile.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/search.html" data-name="search input results filter">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Search</p>
+          <p class="card__desc">Search input with live results and empty state.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/side-nav-item.html" data-name="side nav item chat list row">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Side Nav Item</p>
+          <p class="card__desc">Chat list row with title, timestamp, and hover actions.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/side-nav-section-header.html" data-name="side nav section header group label">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Side Nav Section Header</p>
+          <p class="card__desc">Chat list group label with collapsible toggle.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/sidenav-footer.html" data-name="side nav footer settings utility bottom nav">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Side Nav Footer</p>
+          <p class="card__desc">Utility strip at the bottom of the side nav — settings, help, and persistent actions.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/sidenav.html" data-name="side nav chat navigation panel full">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Side Nav</p>
+          <p class="card__desc">Full chat navigation panel — search, pinned &amp; recent chats, empty states, and settings footer.</p>
+        </div>
+      </a>
+
+      <a class="card" href="./components/title-bar.html" data-name="title bar chat header navigation">
+        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+          <div class="card__preview-inner">
+            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Title Bar</p>
+          <p class="card__desc">Chat title navigation bar with back, actions, and overflow controls.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <script>
+    const input = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+    const empty = document.getElementById("empty");
+    const grid  = document.getElementById("grid");
+
+    function filter(q) {
+      q = q.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const text = (card.dataset.name + " " + card.textContent).toLowerCase();
+        const show = !q || text.includes(q);
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      empty.style.display = visible === 0 ? "block" : "none";
+      grid.style.display  = visible === 0 ? "none"  : "";
+    }
+
+    input.addEventListener("input", e => filter(e.target.value));
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "/" && document.activeElement !== input) {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      }
+    });
+  </script>
+
+</body>
+</html>

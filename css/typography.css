@@ -1,0 +1,236 @@
+@import 'tokens.css';
+
+/* Manrope Font Faces */
+@font-face {
+    font-family: 'Manrope';
+    /* Using Medium for 400 as Regular is missing in the assets */
+    src: url('../fonts/Manrope-Medium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* Fragment Mono Font Faces */
+@font-face {
+    font-family: 'Fragment Mono';
+    src: url('../fonts/FragmentMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fragment Mono';
+    src: url('../fonts/FragmentMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+:root {
+    /* Font Family */
+    --font-family: 'Manrope', sans-serif;
+    --font-family-mono: 'Fragment Mono', monospace;
+
+    /* Typographic Scale & Weights */
+
+    /* Headings */
+    --text-heading-1-size: var(--font-size-3xl);
+    /* 32px */
+    --text-heading-1-height: var(--line-height-normal);
+    /* 1.5 */
+
+    --text-heading-2-size: var(--font-size-2xl);
+    /* 24px */
+    --text-heading-2-height: var(--space-3xl);
+    /* 40px */
+
+    --text-heading-3-size: var(--font-size-xl);
+    /* 20px */
+    --text-heading-4-size: var(--font-size-lg);
+    /* 18px */
+    --text-heading-5-size: var(--font-size-lg);
+    /* 16px */
+    --text-heading-6-size: var(--font-size-md);
+    /* 14px */
+
+    /* Paragraphs */
+    --text-paragraph-large-size: var(--font-size-lg);
+    /* 16px */
+    --text-paragraph-base-size: var(--font-size-md);
+    /* 14px */
+    --text-paragraph-small-size: var(--font-size-sm);
+    /* 13px */
+
+    /* Labels */
+    --text-label-xlarge-size: var(--font-size-lg);
+    /* 16px */
+    --text-label-large-size: var(--font-size-lg);
+    /* 16px */
+    --text-label-base-size: var(--font-size-md);
+    /* 14px */
+    --text-label-small-size: var(--font-size-sm);
+    /* 13px */
+
+    /* Weights */
+    /* Remapping regular to semibold (600) */
+    --font-weight-regular: var(--font-weight-5);
+    --font-weight-medium: var(--font-weight-4);
+    --font-weight-semibold: var(--font-weight-5);
+    --font-weight-bold: var(--font-weight-6);
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+}
+
+/* Utilities using Figma Token naming convention (replacing / with -) */
+
+/* Headings */
+.heading-1 {
+    font-size: var(--text-heading-1-size);
+    line-height: var(--text-heading-1-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.heading-2 {
+    font-size: var(--text-heading-2-size);
+    line-height: var(--text-heading-2-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.heading-3 {
+    font-size: var(--text-heading-3-size);
+    line-height: var(--text-heading-3-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.heading-4 {
+    font-size: var(--text-heading-4-size);
+    line-height: var(--text-heading-4-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.heading-5 {
+    font-size: var(--text-heading-5-size);
+    line-height: var(--text-heading-5-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.heading-6 {
+    font-size: var(--text-heading-6-size);
+    line-height: var(--text-heading-6-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Paragraphs */
+.paragraph-large {
+    font-size: var(--text-paragraph-large-size);
+    line-height: var(--text-paragraph-large-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.paragraph-large-bold {
+    font-size: var(--text-paragraph-large-size);
+    line-height: var(--text-paragraph-large-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.paragraph-base {
+    font-size: var(--text-paragraph-base-size);
+    line-height: var(--text-paragraph-base-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.paragraph-base-bold {
+    font-size: var(--text-paragraph-base-size);
+    line-height: var(--text-paragraph-base-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.paragraph-small {
+    font-size: var(--text-paragraph-small-size);
+    line-height: var(--text-paragraph-small-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.paragraph-small-bold {
+    font-size: var(--text-paragraph-small-size);
+    line-height: var(--text-paragraph-small-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Labels */
+.label-xlarge {
+    font-size: var(--text-label-xlarge-size);
+    line-height: var(--text-label-xlarge-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.label-xlarge-bold {
+    font-size: var(--text-label-xlarge-size);
+    line-height: var(--text-label-xlarge-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.label-large {
+    font-size: var(--text-label-large-size);
+    line-height: var(--text-label-large-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.label-large-bold {
+    font-size: var(--text-label-large-size);
+    line-height: var(--text-label-large-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.label-base {
+    font-size: var(--text-label-base-size);
+    line-height: var(--text-label-base-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.label-base-bold {
+    font-size: var(--text-label-base-size);
+    line-height: var(--text-label-base-height);
+    font-weight: var(--font-weight-semibold);
+}
+
+.label-small {
+    font-size: var(--text-label-small-size);
+    line-height: var(--text-label-small-height);
+    font-weight: var(--font-weight-regular);
+}
+
+.label-small-bold {
+    font-size: var(--text-label-small-size);
+    line-height: var(--text-label-small-height);
+    font-weight: var(--font-weight-semibold);
+}

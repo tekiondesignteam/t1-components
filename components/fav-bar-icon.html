@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fav Bar Icon — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+/* ── Page ─────────────────────────────────────────────── */
+
+    .demo-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+
+    /* ── Fav Bar Item ─────────────────────────────────────── */
+
+    .fav-bar-item {
+      width:           var(--fav-bar-item-width);
+      height:          var(--fav-bar-item-height);
+      padding:         var(--fav-bar-item-padding-y) var(--fav-bar-item-padding-x);
+      gap:             var(--fav-bar-item-gap);
+      background:      transparent;
+      border:          none;
+      outline:         none;
+      cursor:          pointer;
+      display:         flex;
+      flex-direction:  column;
+      align-items:     center;
+      justify-content: center;
+      box-sizing:      border-box;
+    }
+
+    /* ── AI Logo Container ────────────────────────────────── */
+
+    .ai-logo {
+      width:           var(--ai-logo-size);
+      height:          var(--ai-logo-size);
+      border-radius:   var(--ai-logo-border-radius);
+      background:      var(--ai-logo-bg);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      flex-shrink:     0;
+      box-shadow:      none;
+      transition:      box-shadow var(--ai-logo-transition) var(--ease-in-out);
+    }
+
+    .fav-bar-item:hover .ai-logo {
+      box-shadow: var(--ai-logo-shadow-hover);
+    }
+
+    .fav-bar-item:active .ai-logo,
+    .fav-bar-item--active .ai-logo {
+      box-shadow: var(--ai-logo-shadow-active);
+    }
+
+    .ai-logo__icon {
+      width:   var(--ai-logo-icon-width);
+      height:  var(--ai-logo-icon-height);
+      display: block;
+      filter:  var(--ai-logo-icon-filter);
+    }
+
+</style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item active" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+  <div class="page-header">
+  <p class="page-eyebrow">AI Components</p>
+  <h1 class="page-title">Fav Bar Icon</h1>
+  <p class="page-desc">Favorite bar logo icon that anchors the AI assistant in the navigation rail.</p>
+  </div>
+
+
+  <!-- Default -->
+  <div class="demo-group">
+    <span class="demo-label">Default</span>
+    <button class="fav-bar-item" aria-label="Open AI assistant">
+      <div class="ai-logo">
+        <img class="ai-logo__icon" src="../assets/aiLogoT1.svg" alt="Tekion AI T1">
+      </div>
+    </button>
+  </div>
+
+  <!-- Hover (pinned) -->
+  <div class="demo-group">
+    <span class="demo-label">Hover</span>
+    <button class="fav-bar-item" aria-label="Open AI assistant">
+      <div class="ai-logo" style="box-shadow: var(--ai-logo-shadow-hover);">
+        <img class="ai-logo__icon" src="../assets/aiLogoT1.svg" alt="Tekion AI T1">
+      </div>
+    </button>
+  </div>
+
+  <!-- Active (pinned) -->
+  <div class="demo-group">
+    <span class="demo-label">Active</span>
+    <button class="fav-bar-item fav-bar-item--active" aria-label="Open AI assistant">
+      <div class="ai-logo" style="box-shadow: var(--ai-logo-shadow-active);">
+        <img class="ai-logo__icon" src="../assets/aiLogoT1.svg" alt="Tekion AI T1">
+      </div>
+    </button>
+  </div>
+</body>
+</html>

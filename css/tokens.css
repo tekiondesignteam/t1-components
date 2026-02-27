@@ -1,0 +1,274 @@
+/**
+ * Design Tokens - Dimensions (CSS Variables)
+ * Organized by priority: High → Moderate → Lower
+ * Extracted from Figma: 02-Arcade-Web---Components
+ * All scales use 0-10 numeric levels for consistency
+ */
+
+:root {
+    /* ============================================
+     HIGH PRIORITY - Used Everywhere
+     ============================================ */
+
+    /* Spacing Scale (0-10: 8px base grid) */
+    --space-none: 0;
+    --space-2xs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 20px;
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 40px;
+    --space-4xl: 48px;
+    --space-5xl: 64px;
+
+    /* Common Height Scale - Shared across all components */
+    --height-none: 0;
+    --height-2xs: 16px;
+    --height-xs: 20px;
+    --height-sm: 24px;
+    --height-md: 28px;
+    --height-lg: 32px;
+    --height-xl: 36px;
+    --height-2xl: 40px;
+    --height-3xl: 44px;
+    --height-4xl: 48px;
+    --height-5xl: 56px;
+    --height-6xl: 64px;
+
+    /* Component-specific Heights - Reference common scale */
+    --height-button-xs: var(--height-2xs);
+    /* 16px */
+    --height-button-sm: var(--height-sm);
+    /* 24px */
+    --height-button-md: var(--height-lg);
+    /* 32px */
+    --height-button-lg: var(--height-2xl);
+    /* 40px */
+
+    --height-input-sm: var(--height-lg);
+    /* 32px */
+    --height-input-md: var(--height-2xl);
+    /* 40px */
+    --height-input-lg: var(--height-4xl);
+    /* 48px */
+
+    --padding-button-sm-x: var(--space-sm);
+    /* 12px */
+    --padding-button-md-x: var(--space-md);
+    /* 16px */
+    --padding-button-lg-x: var(--space-lg);
+    /* 20px */
+
+    --padding-input-x: var(--space-sm);
+    /* 12px */
+    --padding-input-y: var(--space-xs);
+    /* 8px */
+
+    /* Component Sizing - Form Elements */
+    --size-checkbox: 16px;
+    --size-radio: 16px;
+    --size-switch-width: 44px;
+    --size-switch-height: 24px;
+
+    /* Typography - Font Sizes */
+    --font-size-2xs: 8px;
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 48px;
+    --font-size-5xl: 64px;
+    --font-size-6xl: 80px;
+
+    /* Typography - Font Weights (0-10) */
+    --font-weight-0: 100;
+    --font-weight-1: 200;
+    --font-weight-2: 300;
+    --font-weight-3: 400;
+    --font-weight-4: 500;
+    --font-weight-5: 600;
+    --font-weight-6: 700;
+    --font-weight-7: 800;
+    --font-weight-8: 900;
+
+    /* Semantic Weight Aliases */
+    --font-weight-normal: var(--font-weight-3);
+    --font-weight-medium: var(--font-weight-4);
+    --font-weight-semibold: var(--font-weight-5);
+    --font-weight-bold: var(--font-weight-6);
+
+    /* Typography - Line Heights (0-10) */
+    --line-height-0: 1;
+    --line-height-1: 1.1;
+    --line-height-2: 1.2;
+    --line-height-3: 1.25;
+    --line-height-4: 1.375;
+    --line-height-5: 1.5;
+    --line-height-6: 1.625;
+    --line-height-7: 1.75;
+    --line-height-8: 2;
+
+    /* Semantic Line Height Aliases */
+    --line-height-none: var(--line-height-0);
+    --line-height-tight: var(--line-height-3);
+    --line-height-snug: var(--line-height-4);
+    --line-height-normal: var(--line-height-5);
+    --line-height-relaxed: var(--line-height-6);
+    --line-height-loose: var(--line-height-8);
+
+    /* Component Gaps (0-10) */
+    --gap-none: 0;
+    --gap-2xs: var(--space-2xs);
+    /* 4px */
+    --gap-xs: var(--space-xs);
+    /* 8px */
+    --gap-sm: var(--space-sm);
+    /* 12px */
+    --gap-md: var(--space-md);
+    /* 16px */
+    --gap-lg: var(--space-lg);
+    /* 20px */
+    --gap-xl: var(--space-xl);
+    /* 24px */
+    --gap-2xl: var(--space-2xl);
+    /* 32px */
+    --gap-3xl: var(--space-3xl);
+    /* 40px */
+    --gap-4xl: var(--space-4xl);
+    /* 48px */
+    --gap-5xl: var(--space-5xl);
+    /* 64px */
+
+    --gap-button-icon: var(--gap-xs);
+    /* 8px - icon to text */
+    --gap-button-group: var(--gap-md);
+    /* 16px - between buttons */
+    --gap-split-button: var(--gap-none);
+    /* no gap */
+    --gap-form-field: var(--gap-md);
+    /* 16px - between form fields */
+
+    /* ============================================
+     MODERATE PRIORITY - UI Consistency
+     ============================================ */
+
+    /* Border Radius (0-10) */
+    --radius-none: 0;
+    --radius-2xs: 2px;
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-3xl: 24px;
+    --radius-4xl: 32px;
+    --radius-full: 9999px;
+    /* full/circle */
+
+    /* Component-specific Radius */
+    --radius-button: var(--radius-2xs);
+    --radius-input: var(--radius-xs);
+    --radius-card: var(--radius-lg);
+    --radius-modal: var(--radius-xl);
+    --radius-badge: var(--radius-full);
+
+    /* ============================================
+     ICONS - Phosphor Icons
+     All icons MUST be sourced from:
+     https://phosphoricons.com/
+     ============================================ */
+    /* Icon Sizes (0-10) */
+    --size-icon-none: 8px;
+    --size-icon-2xs: 10px;
+    --size-icon-xs: 12px;
+    --size-icon-sm: 14px;
+    --size-icon-md: 16px;
+    --size-icon-lg: 20px;
+    --size-icon-xl: 24px;
+    --size-icon-2xl: 28px;
+    --size-icon-3xl: 32px;
+    --size-icon-4xl: 40px;
+    --size-icon-5xl: 48px;
+
+    /* Transitions (0-10) */
+    --transition-0: 0ms;
+    --transition-1: 50ms;
+    --transition-2: 100ms;
+    --transition-3: 150ms;
+    --transition-4: 200ms;
+    --transition-5: 250ms;
+    --transition-6: 300ms;
+    --transition-7: 400ms;
+    --transition-8: 500ms;
+    --transition-9: 700ms;
+    --transition-10: 1000ms;
+
+    /* Semantic Transition Aliases */
+    --transition-fast: var(--transition-3);
+    --transition-base: var(--transition-4);
+    --transition-slow: var(--transition-6);
+    --transition-slower: var(--transition-8);
+
+    /* Easing Functions */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ============================================
+     LOWER PRIORITY - Specific Use Cases
+     ============================================ */
+
+    /* Border Widths (0-10) */
+    --border-width-none: 0;
+    --border-width-2xs: 1px;
+    --border-width-xs: 2px;
+    --border-width-sm: 3px;
+    --border-width-md: 4px;
+    --border-width-lg: 5px;
+    --border-width-xl: 6px;
+    --border-width-2xl: 7px;
+    --border-width-3xl: 8px;
+
+    /* Component-specific Border Widths */
+    --border-width-button: var(--border-width-2xs);
+    --border-width-input: var(--border-width-2xs);
+    --border-width-focus: var(--border-width-xs);
+    --border-width-divider: var(--border-width-2xs);
+
+    /* Shadows (0-10) */
+    --shadow-none: none;
+    --shadow-2xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 6px 10px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-xl: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-2xl: 0 15px 20px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.05);
+    --shadow-3xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    --shadow-4xl: 0 25px 35px rgba(0, 0, 0, 0.15), 0 12px 15px rgba(0, 0, 0, 0.05);
+    --shadow-5xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+
+    /* Z-index Stack (100 increments) */
+    --z-index-base: 0;
+    --z-index-dropdown: 100;
+    --z-index-sticky: 200;
+    --z-index-fixed: 300;
+    --z-index-modal-backdrop: 400;
+    --z-index-modal: 500;
+    --z-index-popover: 600;
+    --z-index-tooltip: 700;
+
+    /* Container Widths (Industry Standards) */
+    --container-xs: 320px;
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+}

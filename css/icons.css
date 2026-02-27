@@ -1,0 +1,35 @@
+/* Icon Utility */
+.icon-svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-icon-md);
+    height: var(--size-icon-md);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+}
+
+/* For mask-based icons (span/div) */
+span.icon-svg, div.icon-svg {
+    background-color: currentColor;
+}
+
+/* For inline SVG icons */
+svg.icon-svg {
+    background-color: transparent;
+}
+
+/* Base sizing for different button sizes */
+.btn-sm .icon-svg {
+    width: var(--size-icon-sm);
+    height: var(--size-icon-sm);
+}
+
+.btn-xs .icon-svg {
+    width: var(--size-icon-xs);
+    height: var(--size-icon-xs);
+}

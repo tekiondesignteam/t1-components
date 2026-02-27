@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <style>
+
+/* ── Section ─────────────────────────────────────────────── */
+
+    .section {
+      margin-bottom: var(--space-4xl);
+    }
+
+    .section-title {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin: 0 0 var(--space-sm) 0;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border-primary);
+    }
+
+    /* ── Color rows ──────────────────────────────────────────── */
+
+    .color-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .color-row {
+      display: grid;
+      grid-template-columns: 48px 260px 1fr auto;
+      align-items: center;
+      gap: var(--space-md);
+      padding: 8px var(--space-sm);
+      border-radius: var(--radius-xs);
+      transition: background 0.1s;
+    }
+
+    .color-row:hover {
+      background: var(--color-bg-muted);
+    }
+
+    .color-swatch {
+      width: 48px;
+      height: 32px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
+    }
+
+    .color-swatch--gradient {
+      border: none;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+    }
+
+    .color-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-mono);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .color-usage {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .color-value {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      color: var(--color-text-tertiary);
+      white-space: nowrap;
+    }
+
+    /* ── Palette chips (analytics / support) ─────────────────── */
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-xs);
+    }
+
+    .palette-chip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 8px var(--space-sm);
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--color-border-primary);
+    }
+
+    .palette-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-2xs);
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .palette-info { display: flex; flex-direction: column; gap: 1px; }
+
+    .palette-name {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+    }
+
+    .palette-hex {
+      font-size: 10px;
+      font-family: var(--font-family-mono);
+      color: var(--color-text-tertiary);
+    }
+
+    /* Page header spacing */
+    .page-header { margin-bottom: var(--gap-2xl); }
+
+</style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ───────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <svg class="nav-search-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search…" aria-label="Search">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item active" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design System</div>
+  </nav>
+
+  <!-- ── Page header ───────────────────────────────────────── -->
+  <div class="page-header">
+  <p class="page-eyebrow">Foundation</p>
+  <h1 class="page-title">Colors</h1>
+  <p class="page-desc">Semantic color tokens — L2 layer. Reference by token name, never by raw hex.</p>
+  </div>
+
+  <!-- ── Text ──────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Text</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#161616;"></div>
+        <span class="color-name">--color-text-primary</span>
+        <span class="color-usage">Body text, headings, labels</span>
+        <span class="color-value">#161616</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#444f5c;"></div>
+        <span class="color-name">--color-text-secondary</span>
+        <span class="color-usage">Supporting text, descriptions</span>
+        <span class="color-value">#444f5c</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#969aa3;"></div>
+        <span class="color-name">--color-text-tertiary</span>
+        <span class="color-usage">Placeholders, hints, meta text</span>
+        <span class="color-value">#969aa3</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#d4d5d6;"></div>
+        <span class="color-name">--color-text-disabled</span>
+        <span class="color-usage">Disabled state text</span>
+        <span class="color-value">#d4d5d6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ffffff; border-color:#e0e0e0;"></div>
+        <span class="color-name">--color-text-on-color</span>
+        <span class="color-usage">Text on colored/dark backgrounds</span>
+        <span class="color-value">#ffffff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#161616;"></div>
+        <span class="color-name">--color-text-on-color-inverse</span>
+        <span class="color-usage">Text on light/inverse surfaces</span>
+        <span class="color-value">#161616</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#6d707a;"></div>
+        <span class="color-name">--color-text-on-color-disabled</span>
+        <span class="color-usage">Disabled text on colored bg</span>
+        <span class="color-value">#6d707a</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Background ────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Background</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ffffff; border-color:#e0e0e0;"></div>
+        <span class="color-name">--color-bg-primary</span>
+        <span class="color-usage">Default page / card background</span>
+        <span class="color-value">#ffffff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#edeef0;"></div>
+        <span class="color-name">--color-bg-secondary</span>
+        <span class="color-usage">Section backgrounds, sidebar</span>
+        <span class="color-value">#edeef0</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#d4d5d6;"></div>
+        <span class="color-name">--color-bg-tertiary</span>
+        <span class="color-usage">Dividers, subtle separators</span>
+        <span class="color-value">#d4d5d6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#f4f5f6;"></div>
+        <span class="color-name">--color-bg-muted</span>
+        <span class="color-usage">Hover states on white surfaces</span>
+        <span class="color-value">#f4f5f6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#f4f5f6;"></div>
+        <span class="color-name">--color-bg-disabled</span>
+        <span class="color-usage">Disabled input / button background</span>
+        <span class="color-value">#f4f5f6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ebf4ff;"></div>
+        <span class="color-name">--color-bg-hover</span>
+        <span class="color-usage">Interactive item hover</span>
+        <span class="color-value">#ebf4ff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#dbebff;"></div>
+        <span class="color-name">--color-bg-active</span>
+        <span class="color-usage">Interactive item active / selected</span>
+        <span class="color-value">#dbebff</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Border ────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Border</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#d4d5d6;"></div>
+        <span class="color-name">--color-border-primary</span>
+        <span class="color-usage">Default dividers, card borders</span>
+        <span class="color-value">#d4d5d6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#969aa3;"></div>
+        <span class="color-name">--color-border-dark</span>
+        <span class="color-usage">Input borders, outlined buttons</span>
+        <span class="color-value">#969aa3</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#f4f5f6;"></div>
+        <span class="color-name">--color-border-light</span>
+        <span class="color-usage">Subtle borders on dark surfaces</span>
+        <span class="color-value">#f4f5f6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#d4d5d6;"></div>
+        <span class="color-name">--color-border-disabled</span>
+        <span class="color-usage">Disabled input / control border</span>
+        <span class="color-value">#d4d5d6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Icon ──────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Icon</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#969aa3;"></div>
+        <span class="color-name">--color-icon-light</span>
+        <span class="color-usage">Secondary / decorative icons</span>
+        <span class="color-value">#969aa3</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#444f5c;"></div>
+        <span class="color-name">--color-icon-dark</span>
+        <span class="color-usage">Primary / actionable icons</span>
+        <span class="color-value">#444f5c</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#d4d5d6;"></div>
+        <span class="color-name">--color-icon-disabled</span>
+        <span class="color-usage">Disabled icon state</span>
+        <span class="color-value">#d4d5d6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ffffff; border-color:#e0e0e0;"></div>
+        <span class="color-name">--color-icon-on-color</span>
+        <span class="color-usage">Icons on colored backgrounds</span>
+        <span class="color-value">#ffffff</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Accent · Blue ─────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Accent · Blue</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#4285f4;"></div>
+        <span class="color-name">--color-accent-bg</span>
+        <span class="color-usage">Primary interactive elements</span>
+        <span class="color-value">#4285f4</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#0060ff;"></div>
+        <span class="color-name">--color-accent-bg-hover</span>
+        <span class="color-usage">Hover on accent backgrounds</span>
+        <span class="color-value">#0060ff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ebf4ff;"></div>
+        <span class="color-name">--color-accent-bg-light</span>
+        <span class="color-usage">Tonal accent backgrounds</span>
+        <span class="color-value">#ebf4ff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#3373dd;"></div>
+        <span class="color-name">--color-accent-text</span>
+        <span class="color-usage">Links, accent text</span>
+        <span class="color-value">#3373dd</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#4285f4;"></div>
+        <span class="color-name">--color-accent-border</span>
+        <span class="color-usage">Focus rings, accent borders</span>
+        <span class="color-value">#4285f4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AI Brand ──────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">AI Brand</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#2c70f5;"></div>
+        <span class="color-name">--color-ai-blue</span>
+        <span class="color-usage">AI gradient start, solid AI accent</span>
+        <span class="color-value">#2c70f5</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ebf4ff;"></div>
+        <span class="color-name">--color-ai-blue-subtle</span>
+        <span class="color-usage">Active item background, nav highlight</span>
+        <span class="color-value">#ebf4ff</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#c87ae7;"></div>
+        <span class="color-name">--color-ai-purple</span>
+        <span class="color-usage">AI gradient end, tertiary actions</span>
+        <span class="color-value">#c87ae7</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#e6e1f5;"></div>
+        <span class="color-name">--color-ai-purple-subtle</span>
+        <span class="color-usage">Light purple tint for hover / bg</span>
+        <span class="color-value">#e6e1f5</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(135deg,#2c70f5 28.53%,#c87ae7 111.04%);"></div>
+        <span class="color-name">--color-ai-primary-bg</span>
+        <span class="color-usage">AI primary button, gradient fills</span>
+        <span class="color-value">135deg · blue→purple</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);"></div>
+        <span class="color-name">--color-ai-surface-bg</span>
+        <span class="color-usage">FAB default, AI panel surface</span>
+        <span class="color-value">143.74deg · teal→warm</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(-44.62deg,#2157f5 2.91%,#258dff 40.71%,#86ffbb 106.85%);"></div>
+        <span class="color-name">--color-ai-logo-bg</span>
+        <span class="color-usage">AI logo container background</span>
+        <span class="color-value">-44.62deg · blue→mint</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Negative · Error ───────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Negative · Error</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#c42106;"></div>
+        <span class="color-name">--color-negative-bg</span>
+        <span class="color-usage">Destructive buttons, error fill</span>
+        <span class="color-value">#c42106</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#feeae6;"></div>
+        <span class="color-name">--color-negative-bg-light</span>
+        <span class="color-usage">Error banner backgrounds</span>
+        <span class="color-value">#feeae6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#a01b05;"></div>
+        <span class="color-name">--color-negative-text</span>
+        <span class="color-usage">Error messages, destructive text</span>
+        <span class="color-value">#a01b05</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#c42106;"></div>
+        <span class="color-name">--color-negative-border</span>
+        <span class="color-usage">Error input border, alert outline</span>
+        <span class="color-value">#c42106</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Warning ───────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Warning</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#ffd500;"></div>
+        <span class="color-name">--color-warning-bg</span>
+        <span class="color-usage">Warning badges, fills</span>
+        <span class="color-value">#ffd500</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#fff8e6;"></div>
+        <span class="color-name">--color-warning-bg-light</span>
+        <span class="color-usage">Warning banner backgrounds</span>
+        <span class="color-value">#fff8e6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#987002;"></div>
+        <span class="color-name">--color-warning-text</span>
+        <span class="color-usage">Warning labels, inline alerts</span>
+        <span class="color-value">#987002</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Positive · Success ────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Positive · Success</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#60d156;"></div>
+        <span class="color-name">--color-positive-bg</span>
+        <span class="color-usage">Success badges, fills</span>
+        <span class="color-value">#60d156</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#effaee;"></div>
+        <span class="color-name">--color-positive-bg-light</span>
+        <span class="color-usage">Success banner backgrounds</span>
+        <span class="color-value">#effaee</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#3c8635;"></div>
+        <span class="color-name">--color-positive-text</span>
+        <span class="color-usage">Success messages, confirm text</span>
+        <span class="color-value">#3c8635</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Always Dark ───────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Always Dark</p>
+    <div class="color-list">
+      <div class="color-row">
+        <div class="color-swatch" style="background:#3f4757;"></div>
+        <span class="color-name">--color-always-dark-bg-primary</span>
+        <span class="color-usage">Tooltips, dark popovers</span>
+        <span class="color-value">#3f4757</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#6f7884;"></div>
+        <span class="color-name">--color-always-dark-bg-secondary</span>
+        <span class="color-usage">Dark surface secondary</span>
+        <span class="color-value">#6f7884</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#f4f5f6;"></div>
+        <span class="color-name">--color-always-dark-text-primary</span>
+        <span class="color-usage">Primary text on dark surfaces</span>
+        <span class="color-value">#f4f5f6</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch" style="background:#edeef0;"></div>
+        <span class="color-name">--color-always-dark-text-secondary</span>
+        <span class="color-usage">Secondary text on dark surfaces</span>
+        <span class="color-value">#edeef0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Support Backgrounds ───────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Support Backgrounds</p>
+    <div class="palette-grid">
+      <div class="palette-chip"><div class="palette-dot" style="background:#fae3e1;"></div><div class="palette-info"><span class="palette-name">support-bg-1</span><span class="palette-hex">#fae3e1</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#ffe8e0;"></div><div class="palette-info"><span class="palette-name">support-bg-2</span><span class="palette-hex">#ffe8e0</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#fff3e0;"></div><div class="palette-info"><span class="palette-name">support-bg-3</span><span class="palette-hex">#fff3e0</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#e1faf0;"></div><div class="palette-info"><span class="palette-name">support-bg-4</span><span class="palette-hex">#e1faf0</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#dcfaf6;"></div><div class="palette-info"><span class="palette-name">support-bg-5</span><span class="palette-hex">#dcfaf6</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#e0fdff;"></div><div class="palette-info"><span class="palette-name">support-bg-6</span><span class="palette-hex">#e0fdff</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#e6e9fa;"></div><div class="palette-info"><span class="palette-name">support-bg-7</span><span class="palette-hex">#e6e9fa</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#e6e1f5;"></div><div class="palette-info"><span class="palette-name">support-bg-8</span><span class="palette-hex">#e6e1f5</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#ffe0ec;"></div><div class="palette-info"><span class="palette-name">support-bg-9</span><span class="palette-hex">#ffe0ec</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#e1ecf5;"></div><div class="palette-info"><span class="palette-name">support-bg-10</span><span class="palette-hex">#e1ecf5</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#ebf0f5;"></div><div class="palette-info"><span class="palette-name">support-bg-11</span><span class="palette-hex">#ebf0f5</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#edd0cd;"></div><div class="palette-info"><span class="palette-name">support-bg-12</span><span class="palette-hex">#edd0cd</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── Support Foregrounds ───────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Support Foregrounds</p>
+    <div class="palette-grid">
+      <div class="palette-chip"><div class="palette-dot" style="background:#f52f1d;"></div><div class="palette-info"><span class="palette-name">support-fg-1</span><span class="palette-hex">#f52f1d</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#fc602b;"></div><div class="palette-info"><span class="palette-name">support-fg-2</span><span class="palette-hex">#fc602b</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#ffb23c;"></div><div class="palette-info"><span class="palette-name">support-fg-3</span><span class="palette-hex">#ffb23c</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#06bc75;"></div><div class="palette-info"><span class="palette-name">support-fg-4</span><span class="palette-hex">#06bc75</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#00bfa5;"></div><div class="palette-info"><span class="palette-name">support-fg-5</span><span class="palette-hex">#00bfa5</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#46cad4;"></div><div class="palette-info"><span class="palette-name">support-fg-6</span><span class="palette-hex">#46cad4</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#4f68f1;"></div><div class="palette-info"><span class="palette-name">support-fg-7</span><span class="palette-hex">#4f68f1</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#7a64c1;"></div><div class="palette-info"><span class="palette-name">support-fg-8</span><span class="palette-hex">#7a64c1</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#f45191;"></div><div class="palette-info"><span class="palette-name">support-fg-9</span><span class="palette-hex">#f45191</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#6285a3;"></div><div class="palette-info"><span class="palette-name">support-fg-10</span><span class="palette-hex">#6285a3</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#b7c7d5;"></div><div class="palette-info"><span class="palette-name">support-fg-11</span><span class="palette-hex">#b7c7d5</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#a11b07;"></div><div class="palette-info"><span class="palette-name">support-fg-12</span><span class="palette-hex">#a11b07</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── Analytics ─────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Analytics</p>
+    <div class="palette-grid">
+      <div class="palette-chip"><div class="palette-dot" style="background:#648de6;"></div><div class="palette-info"><span class="palette-name">analytics-1</span><span class="palette-hex">#648de6</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#bba8f6;"></div><div class="palette-info"><span class="palette-name">analytics-2</span><span class="palette-hex">#bba8f6</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#2edcea;"></div><div class="palette-info"><span class="palette-name">analytics-3</span><span class="palette-hex">#2edcea</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#c06868;"></div><div class="palette-info"><span class="palette-name">analytics-4</span><span class="palette-hex">#c06868</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#fc9a61;"></div><div class="palette-info"><span class="palette-name">analytics-5</span><span class="palette-hex">#fc9a61</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#fddc4a;"></div><div class="palette-info"><span class="palette-name">analytics-6</span><span class="palette-hex">#fddc4a</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#acd942;"></div><div class="palette-info"><span class="palette-name">analytics-7</span><span class="palette-hex">#acd942</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#68bea8;"></div><div class="palette-info"><span class="palette-name">analytics-8</span><span class="palette-hex">#68bea8</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#eea4da;"></div><div class="palette-info"><span class="palette-name">analytics-9</span><span class="palette-hex">#eea4da</span></div></div>
+      <div class="palette-chip"><div class="palette-dot" style="background:#a1c2ff;"></div><div class="palette-info"><span class="palette-name">analytics-10</span><span class="palette-hex">#a1c2ff</span></div></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      var search = document.getElementById('nav-search');
+      search.addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.style.display = (!q || a.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

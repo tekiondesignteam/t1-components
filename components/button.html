@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+.section-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border-primary);
+      width: 100%;
+    }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: 90px repeat(6, 1fr);
+      align-items: center;
+      gap: var(--gap-sm) var(--gap-md);
+      width: 100%;
+    }
+
+    .state-header {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    .row-label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+    }
+
+    .cell {
+      display: flex;
+      justify-content: center;
+    }
+
+    .sizes-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--gap-lg);
+    }
+
+</style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item active" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+    })();
+  </script>
+  <div class="page-header">
+  <p class="page-eyebrow">AI Components</p>
+  <h1 class="page-title">Button</h1>
+  <p class="page-desc">Primary, secondary, tertiary, and destructive variants across three sizes.</p>
+  </div>
+
+
+  <!-- ── Sizes ─────────────────────────────────────────────── -->
+  <div class="demo-row" style="width:100%">
+    <h2 class="section-title">Sizes</h2>
+    <div class="sizes-row" style="margin-top:var(--space-sm)">
+      <div class="demo-row">
+        <span class="demo-label">Small — 24px</span>
+        <button class="btn btn--primary btn--sm">Label</button>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Medium — 32px</span>
+        <button class="btn btn--primary btn--md">Label</button>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Large — 44px</span>
+        <button class="btn btn--primary btn--lg">Label</button>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">With icon</span>
+        <button class="btn btn--primary btn--md">
+          <i class="ph-bold ph-plus"></i>New Chat
+        </button>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Icon only</span>
+        <button class="btn btn--primary btn--md btn--icon" aria-label="New chat">
+          <i class="ph-bold ph-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Variants & States ─────────────────────────────────── -->
+  <div class="demo-row" style="width:100%">
+    <h2 class="section-title">Variants &amp; States</h2>
+    <div style="margin-top:var(--space-sm);display:flex;flex-direction:column;gap:var(--gap-md)">
+
+      <!-- Header row -->
+      <div class="state-grid">
+        <div></div>
+        <div class="state-header">Default</div>
+        <div class="state-header">Hover</div>
+        <div class="state-header">Active</div>
+        <div class="state-header">Focus</div>
+        <div class="state-header">Loading</div>
+        <div class="state-header">Disabled</div>
+      </div>
+
+      <!-- Primary -->
+      <div class="state-grid">
+        <span class="row-label">Primary</span>
+        <div class="cell"><button class="btn btn--primary">Label</button></div>
+        <div class="cell"><button class="btn btn--primary btn--hover">Label</button></div>
+        <div class="cell"><button class="btn btn--primary btn--active">Label</button></div>
+        <div class="cell"><button class="btn btn--primary btn--focus">Label</button></div>
+        <div class="cell"><button class="btn btn--primary btn--loading"><span class="btn__spinner"></span>Label</button></div>
+        <div class="cell"><button class="btn btn--primary" disabled>Label</button></div>
+      </div>
+
+      <!-- Secondary -->
+      <div class="state-grid">
+        <span class="row-label">Secondary</span>
+        <div class="cell"><button class="btn btn--secondary">Label</button></div>
+        <div class="cell"><button class="btn btn--secondary btn--hover">Label</button></div>
+        <div class="cell"><button class="btn btn--secondary btn--active">Label</button></div>
+        <div class="cell"><button class="btn btn--secondary btn--focus">Label</button></div>
+        <div class="cell"><button class="btn btn--secondary btn--loading"><span class="btn__spinner"></span>Label</button></div>
+        <div class="cell"><button class="btn btn--secondary" disabled>Label</button></div>
+      </div>
+
+      <!-- Tertiary -->
+      <div class="state-grid">
+        <span class="row-label">Tertiary</span>
+        <div class="cell"><button class="btn btn--tertiary">Label</button></div>
+        <div class="cell"><button class="btn btn--tertiary btn--hover">Label</button></div>
+        <div class="cell"><button class="btn btn--tertiary btn--active">Label</button></div>
+        <div class="cell"><button class="btn btn--tertiary btn--focus">Label</button></div>
+        <div class="cell"><button class="btn btn--tertiary btn--loading"><span class="btn__spinner"></span>Label</button></div>
+        <div class="cell"><button class="btn btn--tertiary" disabled>Label</button></div>
+      </div>
+
+      <!-- Destructive -->
+      <div class="state-grid">
+        <span class="row-label">Destructive</span>
+        <div class="cell"><button class="btn btn--destructive">Label</button></div>
+        <div class="cell"><button class="btn btn--destructive btn--hover">Label</button></div>
+        <div class="cell"><button class="btn btn--destructive btn--active">Label</button></div>
+        <div class="cell"><button class="btn btn--destructive btn--focus">Label</button></div>
+        <div class="cell"><button class="btn btn--destructive btn--loading"><span class="btn__spinner"></span>Label</button></div>
+        <div class="cell"><button class="btn btn--destructive" disabled>Label</button></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

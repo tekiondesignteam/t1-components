@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI T1 App Bar — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+/* ── Page ─────────────────────────────────────────────── */
+
+    /* ── App Bar ──────────────────────────────────────────── */
+
+    .app-bar {
+      height:          var(--app-bar-height);       /* 44px */
+      width:           var(--app-bar-width);         /* 400px */
+      padding:         0 var(--app-bar-padding-x);   /* 0 16px */
+      border-radius:   var(--app-bar-border-radius) var(--app-bar-border-radius) var(--app-bar-border-radius-bottom) var(--app-bar-border-radius-bottom); /* 8px 8px 0 0 */
+      background:      var(--app-bar-bg);
+      display:         flex;
+      flex-direction:  row;
+      align-items:     center;
+      justify-content: space-between;
+      box-sizing:      border-box;
+      flex-shrink:     0;
+    }
+
+    .app-bar--expanded {
+      width:      100%;
+      max-width:  var(--app-bar-width-expanded);
+      background: var(--app-bar-bg-expanded);
+    }
+
+    .app-bar--mobile-drag {
+      height:          auto;
+      flex-direction:  column;
+      align-items:     center;
+      justify-content: flex-start;
+      padding:         var(--space-2xs) var(--app-bar-padding-x) var(--space-xs);
+      gap:             var(--gap-xs);
+    }
+
+    /* ── Drag Pill (mobile) ───────────────────────────────── */
+
+    .drag-pill {
+      width:         var(--drag-handle-width);   /* 120px */
+      height:        var(--drag-handle-height);  /* 4px  */
+      background:    var(--drag-handle-bg);
+      border-radius: var(--drag-handle-border-radius);
+      flex-shrink:   0;
+      cursor:        grab;
+    }
+
+    .drag-pill:active {
+      cursor:        grabbing;
+    }
+
+    /* content row inside mobile-drag bar */
+    .app-bar__content-row {
+      width:           100%;
+      display:         flex;
+      flex-direction:  row;
+      align-items:     center;
+      justify-content: space-between;
+    }
+
+    /* ── Drag Grip Icon (minimized / mobile-drag title) ───── */
+
+    .drag-grip {
+      width:       var(--window-control-size);  /* 16px */
+      height:      var(--window-control-size);  /* 16px */
+      display:     flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color:       var(--color-text-tertiary);
+      cursor:      grab;
+    }
+
+    .drag-grip i {
+      font-size: var(--window-control-size);
+      line-height: 1;
+      display: block;
+    }
+
+    /* ── Title Container ──────────────────────────────────── */
+
+    .title-container {
+      display:     flex;
+      align-items: center;
+      gap:         var(--gap-xs);    /* 8px — between drag-grip and app-title */
+      flex-shrink: 0;
+    }
+
+    /* ── App Title ────────────────────────────────────────── */
+
+    .app-title {
+      display:     flex;
+      align-items: center;
+      gap:         var(--gap-xs);    /* 8px */
+      flex-shrink: 0;
+    }
+
+    .app-title__logo {
+      width:       var(--app-title-logo-size);  /* 16px */
+      height:      var(--app-title-logo-size);  /* 16px */
+      display:     block;
+      flex-shrink: 0;
+    }
+
+    .app-title__text {
+      margin:       0;
+      font-size:    var(--app-title-font-size);
+      font-weight:  var(--app-title-font-weight);
+      line-height:  var(--app-title-line-height);
+      color:        var(--app-title-color);
+      white-space:  nowrap;
+    }
+
+    /* ── Window Controls ──────────────────────────────────── */
+
+    .window-controls {
+      display:     flex;
+      align-items: center;
+      gap:         var(--app-bar-controls-gap);  /* 16px */
+      flex-shrink: 0;
+    }
+
+    .window-control {
+      width:           var(--window-control-size);  /* 16px */
+      height:          var(--window-control-size);  /* 16px */
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      background:      none;
+      border:          none;
+      padding:         0;
+      cursor:          pointer;
+      color:           var(--color-text-secondary);
+      border-radius:   var(--radius-2xs);
+      flex-shrink:     0;
+      transition:      color var(--transition-base) var(--ease-in-out),
+                       background var(--transition-base) var(--ease-in-out);
+    }
+
+    .window-control:hover {
+      color:      var(--color-text-primary);
+      background: var(--color-bg-hover);
+    }
+
+    .window-control i {
+      font-size: var(--window-control-size);
+      line-height: 1;
+      display: block;
+    }
+
+</style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item active" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+  <div class="page-header">
+  <p class="page-eyebrow">AI Components</p>
+  <h1 class="page-title">App Bar</h1>
+  <p class="page-desc">Top bar of the AI assistant panel — holds the logo, title, and global actions.</p>
+  </div>
+
+
+  <!-- ── Default ─────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Default</span>
+    <div class="app-bar">
+      <div class="app-title">
+        <img class="app-title__logo" src="../assets/aiLogoT1.svg" alt="Tekion AI">
+        <p class="app-title__text">AI Assistant</p>
+      </div>
+      <div class="window-controls">
+        <button class="window-control" aria-label="Minimize"><i class="ph-bold ph-minus"></i></button>
+        <button class="window-control" aria-label="Expand"><i class="ph-bold ph-arrows-out-simple"></i></button>
+        <button class="window-control" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Expanded ────────────────────────────────────────── -->
+  <div class="demo-row" style="width: 100%; max-width: 1379px;">
+    <span class="demo-label">Expanded</span>
+    <div class="app-bar app-bar--expanded">
+      <div class="app-title">
+        <img class="app-title__logo" src="../assets/aiLogoT1.svg" alt="Tekion AI">
+        <p class="app-title__text">AI Assistant</p>
+      </div>
+      <div class="window-controls">
+        <button class="window-control" aria-label="Minimize"><i class="ph-bold ph-minus"></i></button>
+        <button class="window-control" aria-label="Panel view"><i class="ph-bold ph-sidebar-simple"></i></button>
+        <button class="window-control" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Mobile Drag ─────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Mobile Drag</span>
+    <div class="app-bar app-bar--mobile-drag">
+      <div class="drag-pill"></div>
+      <div class="app-bar__content-row">
+        <div class="app-title">
+          <img class="app-title__logo" src="../assets/aiLogoT1.svg" alt="Tekion AI">
+          <p class="app-title__text">AI Assistant</p>
+        </div>
+        <div class="window-controls">
+          <button class="window-control" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Minimized ───────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Minimized</span>
+    <div class="app-bar">
+      <div class="title-container">
+        <div class="drag-grip" aria-hidden="true">
+          <i class="ph-bold ph-dots-six"></i>
+        </div>
+        <div class="app-title">
+          <img class="app-title__logo" src="../assets/aiLogoT1.svg" alt="Tekion AI">
+          <p class="app-title__text">AI Assistant</p>
+        </div>
+      </div>
+      <div class="window-controls">
+        <button class="window-control" aria-label="Collapse"><i class="ph-bold ph-caret-up"></i></button>
+        <button class="window-control" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

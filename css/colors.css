@@ -1,0 +1,639 @@
+:root {
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #edeef0;
+    --bg-tertiary: #d4d5d6;
+    --bg-muted: #f4f5f6;
+    --bg-disabled: #f4f5f6;
+    --bg-hover: #ebf4ff;
+    --bg-active: #dbebff;
+    --bg-active-disabled: #edeef0;
+    --bg-overlay: #000000;
+    --bg-overlay-dark: #000000;
+
+    /* Texts */
+    --text-primary: #161616;
+    --text-secondary: #444f5c;
+    --text-tertiary: #969aa3;
+    --text-disabled: #d4d5d6;
+    --text-on-color: #ffffff;
+    --text-on-color-inverse: #000000;
+    --text-on-color-disabled: #6d707a;
+
+    /* Borders */
+    --border-primary: #d4d5d6;
+
+    /* Analytics */
+    --analytics-1: #648de6;
+    --analytics-2: #bba8f6;
+    --analytics-3: #2edcea;
+    --analytics-4: #c06868;
+    --analytics-5: #fc9a61;
+    --analytics-6: #fddc4a;
+    --analytics-7: #acd942;
+    --analytics-8: #68bea8;
+    --analytics-9: #eea4da;
+    --analytics-10: #a1c2ff;
+
+    /* Support */
+    --support-bg1: #fae3e1;
+    --support-bg2: #ffe8e0;
+    --support-bg3: #fff3e0;
+    --support-bg4: #e1faf0;
+    --support-bg5: #dcfaf6;
+    --support-bg6: #e0fdff;
+    --support-bg7: #e6e9fa;
+    --support-bg8: #e6e1f5;
+    --support-bg9: #ffe0ec;
+    --support-bg10: #e1ecf5;
+    --support-bg11: #ebf0f5;
+    --support-bg12: #edd0cd;
+
+    /* Icons */
+    --icon-light: #969aa3;
+    --icon-dark: #444f5c;
+    --icon-disabled: #d4d5d6;
+    --icon-on-color: #ffffff;
+    --icon-on-color-inverse: #000000;
+    --icon-on-color-disabled: #969aa3;
+
+    /* Borders */
+    --border-dark: #969aa3;
+    --border-light: #f4f5f6;
+    --border-disabled: #d4d5d6;
+    --border-on-color-disabled: #d4d5d6;
+
+    /* Accent */
+    --accent-bg: #4285f4;
+    --accent-bg-hover: #0060ff;
+    --accent-bg-active: #0060ff;
+    --accent-bg-light: #ebf4ff;
+    --accent-text: #3373dd;
+    --accent-text-hover: #0060ff;
+    --accent-text-active: #0060ff;
+    --accent-icon: #4285f4;
+    --accent-icon-hover: #0060ff;
+    --accent-icon-active: #0060ff;
+    --accent-border: #4285f4;
+    --accent-border-hover: #4285f4;
+    --accent-border-active: #0060ff;
+
+    /* Negative */
+    --bg-negative: #c42106;
+    --bg-negative-hover: #d62508;
+    --bg-negative-active: #931904;
+    --bg-negative-light: #feeae6;
+    --negative-text: #a01b05;
+    --negative-text-hover: #c42106;
+    --negative-text-active: #c42106;
+    --negative-icon: #a01b05;
+    --negative-icon-hover: #c42106;
+    --negative-icon-active: #c42106;
+    --negative-border: #c42106;
+    --negative-border-hover: #d62508;
+    --negative-border-active: #931904;
+
+    /* Warning */
+    --warning-bg: #ffd500;
+    --warning-bg-hover: #fff8e6;
+    --warning-bg-active: #987002;
+    --warning-bg-light: #fff8e6;
+    --warning-text: #987002;
+    --warning-text-hover: #987002;
+    --warning-text-active: #e8aa00;
+    --warning-icon: #e8aa00;
+    --warning-icon-hover: #e8aa00;
+    --warning-icon-active: #e8aa00;
+    --warning-border: #e8aa00;
+    --warning-border-hover: #ffd500;
+    --warning-border-active: #ffd500;
+
+    /* Positive */
+    --positive-bg: #60d156;
+    --positive-bg-hover: #3c8635;
+    --positive-bg-active: #56bf4d;
+    --positive-bg-light: #effaee;
+    --positive-text: #3c8635;
+    --positive-text-hover: #60d156;
+    --positive-text-active: #56bf4d;
+    --positive-icon: #60d156;
+    --positive-icon-hover: #3c8635;
+    --positive-icon-active: #56bf4d;
+    --positive-border: #56bf4d;
+    --positive-border-hover: #3c8635;
+    --positive-border-active: #60d156;
+
+    /* Always Dark */
+    --always-dark-bg-primary: #3f4757;
+    --always-dark-bg-secondary: #6f7884;
+    --always-dark-text-primary: #f4f5f6;
+    --always-dark-text-secondary: #edeef0;
+    --always-dark-icon: #d4d5d6;
+    --always-dark-border: #152532;
+
+    /* Support FG */
+    --support-fg1: #f52f1d;
+    --support-fg2: #fc602b;
+    --support-fg3: #ffb23c;
+    --support-fg4: #06bc75;
+    --support-fg5: #00bfa5;
+    --support-fg6: #46cad4;
+    --support-fg7: #4f68f1;
+    --support-fg8: #7a64c1;
+    --support-fg9: #f45191;
+    --support-fg10: #6285a3;
+    --support-fg11: #b7c7d5;
+    --support-fg12: #a11b07;
+}
+
+body {
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
+}
+
+/* Utilities */
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary);
+}
+
+.bg-muted {
+    background-color: var(--bg-muted);
+}
+
+.bg-disabled {
+    background-color: var(--bg-disabled);
+}
+
+.bg-hover {
+    background-color: var(--bg-hover);
+}
+
+.bg-active {
+    background-color: var(--bg-active);
+}
+
+.bg-active-disabled {
+    background-color: var(--bg-active-disabled);
+}
+
+.bg-overlay {
+    background-color: var(--bg-overlay);
+}
+
+.bg-overlay-dark {
+    background-color: var(--bg-overlay-dark);
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-tertiary {
+    color: var(--text-tertiary);
+}
+
+.text-disabled {
+    color: var(--text-disabled);
+}
+
+.text-on-color {
+    color: var(--text-on-color);
+}
+
+.text-on-color-inverse {
+    color: var(--text-on-color-inverse);
+}
+
+.text-on-color-disabled {
+    color: var(--text-on-color-disabled);
+}
+
+.border-primary {
+    border-color: var(--border-primary);
+}
+
+.border-dark {
+    border-color: var(--border-dark);
+}
+
+.border-light {
+    border-color: var(--border-light);
+}
+
+.border-disabled {
+    border-color: var(--border-disabled);
+}
+
+.border-on-color-disabled {
+    border-color: var(--border-on-color-disabled);
+}
+
+.bg-analytics-1 {
+    background-color: var(--analytics-1);
+}
+
+.bg-analytics-2 {
+    background-color: var(--analytics-2);
+}
+
+.bg-analytics-3 {
+    background-color: var(--analytics-3);
+}
+
+.bg-analytics-4 {
+    background-color: var(--analytics-4);
+}
+
+.bg-analytics-5 {
+    background-color: var(--analytics-5);
+}
+
+.bg-analytics-6 {
+    background-color: var(--analytics-6);
+}
+
+.bg-analytics-7 {
+    background-color: var(--analytics-7);
+}
+
+.bg-analytics-8 {
+    background-color: var(--analytics-8);
+}
+
+.bg-analytics-9 {
+    background-color: var(--analytics-9);
+}
+
+.bg-analytics-10 {
+    background-color: var(--analytics-10);
+}
+
+.bg-support-bg1 {
+    background-color: var(--support-bg1);
+}
+
+.bg-support-bg2 {
+    background-color: var(--support-bg2);
+}
+
+.bg-support-bg3 {
+    background-color: var(--support-bg3);
+}
+
+.bg-support-bg4 {
+    background-color: var(--support-bg4);
+}
+
+.bg-support-bg5 {
+    background-color: var(--support-bg5);
+}
+
+.bg-support-bg6 {
+    background-color: var(--support-bg6);
+}
+
+.bg-support-bg7 {
+    background-color: var(--support-bg7);
+}
+
+.bg-support-bg8 {
+    background-color: var(--support-bg8);
+}
+
+.bg-support-bg9 {
+    background-color: var(--support-bg9);
+}
+
+.bg-support-bg10 {
+    background-color: var(--support-bg10);
+}
+
+.bg-support-bg11 {
+    background-color: var(--support-bg11);
+}
+
+.bg-support-bg12 {
+    background-color: var(--support-bg12);
+}
+
+.text-support-fg1 {
+    color: var(--support-fg1);
+}
+
+.text-support-fg2 {
+    color: var(--support-fg2);
+}
+
+.text-support-fg3 {
+    color: var(--support-fg3);
+}
+
+.text-support-fg4 {
+    color: var(--support-fg4);
+}
+
+.text-support-fg5 {
+    color: var(--support-fg5);
+}
+
+.text-support-fg6 {
+    color: var(--support-fg6);
+}
+
+.text-support-fg7 {
+    color: var(--support-fg7);
+}
+
+.text-support-fg8 {
+    color: var(--support-fg8);
+}
+
+.text-support-fg9 {
+    color: var(--support-fg9);
+}
+
+.text-support-fg10 {
+    color: var(--support-fg10);
+}
+
+.text-support-fg11 {
+    color: var(--support-fg11);
+}
+
+.text-support-fg12 {
+    color: var(--support-fg12);
+}
+
+/* Icons */
+.icon-light {
+    color: var(--icon-light);
+}
+
+.icon-dark {
+    color: var(--icon-dark);
+}
+
+.icon-disabled {
+    color: var(--icon-disabled);
+}
+
+.icon-on-color {
+    color: var(--icon-on-color);
+}
+
+.icon-on-color-inverse {
+    color: var(--icon-on-color-inverse);
+}
+
+.icon-on-color-disabled {
+    color: var(--icon-on-color-disabled);
+}
+
+/* Accent Utilities */
+.bg-accent {
+    background-color: var(--accent-bg);
+}
+
+.bg-accent-hover {
+    background-color: var(--accent-bg-hover);
+}
+
+.bg-accent-active {
+    background-color: var(--accent-bg-active);
+}
+
+.bg-accent-light {
+    background-color: var(--accent-bg-light);
+}
+
+.text-accent {
+    color: var(--accent-text);
+}
+
+.text-accent-hover {
+    color: var(--accent-text-hover);
+}
+
+.text-accent-active {
+    color: var(--accent-text-active);
+}
+
+.icon-accent {
+    color: var(--accent-icon);
+}
+
+.icon-accent-hover {
+    color: var(--accent-icon-hover);
+}
+
+.icon-accent-active {
+    color: var(--accent-icon-active);
+}
+
+.border-accent {
+    border-color: var(--accent-border);
+}
+
+.border-accent-hover {
+    border-color: var(--accent-border-hover);
+}
+
+.border-accent-active {
+    border-color: var(--accent-border-active);
+}
+
+/* Negative Utilities */
+.bg-negative {
+    background-color: var(--bg-negative);
+}
+
+.bg-negative-hover {
+    background-color: var(--bg-negative-hover);
+}
+
+.bg-negative-active {
+    background-color: var(--bg-negative-active);
+}
+
+.bg-negative-light {
+    background-color: var(--bg-negative-light);
+}
+
+.text-negative {
+    color: var(--negative-text);
+}
+
+.text-negative-hover {
+    color: var(--negative-text-hover);
+}
+
+.text-negative-active {
+    color: var(--negative-text-active);
+}
+
+.icon-negative {
+    color: var(--negative-icon);
+}
+
+.icon-negative-hover {
+    color: var(--negative-icon-hover);
+}
+
+.icon-negative-active {
+    color: var(--negative-icon-active);
+}
+
+.border-negative {
+    border-color: var(--negative-border);
+}
+
+.border-negative-hover {
+    border-color: var(--negative-border-hover);
+}
+
+.border-negative-active {
+    border-color: var(--negative-border-active);
+}
+
+/* Warning Utilities */
+.bg-warning {
+    background-color: var(--warning-bg);
+}
+
+.bg-warning-hover {
+    background-color: var(--warning-bg-hover);
+}
+
+.bg-warning-active {
+    background-color: var(--warning-bg-active);
+}
+
+.bg-warning-light {
+    background-color: var(--warning-bg-light);
+}
+
+.text-warning {
+    color: var(--warning-text);
+}
+
+.text-warning-hover {
+    color: var(--warning-text-hover);
+}
+
+.text-warning-active {
+    color: var(--warning-text-active);
+}
+
+.icon-warning {
+    color: var(--warning-icon);
+}
+
+.icon-warning-hover {
+    color: var(--warning-icon-hover);
+}
+
+.icon-warning-active {
+    color: var(--warning-icon-active);
+}
+
+.border-warning {
+    border-color: var(--warning-border);
+}
+
+.border-warning-hover {
+    border-color: var(--warning-border-hover);
+}
+
+.border-warning-active {
+    border-color: var(--warning-border-active);
+}
+
+/* Positive Utilities */
+.bg-positive {
+    background-color: var(--positive-bg);
+}
+
+.bg-positive-hover {
+    background-color: var(--positive-bg-hover);
+}
+
+.bg-positive-active {
+    background-color: var(--positive-bg-active);
+}
+
+.bg-positive-light {
+    background-color: var(--positive-bg-light);
+}
+
+.text-positive {
+    color: var(--positive-text);
+}
+
+.text-positive-hover {
+    color: var(--positive-text-hover);
+}
+
+.text-positive-active {
+    color: var(--positive-text-active);
+}
+
+.icon-positive {
+    color: var(--positive-icon);
+}
+
+.icon-positive-hover {
+    color: var(--positive-icon-hover);
+}
+
+.icon-positive-active {
+    color: var(--positive-icon-active);
+}
+
+.border-positive {
+    border-color: var(--positive-border);
+}
+
+.border-positive-hover {
+    border-color: var(--positive-border-hover);
+}
+
+.border-positive-active {
+    border-color: var(--positive-border-active);
+}
+
+/* Always Dark */
+.bg-always-dark-primary {
+    background-color: var(--always-dark-bg-primary);
+}
+
+.bg-always-dark-secondary {
+    background-color: var(--always-dark-bg-secondary);
+}
+
+.text-always-dark-primary {
+    color: var(--always-dark-text-primary);
+}
+
+.text-always-dark-secondary {
+    color: var(--always-dark-text-secondary);
+}
+
+.icon-always-dark {
+    color: var(--always-dark-icon);
+}
+
+.border-always-dark {
+    border-color: var(--always-dark-border);
+}

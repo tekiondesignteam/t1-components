@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <style>
+
+/* ── Section ─────────────────────────────────────────────── */
+
+    .section {
+      margin-bottom: var(--space-4xl);
+    }
+
+    .section-title {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin: 0 0 var(--space-sm) 0;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border-primary);
+    }
+
+    /* ── Type specimen rows ───────────────────────────────────── */
+
+    .type-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      align-items: center;
+      gap: var(--space-xl);
+      padding: var(--space-md) var(--space-sm);
+      border-bottom: 1px solid var(--color-border-primary);
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .type-token {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    .type-spec {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      color: var(--color-text-tertiary);
+    }
+
+    .type-sample {
+      flex: 1;
+      color: var(--color-text-primary);
+    }
+
+    .type-usage {
+      font-size: 11px;
+      color: var(--color-text-tertiary);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* ── Specimens ───────────────────────────────────────────── */
+
+    .s-h1 { font-size: var(--text-heading-1-size); font-weight: var(--font-weight-bold); line-height: 1.2; margin: 0; letter-spacing: -0.02em; }
+    .s-h2 { font-size: var(--text-heading-2-size); font-weight: var(--font-weight-bold); line-height: 1.25; margin: 0; letter-spacing: -0.015em; }
+    .s-h3 { font-size: var(--text-heading-3-size); font-weight: var(--font-weight-semibold); line-height: 1.3; margin: 0; }
+    .s-h4 { font-size: var(--text-heading-4-size); font-weight: var(--font-weight-semibold); line-height: 1.35; margin: 0; }
+    .s-h5 { font-size: var(--text-heading-5-size); font-weight: var(--font-weight-medium); line-height: 1.4; margin: 0; }
+    .s-h6 { font-size: var(--text-heading-6-size); font-weight: var(--font-weight-semibold); line-height: 1.4; margin: 0; }
+    .s-p-lg  { font-size: var(--text-paragraph-large-size);  font-weight: var(--font-weight-normal); line-height: 1.6; margin: 0; }
+    .s-p-base{ font-size: var(--text-paragraph-base-size);   font-weight: var(--font-weight-normal); line-height: 1.6; margin: 0; }
+    .s-p-sm  { font-size: var(--text-paragraph-small-size);  font-weight: var(--font-weight-normal); line-height: 1.6; margin: 0; }
+    .s-label-xl  { font-size: var(--text-label-xlarge-size); font-weight: var(--font-weight-semibold); margin: 0; }
+    .s-label-lg  { font-size: var(--text-label-large-size);  font-weight: var(--font-weight-medium); margin: 0; }
+    .s-label-base{ font-size: var(--text-label-base-size);   font-weight: var(--font-weight-medium); margin: 0; }
+    .s-label-sm  { font-size: var(--text-label-small-size);  font-weight: var(--font-weight-medium); margin: 0; }
+    .s-caption { font-size: var(--font-size-xs); font-weight: var(--font-weight-normal); color: var(--color-text-secondary); margin: 0; }
+    .s-overline { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 0; }
+    .s-code { font-family: var(--font-family-mono); font-size: var(--font-size-sm); margin: 0; }
+
+    /* ── Font families ───────────────────────────────────────── */
+
+    .family-row {
+      display: flex;
+      gap: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .family-card {
+      flex: 1;
+      min-width: 200px;
+      padding: var(--space-xl);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-sm);
+      background: var(--color-bg-muted);
+    }
+
+    .family-specimen {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--space-sm) 0;
+      letter-spacing: -0.01em;
+      color: var(--color-text-primary);
+    }
+
+    .family-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+      margin: 0 0 2px 0;
+    }
+
+    .family-token {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      color: var(--color-text-tertiary);
+      margin: 0;
+    }
+
+    /* ── Weights grid ────────────────────────────────────────── */
+
+    .weights-row {
+      display: flex;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .weight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 80px;
+    }
+
+    .weight-specimen {
+      font-size: var(--font-size-xl);
+      color: var(--color-text-primary);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .weight-label {
+      font-size: 11px;
+      font-family: var(--font-family-mono);
+      color: var(--color-text-tertiary);
+    }
+
+    /* ── Size scale ──────────────────────────────────────────── */
+
+    .sizes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .size-row {
+      display: grid;
+      grid-template-columns: 140px 40px 1fr;
+      align-items: center;
+      gap: var(--space-md);
+      padding: 6px var(--space-sm);
+      border-radius: var(--radius-xs);
+    }
+
+    .size-row:hover { background: var(--color-bg-muted); }
+
+    .size-token { font-size: 11px; font-family: var(--font-family-mono); color: var(--color-text-secondary); }
+    .size-value { font-size: 11px; font-family: var(--font-family-mono); color: var(--color-text-tertiary); }
+    .size-bar-wrap { display: flex; align-items: center; gap: var(--space-sm); }
+    .size-bar { height: 2px; background: var(--color-ai-blue); border-radius: 2px; opacity: 0.4; }
+    .size-specimen { color: var(--color-text-primary); white-space: nowrap; overflow: hidden; }
+
+    /* Page header spacing */
+    .page-header { margin-bottom: var(--gap-2xl); }
+
+</style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ───────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <svg class="nav-search-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search…" aria-label="Search">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item active" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html"><span class="nav-item-name">Action Overflow Menu</span><span class="nav-item-desc">Contextual action dropdown</span></a>
+      <a class="nav-item" href="app-bar.html"><span class="nav-item-name">App Bar</span><span class="nav-item-desc">AI assistant title bar</span></a>
+      <a class="nav-item" href="button.html"><span class="nav-item-name">Button</span><span class="nav-item-desc">Primary, secondary, tertiary</span></a>
+      <a class="nav-item" href="fab.html"><span class="nav-item-name">FAB</span><span class="nav-item-desc">Floating action button</span></a>
+      <a class="nav-item" href="fav-bar-icon.html"><span class="nav-item-name">Fav Bar Icon</span><span class="nav-item-desc">Favorite bar logo icon</span></a>
+      <a class="nav-item" href="search.html"><span class="nav-item-name">Search</span><span class="nav-item-desc">Search input with results</span></a>
+      <a class="nav-item" href="side-nav-item.html"><span class="nav-item-name">Side Nav Item</span><span class="nav-item-desc">Chat list row</span></a>
+      <a class="nav-item" href="side-nav-section-header.html"><span class="nav-item-name">Side Nav Section Header</span><span class="nav-item-desc">Chat list group label</span></a>
+      <a class="nav-item" href="sidenav-footer.html"><span class="nav-item-name">Side Nav Footer</span><span class="nav-item-desc">Utility links at nav bottom</span></a>
+      <a class="nav-item" href="sidenav.html"><span class="nav-item-name">Side Nav</span><span class="nav-item-desc">Full chat navigation panel</span></a>
+      <a class="nav-item" href="title-bar.html"><span class="nav-item-name">Title Bar</span><span class="nav-item-desc">Chat title navigation bar</span></a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design System</div>
+  </nav>
+
+  <!-- ── Page header ───────────────────────────────────────── -->
+  <div class="page-header">
+  <p class="page-eyebrow">Foundation</p>
+  <h1 class="page-title">Typography</h1>
+  <p class="page-desc">Manrope type system — 3-layer token architecture. Use <code style="font-family:var(--font-family-mono);font-size:0.9em;background:var(--color-bg-muted);padding:1px 5px;border-radius:3px;">--text-*</code> tokens for semantic type styles.</p>
+  </div>
+
+  <!-- ── Font Families ─────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Font Families</p>
+    <div class="family-row">
+      <div class="family-card">
+        <p class="family-specimen" style="font-family:var(--font-family);">Aa Bb Cc 0–9</p>
+        <p class="family-name">Manrope</p>
+        <p class="family-token">--font-family · wght 200–800</p>
+      </div>
+      <div class="family-card">
+        <p class="family-specimen" style="font-family:var(--font-family-mono);">Aa Bb 0–9 {}</p>
+        <p class="family-name">Fragment Mono</p>
+        <p class="family-token">--font-family-mono · wght 300–700</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Headings ──────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Headings</p>
+    <div class="type-list">
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-1-size</span>
+          <span class="type-spec">32px · Bold · -2% tracking</span>
+        </div>
+        <p class="s-h1 type-sample">Heading 1</p>
+        <span class="type-usage">Page titles</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-2-size</span>
+          <span class="type-spec">24px · Bold</span>
+        </div>
+        <p class="s-h2 type-sample">Heading 2</p>
+        <span class="type-usage">Section titles</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-3-size</span>
+          <span class="type-spec">20px · Semibold</span>
+        </div>
+        <p class="s-h3 type-sample">Heading 3</p>
+        <span class="type-usage">Card headings</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-4-size</span>
+          <span class="type-spec">18px · Semibold</span>
+        </div>
+        <p class="s-h4 type-sample">Heading 4</p>
+        <span class="type-usage">Subsection titles</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-5-size</span>
+          <span class="type-spec">18px · Medium</span>
+        </div>
+        <p class="s-h5 type-sample">Heading 5</p>
+        <span class="type-usage">Minor headings</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-heading-6-size</span>
+          <span class="type-spec">16px · Semibold</span>
+        </div>
+        <p class="s-h6 type-sample">Heading 6</p>
+        <span class="type-usage">List group headers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Paragraph ─────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Paragraph</p>
+    <div class="type-list">
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-paragraph-large-size</span>
+          <span class="type-spec">18px · Regular · lh 1.6</span>
+        </div>
+        <p class="s-p-lg type-sample">The quick brown fox jumps over the lazy dog.</p>
+        <span class="type-usage">Intro / hero copy</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-paragraph-base-size</span>
+          <span class="type-spec">16px · Regular · lh 1.6</span>
+        </div>
+        <p class="s-p-base type-sample">The quick brown fox jumps over the lazy dog.</p>
+        <span class="type-usage">Default body text</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-paragraph-small-size</span>
+          <span class="type-spec">14px · Regular · lh 1.6</span>
+        </div>
+        <p class="s-p-sm type-sample">The quick brown fox jumps over the lazy dog.</p>
+        <span class="type-usage">Secondary body, helper text</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Labels ────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Labels</p>
+    <div class="type-list">
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-label-xlarge-size</span>
+          <span class="type-spec">18px · Semibold</span>
+        </div>
+        <p class="s-label-xl type-sample">Label XL</p>
+        <span class="type-usage">Button large, key CTAs</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-label-large-size</span>
+          <span class="type-spec">18px · Medium</span>
+        </div>
+        <p class="s-label-lg type-sample">Label Large</p>
+        <span class="type-usage">Nav items, tab labels</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-label-base-size</span>
+          <span class="type-spec">16px · Medium</span>
+        </div>
+        <p class="s-label-base type-sample">Label Base</p>
+        <span class="type-usage">Form labels, list items</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">--text-label-small-size</span>
+          <span class="type-spec">14px · Medium</span>
+        </div>
+        <p class="s-label-sm type-sample">Label Small</p>
+        <span class="type-usage">Compact labels, chips</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Utility ───────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Utility</p>
+    <div class="type-list">
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">Caption</span>
+          <span class="type-spec">12px · Regular · secondary</span>
+        </div>
+        <p class="s-caption type-sample">Supporting detail, timestamps, metadata</p>
+        <span class="type-usage">Below inputs, cards</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">Overline</span>
+          <span class="type-spec">12px · Semibold · uppercase · 8% tracking</span>
+        </div>
+        <p class="s-overline type-sample">Section label</p>
+        <span class="type-usage">Category labels, eyebrows</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-token">Code</span>
+          <span class="type-spec">14px · Fragment Mono</span>
+        </div>
+        <p class="s-code type-sample">const token = "var(--color-ai-blue)"</p>
+        <span class="type-usage">Code, token names</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Font Weights ──────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Font Weights</p>
+    <div class="weights-row">
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:300;">Ag</p>
+        <span class="weight-label">light · 300</span>
+      </div>
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:400;">Ag</p>
+        <span class="weight-label">regular · 400</span>
+      </div>
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:500;">Ag</p>
+        <span class="weight-label">medium · 500</span>
+      </div>
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:600;">Ag</p>
+        <span class="weight-label">semibold · 600</span>
+      </div>
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:700;">Ag</p>
+        <span class="weight-label">bold · 700</span>
+      </div>
+      <div class="weight-item">
+        <p class="weight-specimen" style="font-weight:800;">Ag</p>
+        <span class="weight-label">extrabold · 800</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Font Size Scale ───────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Size Scale</p>
+    <div class="sizes-list">
+      <div class="size-row"><span class="size-token">--font-size-2xs</span><span class="size-value">10px</span><div class="size-bar-wrap"><div class="size-bar" style="width:40px;"></div><span class="size-specimen" style="font-size:10px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-xs</span><span class="size-value">12px</span><div class="size-bar-wrap"><div class="size-bar" style="width:48px;"></div><span class="size-specimen" style="font-size:12px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-sm</span><span class="size-value">14px</span><div class="size-bar-wrap"><div class="size-bar" style="width:56px;"></div><span class="size-specimen" style="font-size:14px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-md</span><span class="size-value">16px</span><div class="size-bar-wrap"><div class="size-bar" style="width:64px;"></div><span class="size-specimen" style="font-size:16px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-lg</span><span class="size-value">18px</span><div class="size-bar-wrap"><div class="size-bar" style="width:72px;"></div><span class="size-specimen" style="font-size:18px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-xl</span><span class="size-value">20px</span><div class="size-bar-wrap"><div class="size-bar" style="width:80px;"></div><span class="size-specimen" style="font-size:20px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-2xl</span><span class="size-value">24px</span><div class="size-bar-wrap"><div class="size-bar" style="width:96px;"></div><span class="size-specimen" style="font-size:24px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-3xl</span><span class="size-value">32px</span><div class="size-bar-wrap"><div class="size-bar" style="width:128px;"></div><span class="size-specimen" style="font-size:32px;">The quick brown fox</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-4xl</span><span class="size-value">40px</span><div class="size-bar-wrap"><div class="size-bar" style="width:160px;"></div><span class="size-specimen" style="font-size:40px;">Heading</span></div></div>
+      <div class="size-row"><span class="size-token">--font-size-5xl</span><span class="size-value">48px</span><div class="size-bar-wrap"><div class="size-bar" style="width:192px;"></div><span class="size-specimen" style="font-size:48px;">Display</span></div></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      var search = document.getElementById('nav-search');
+      search.addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.style.display = (!q || a.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Nav — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+  <style>
+
+    /* Multiple panels side by side */
+    .variants-row {
+      display:     flex;
+      gap:         32px;
+      flex-wrap:   wrap;
+      align-items: flex-start;
+    }
+
+    .variant {
+      display:        flex;
+      flex-direction: column;
+      gap:            var(--gap-xs);
+    }
+
+    /* ── Side Nav panel ───────────────────────────────────── */
+
+    .sidenav {
+      width:           var(--sidenav-width);
+      height:          var(--sidenav-height);
+      background:      var(--sidenav-bg);
+      display:         flex;
+      flex-direction:  column;
+      justify-content: space-between;
+      border:          1px solid var(--color-border-primary);
+      border-radius:   var(--radius-sm);
+      overflow:        hidden;
+      flex-shrink:     0;
+    }
+
+    /* ── Body ─────────────────────────────────────────────── */
+
+    .sidenav__body {
+      display:        flex;
+      flex-direction: column;
+      gap:            var(--sidenav-body-gap);
+      flex:           1;
+      min-height:     0;
+      overflow:       hidden;
+    }
+
+    /* ── Search container ─────────────────────────────────── */
+
+    .sidenav__search-container {
+      padding:        var(--sidenav-search-py) var(--sidenav-search-px);
+      display:        flex;
+      flex-direction: column;
+      gap:            var(--sidenav-search-gap);
+      flex-shrink:    0;
+    }
+
+    /* no gap when in search mode — list follows directly */
+    .sidenav--searching .sidenav__search-container {
+      gap:            0;
+      padding-bottom: 0;
+    }
+
+    .sidenav--searching .sidenav__body {
+      gap: 0;
+    }
+
+    .sidenav--searching .sidenav__items {
+      padding-top: var(--sidenav-body-gap);
+    }
+
+    /* ── Chat group sections ──────────────────────────────── */
+
+    .sidenav__chat-groups {
+      display:        flex;
+      flex-direction: column;
+      gap:            16px;
+      flex:           1;
+      min-height:     0;
+      overflow-y:     auto;
+      padding-bottom: var(--space-xs);
+      box-sizing:     border-box;
+    }
+
+    .sidenav__chat-group {
+      display:        flex;
+      flex-direction: column;
+      gap:            2px;
+    }
+
+    .sidenav__group-label {
+      padding:     0 16px;
+      height:      20px;
+      display:     flex;
+      align-items: center;
+      font-size:   var(--font-size-md);
+      font-weight: var(--font-weight-medium);
+      color:       var(--color-text-tertiary);
+      line-height: 1;
+    }
+
+    .sidenav__items {
+      padding:        0 var(--sidenav-items-px) var(--space-xs);
+      display:        flex;
+      flex-direction: column;
+      gap:            2px;
+      flex:           1;
+      min-height:     0;
+      overflow-y:     auto;
+    }
+
+    /* Thin scrollbar inside sidenav */
+    .sidenav__chat-groups::-webkit-scrollbar,
+    .sidenav__items::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidenav__chat-groups::-webkit-scrollbar-thumb,
+    .sidenav__items::-webkit-scrollbar-thumb {
+      background:    var(--color-border-dark);
+      border-radius: 2px;
+    }
+    .sidenav__chat-groups::-webkit-scrollbar-track,
+    .sidenav__items::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* ── Empty state ──────────────────────────────────────── */
+
+    .sidenav__empty {
+      display:        flex;
+      flex-direction: column;
+      align-items:    center;
+      justify-content: center;
+      gap:            12px;
+      padding:        16px;
+      flex:           1;
+      text-align:     center;
+    }
+
+    .sidenav__empty-icon {
+      width:           40px;
+      height:          40px;
+      background:      var(--color-bg-secondary);
+      border-radius:   var(--radius-xs);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      flex-shrink:     0;
+    }
+
+    .sidenav__empty-icon i {
+      font-size: 20px;
+      color:     var(--color-icon-dark);
+    }
+
+    .sidenav__empty-title {
+      margin:      0;
+      font-size:   var(--font-size-lg);
+      font-weight: var(--font-weight-medium);
+      color:       var(--color-text-primary);
+    }
+
+    .sidenav__empty-subtitle {
+      margin:      0;
+      font-size:   var(--font-size-md);
+      color:       var(--color-text-secondary);
+      line-height: var(--line-height-normal);
+    }
+
+    /* ── Footer (reuses sidenav-footer pattern) ───────────── */
+
+    .sidenav__footer {
+      padding:        var(--sidenav-footer-padding);
+      border-top:     var(--sidenav-footer-border-width) solid var(--sidenav-footer-border-color);
+      display:        flex;
+      flex-direction: column;
+      gap:            var(--sidenav-footer-gap);
+      flex-shrink:    0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item active" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ─────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Side Nav</h1>
+    <p class="page-desc">Full chat navigation panel — search, pinned and recent chat lists, empty states, and a persistent settings footer. Exists in four variants: default, no chats, search results, and search empty.</p>
+  </div>
+
+  <!-- ── Row 1: Default + No Chats ──────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Default · No Chats</span>
+    <div class="variants-row">
+
+      <!-- Default (with chats) -->
+      <div class="variant">
+        <span class="demo-label" style="margin-bottom:4px;">With Chats</span>
+        <div class="sidenav">
+          <div class="sidenav__body">
+
+            <!-- Search + New Chat button -->
+            <div class="sidenav__search-container">
+              <div class="search-field search-field--sm">
+                <div class="search-field__wrap">
+                  <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+                  <input class="search-field__input" type="search" placeholder="Search chats..." aria-label="Search chats">
+                </div>
+              </div>
+              <button class="btn btn--secondary btn--md" style="width:100%;">
+                <i class="ph-bold ph-plus-circle"></i>
+                Start a New Chat
+              </button>
+            </div>
+
+            <!-- Pinned Chats -->
+            <div class="sidenav__chat-groups">
+              <div class="sidenav__chat-group">
+                <div class="sidenav__group-label">Pinned Chats</div>
+                <div class="sidenav__items">
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Monthly Sales Review</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Summarize recent hot leads...</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Draft quote for Model X</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Last high-priority test drives</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recents Chats -->
+              <div class="sidenav__chat-group">
+                <div class="sidenav__group-label">Recent Chats</div>
+                <div class="sidenav__items">
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Monthly Sales Review</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item side-nav-item--active">
+                    <span class="side-nav-item__text">Summarize recent hot leads...</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Draft quote for Model X</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Last high-priority test drives</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Follow-up on service appointment</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Q3 inventory overview</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Trade-in value for 2021 Camry</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Finance options for buyer</span>
+                    <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="sidenav__footer">
+            <div class="side-nav-item">
+              <i class="ph-bold ph-gear side-nav-item__icon"></i>
+              <span class="side-nav-item__text">Settings</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /variant -->
+
+      <!-- No Chats (empty state) -->
+      <div class="variant">
+        <span class="demo-label" style="margin-bottom:4px;">No Chats</span>
+        <div class="sidenav">
+          <div class="sidenav__body">
+
+            <!-- Search only, no button -->
+            <div class="sidenav__search-container" style="gap:0;">
+              <div class="search-field search-field--sm">
+                <div class="search-field__wrap">
+                  <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+                  <input class="search-field__input" type="search" placeholder="Search chats..." aria-label="Search chats">
+                </div>
+              </div>
+            </div>
+
+            <!-- Empty state -->
+            <div class="sidenav__empty">
+              <div class="sidenav__empty-icon">
+                <i class="ph-bold ph-chat-centered-dots"></i>
+              </div>
+              <p class="sidenav__empty-title">Nothing here yet</p>
+              <p class="sidenav__empty-subtitle">Ask about leads, deals, or who you should follow up with next.</p>
+              <button class="btn btn--primary btn--md">
+                <i class="ph-bold ph-plus-circle"></i>
+                Start a New Chat
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="sidenav__footer">
+            <div class="side-nav-item">
+              <i class="ph-bold ph-gear side-nav-item__icon"></i>
+              <span class="side-nav-item__text">Settings</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /variant -->
+
+    </div>
+  </div>
+
+  <!-- ── Row 2: Search Results + Search Empty ────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Search — Results · No Results</span>
+    <div class="variants-row">
+
+      <!-- Search: Results -->
+      <div class="variant">
+        <span class="demo-label" style="margin-bottom:4px;">Search Results</span>
+        <div class="sidenav sidenav--searching">
+          <div class="sidenav__body">
+
+            <div class="sidenav__search-container">
+              <div class="search-field search-field--sm search-field--focused">
+                <div class="search-field__wrap">
+                  <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+                  <input class="search-field__input" type="search" value="Mon" aria-label="Search chats">
+                </div>
+              </div>
+            </div>
+
+            <div class="sidenav__items">
+              <div class="side-nav-item side-nav-item--hover">
+                <span class="side-nav-item__text">Monthly Sales Review</span>
+                <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+              </div>
+              <div class="side-nav-item">
+                <span class="side-nav-item__text">Monthly Summarize recent hot leads...</span>
+                <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="sidenav__footer">
+            <div class="side-nav-item">
+              <i class="ph-bold ph-gear side-nav-item__icon"></i>
+              <span class="side-nav-item__text">Settings</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /variant -->
+
+      <!-- Search: No Results -->
+      <div class="variant">
+        <span class="demo-label" style="margin-bottom:4px;">Search — No Results</span>
+        <div class="sidenav sidenav--searching">
+          <div class="sidenav__body">
+
+            <div class="sidenav__search-container">
+              <div class="search-field search-field--sm search-field--focused">
+                <div class="search-field__wrap">
+                  <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+                  <input class="search-field__input" type="search" value="Ra" aria-label="Search chats">
+                </div>
+              </div>
+            </div>
+
+            <!-- Centered empty state -->
+            <div class="sidenav__empty">
+              <div class="sidenav__empty-icon">
+                <i class="ph-bold ph-magnifying-glass"></i>
+              </div>
+              <p class="sidenav__empty-title">No results found</p>
+              <p class="sidenav__empty-subtitle">No chats match "Ra"</p>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="sidenav__footer">
+            <div class="side-nav-item">
+              <i class="ph-bold ph-gear side-nav-item__icon"></i>
+              <span class="side-nav-item__text">Settings</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /variant -->
+
+    </div>
+  </div>
+
+</body>
+</html>

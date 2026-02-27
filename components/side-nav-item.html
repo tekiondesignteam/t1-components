@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI T1 Side Nav Item — Tekion AI Design System</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Left Navigation ──────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>AI Design System</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item active" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+    </div>
+    <div class="nav-footer">Tekion AI · Design Tokens</div>
+  </nav>
+  <script>
+    (function() {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function(e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function(a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+  <div class="page-header">
+  <p class="page-eyebrow">AI Components</p>
+  <h1 class="page-title">Side Nav Item</h1>
+  <p class="page-desc">Individual chat list row — shows conversation title, timestamp, and status.</p>
+  </div>
+
+
+  <!-- ── Default ─────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Default</span>
+    <div class="side-nav-item">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Hover ───────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Hover</span>
+    <div class="side-nav-item side-nav-item--hover">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Active ──────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Active</span>
+    <div class="side-nav-item side-nav-item--active">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Selected ────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Selected</span>
+    <div class="side-nav-item side-nav-item--selected">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Disabled ────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Disabled</span>
+    <div class="side-nav-item side-nav-item--disabled">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options" disabled>
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── With Start Icon ─────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">With Start Icon</span>
+    <div class="side-nav-item">
+      <i class="ph-bold ph-chat side-nav-item__icon"></i>
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── With Pin Icon ───────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">With Pin Icon</span>
+    <div class="side-nav-item side-nav-item--hover">
+      <span class="side-nav-item__text">Chat with AI Assistant</span>
+      <i class="ph-bold ph-push-pin side-nav-item__pin"></i>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Overflow: long text truncation ──────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Long Text (truncated)</span>
+    <div class="side-nav-item">
+      <span class="side-nav-item__text">How do I set up automated dealership inventory sync with the AI assistant platform?</span>
+      <button class="side-nav-item__trigger" aria-label="More options">
+        <i class="ph-bold ph-dots-three-vertical"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── List (in context) ───────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">List</span>
+    <div class="side-nav-list">
+      <div class="side-nav-item side-nav-item--active">
+        <span class="side-nav-item__text">AI Assistant — Today</span>
+        <i class="ph-bold ph-push-pin side-nav-item__pin"></i>
+        <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+      </div>
+      <div class="side-nav-item side-nav-item--hover">
+        <span class="side-nav-item__text">Inventory questions</span>
+        <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+      </div>
+      <div class="side-nav-item">
+        <span class="side-nav-item__text">Service department workflow</span>
+        <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+      </div>
+      <div class="side-nav-item">
+        <span class="side-nav-item__text">F&I automation setup</span>
+        <button class="side-nav-item__trigger" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
+      </div>
+      <div class="side-nav-item side-nav-item--disabled">
+        <span class="side-nav-item__text">Archived conversation</span>
+        <button class="side-nav-item__trigger" aria-label="More options" disabled><i class="ph-bold ph-dots-three-vertical"></i></button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
