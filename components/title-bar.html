@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI T1 Title Bar — Tekion AI Design System</title>
+  <title>AI T1 Title Bar — Tekion T1 · AI Design Components</title>
   <link rel="stylesheet" href="../css/app-tokens.css">
   <link rel="stylesheet" href="./_nav.css">
   <link rel="stylesheet" href="./_components.css">
@@ -100,7 +100,7 @@
     <div class="nav-header">
       <a class="nav-logo" href="../index.html">
         <img src="../assets/aiLogo.svg" alt="Tekion AI">
-        <span>AI Design System</span>
+        <span>T1 · AI Design Components</span>
       </a>
       <div class="nav-search-wrap">
         <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
@@ -129,9 +129,17 @@
         <span class="nav-item-name">App Bar</span>
         <span class="nav-item-desc">AI assistant title bar</span>
       </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
       <a class="nav-item" href="button.html">
         <span class="nav-item-name">Button</span>
         <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
       </a>
       <a class="nav-item" href="fab.html">
         <span class="nav-item-name">FAB</span>
@@ -141,9 +149,25 @@
         <span class="nav-item-name">Fav Bar Icon</span>
         <span class="nav-item-desc">Favorite bar logo icon</span>
       </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
       <a class="nav-item" href="search.html">
         <span class="nav-item-name">Search</span>
         <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
       </a>
       <a class="nav-item" href="side-nav-item.html">
         <span class="nav-item-name">Side Nav Item</span>
@@ -153,20 +177,24 @@
         <span class="nav-item-name">Side Nav Section Header</span>
         <span class="nav-item-desc">Chat list group label</span>
       </a>
-      <a class="nav-item" href="sidenav-footer.html">
-        <span class="nav-item-name">Side Nav Footer</span>
-        <span class="nav-item-desc">Utility links at nav bottom</span>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
       </a>
-      <a class="nav-item" href="sidenav.html">
-        <span class="nav-item-name">Side Nav</span>
-        <span class="nav-item-desc">Full chat navigation panel</span>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
       </a>
       <a class="nav-item active" href="title-bar.html">
         <span class="nav-item-name">Title Bar</span>
         <span class="nav-item-desc">Chat title navigation bar</span>
       </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
     </div>
-    <div class="nav-footer">Tekion AI · Design Tokens</div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
   </nav>
   <script>
     (function() {
@@ -201,7 +229,7 @@
     <div class="title-bar" role="banner">
       <div class="title-bar__inner">
 
-        <button class="icon-btn" aria-label="Toggle menu"><i class="ph-bold ph-list"></i></button>
+        <button class="icon-btn" aria-label="Toggle menu"><i class="ph-bold ph-sidebar"></i></button>
         <span class="title-bar__title">Chat title</span>
         <button class="icon-btn" aria-label="New chat"><i class="ph-bold ph-plus"></i></button>
         <button class="icon-btn" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>
@@ -216,7 +244,7 @@
     <div class="title-bar title-bar--expanded" role="banner">
       <div class="title-bar__inner">
 
-        <button class="icon-btn" aria-label="Toggle menu"><i class="ph-bold ph-list"></i></button>
+        <button class="icon-btn" aria-label="Toggle menu"><i class="ph-bold ph-sidebar"></i></button>
 
         <span class="title-bar__title">Chat title</span>
 
@@ -233,7 +261,7 @@
     <span class="demo-label">Icon Hover</span>
     <div class="title-bar" role="banner">
       <div class="title-bar__inner">
-        <button class="icon-btn" aria-label="Toggle menu" style="background: var(--color-bg-hover);"><i class="ph-bold ph-list"></i></button>
+        <button class="icon-btn" aria-label="Toggle menu" style="background: var(--color-bg-hover);"><i class="ph-bold ph-sidebar"></i></button>
         <span class="title-bar__title">Chat title</span>
         <button class="icon-btn" aria-label="New chat"><i class="ph-bold ph-plus"></i></button>
         <button class="icon-btn" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button>

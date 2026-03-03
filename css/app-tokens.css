@@ -99,6 +99,7 @@
   /* ── Color: Red (Negative) ───────────────────────────────── */
 
   --primitive-color-red-50: #feeae6;
+  --primitive-color-red-500: #ef4444;
   --primitive-color-red-600: #c42106;
   --primitive-color-red-620: #a01b05;
   /* mid-step between 600–700 */
@@ -134,10 +135,16 @@
   /* ── Color: AI Gradient ─────────────────────────────────── */
   /* Teal-to-warm palette used for AI FAB and AI surface gradients */
 
-  --primitive-color-ai-teal-50: #e7f7f9;
+  --primitive-color-ai-teal-25:  #E7FCFF;   /* FAB hover start */
+  --primitive-color-ai-teal-50:  #e7f7f9;
+  --primitive-color-ai-teal-75:  #BDF7FF;   /* FAB active start */
   --primitive-color-ai-teal-100: #c8e1e4;
   --primitive-color-ai-teal-200: #acc9cd;
-  --primitive-color-ai-warm-50: #fbf8f2;
+  --primitive-color-ai-teal-300: #8eccd3;
+  --primitive-color-ai-teal-400: #6ab5be;
+  --primitive-color-ai-warm-50:  #fbf8f2;
+  --primitive-color-ai-warm-75:  #F3E7CD;   /* FAB hover end */
+  --primitive-color-ai-warm-85:  #F5EDC9;   /* FAB active end */
   --primitive-color-ai-warm-100: #ebe3d1;
   --primitive-color-ai-warm-200: #d6cbb3;
 
@@ -471,7 +478,7 @@
 
   /* ── Border Colors ───────────────────────────────────────── */
 
-  --color-border-primary: var(--primitive-color-neutral-200);
+  --color-border-primary: var(--primitive-color-neutral-100);
   --color-border-dark: var(--primitive-color-neutral-400);
   --color-border-light: var(--primitive-color-neutral-50);
   --color-border-disabled: var(--primitive-color-neutral-200);
@@ -585,11 +592,11 @@
 
 
   /* ── AI Gradient Backgrounds ────────────────────────────── */
-  /* 98.53° gradient angle per Figma AI T1 spec               */
+  /* 98.53° default angle; FAB states use 99° per Figma spec  */
 
   --color-ai-surface-bg: linear-gradient(98.53deg, var(--primitive-color-ai-teal-50) 0%, var(--primitive-color-ai-warm-50) 100%);
-  --color-ai-fab-bg-hover: linear-gradient(98.53deg, var(--primitive-color-ai-teal-100) 0%, var(--primitive-color-ai-warm-100) 100%);
-  --color-ai-fab-bg-active: linear-gradient(98.53deg, var(--primitive-color-ai-teal-200) 0%, var(--primitive-color-ai-warm-200) 100%);
+  --color-ai-fab-bg-hover: linear-gradient(99deg, var(--primitive-color-ai-teal-25) 0%, var(--primitive-color-ai-warm-75) 100%);
+  --color-ai-fab-bg-active: linear-gradient(99deg, var(--primitive-color-ai-teal-75) 0%, var(--primitive-color-ai-warm-85) 100%);
 
   /* AI logo background — brand blue-to-mint diagonal gradient */
   --color-ai-logo-bg: linear-gradient(-44.62deg, var(--primitive-color-ai-brand-blue) 2.91%, var(--primitive-color-ai-brand-sky) 40.71%, var(--primitive-color-ai-brand-mint) 106.85%);
@@ -600,6 +607,9 @@
   /* AI surface backgrounds — same palette, different angles per Figma spec */
   --color-ai-surface-bg: linear-gradient(143.74deg, var(--primitive-color-ai-teal-50) 0%, var(--primitive-color-ai-warm-50) 100%);
   --color-ai-surface-bg-expanded: linear-gradient(167.99deg, var(--primitive-color-ai-teal-50) 0%, var(--primitive-color-ai-warm-50) 100%);
+
+  /* Danger color — bright red-500 for stop-button icon, attachment remove */
+  --color-danger: var(--primitive-color-red-500);
 
 
   /* ── Analytics Colors ────────────────────────────────────── */
@@ -1026,13 +1036,16 @@
   --button-transition: var(--transition-base);
 
   /* Colors — primary / accent */
-  --button-primary-bg: var(--color-ai-primary-bg);
-  /* purple-indigo → blue gradient */
-  --button-primary-bg-hover: var(--color-ai-primary-bg);
-  --button-primary-bg-active: var(--color-ai-primary-bg);
-  --button-primary-text: var(--color-text-on-color);
-  --button-primary-border: var(--color-accent-border);
+  --button-primary-bg:        var(--color-accent-bg);
+  --button-primary-bg-hover:  var(--color-accent-bg-hover);
+  --button-primary-bg-active: var(--color-accent-bg-active);
+  --button-primary-text:      var(--color-text-on-color);
+  --button-primary-border:    var(--color-accent-border);
   --button-primary-border-hover: var(--color-accent-border-hover);
+
+  /* Colors — AI primary (blue→purple gradient) */
+  --button-ai-primary-bg:     var(--color-ai-primary-bg);
+  --button-ai-primary-text:   var(--color-text-on-color);
 
   /* Colors — tertiary (text-only, AI blue) */
   --button-tertiary-text: var(--color-ai-blue);
@@ -1428,12 +1441,12 @@
 
   /* ── Side Nav (full panel) ───────────────────────────────── */
 
-  --sidenav-width: 360px;
+  --sidenav-width: 300px;
   --sidenav-height: 800px;
   --sidenav-bg: var(--color-bg-primary);
-  --sidenav-body-gap: 16px;
+  --sidenav-body-gap: 8px;
   /* gap between search container, chat groups */
-  --sidenav-search-py: 12px;
+  --sidenav-search-py: 6px;
   /* search container top/bottom padding */
   --sidenav-search-px: 16px;
   /* search container left/right padding */
@@ -1445,6 +1458,42 @@
   /* gap between chat items */
   --sidenav-group-label-px: 16px;
   /* group section label left/right padding */
+
+
+  /* ── Avatar ─────────────────────────────────────────────── */
+
+  --avatar-size-sm:        24px;
+  --avatar-size-md:        32px;
+  /* default */
+  --avatar-size-lg:        40px;
+  --avatar-border-radius:  var(--radius-xs);
+  --avatar-font-sm:        9px;
+  --avatar-font-md:        12px;
+  --avatar-font-lg:        15px;
+  --avatar-font-weight:    var(--font-weight-semibold);
+  --avatar-letter-spacing: 0.02em;
+  --avatar-icon-sm:        14px;
+  --avatar-icon-md:        18px;
+  --avatar-icon-lg:        22px;
+  --avatar-badge-size:     16px;
+  --avatar-badge-sm-size:  14px;
+  --avatar-badge-lg-size:  18px;
+  --avatar-badge-icon:     10px;
+  --avatar-badge-sm-icon:  9px;
+  --avatar-badge-lg-icon:  11px;
+  --avatar-badge-offset:   -4px;
+  --avatar-badge-sm-offset: -3px;
+  --avatar-badge-border:   1.5px;
+
+  /* Workspace hierarchy badge colours */
+  --avatar-enterprise: #2c70f5;
+  --avatar-region:     #7c3aed;
+  --avatar-dealer:     #0d9488;
+  --avatar-site:       #ea7317;
+  --avatar-warehouse:  #6b7280;
+
+  /* User / person avatar */
+  --avatar-user:       var(--color-accent-bg);
 
 
   /* ── FAB (Floating Action Button) ───────────────────────── */
@@ -1514,8 +1563,8 @@
   /* 44px */
   --app-bar-width: 360px;
   /* bespoke — no primitive at 360px */
-  --app-bar-width-expanded: 1379px;
-  /* bespoke — no primitive at 1379px */
+  --app-bar-width-expanded: 100%;
+  /* fills the available container width */
   --app-bar-padding-x: var(--space-md);
   /* 16px */
   --app-bar-border-radius: var(--radius-md);
@@ -1561,8 +1610,8 @@
   /* 44px — iOS standard nav bar */
   --title-bar-width: var(--app-bar-width);
   /* 360px — compact / mobile */
-  --title-bar-width-expanded: var(--app-bar-width-expanded);
-  /* 1379px — expanded / desktop */
+  --title-bar-width-expanded: 100%;
+  /* fills the available container width */
   --title-bar-bg: var(--color-bg-primary);
   /* white */
   --title-bar-border-color: var(--color-border-primary);
@@ -1590,6 +1639,154 @@
   /* 2px */
   --title-bar-icon-btn-icon-size: var(--size-icon-md);
   /* 16px */
+
+
+  /* ── Prompt Input ────────────────────────────────────────── */
+
+  /* Outer wrapper */
+  --prompt-outer-bg:               var(--color-bg-secondary);
+  --prompt-outer-border:           var(--color-border-primary);
+  --prompt-outer-padding:          var(--border-width-sm);       /* 3px */
+  --prompt-outer-radius:           var(--radius-xl);
+
+  /* Inner box */
+  --prompt-inner-bg:               var(--color-bg-primary);
+  --prompt-inner-radius:           var(--radius-lg);
+  --prompt-inner-px:               14px;                         /* between space-sm(12) and space-md(16) */
+  --prompt-inner-py:               var(--space-sm);
+  --prompt-inner-border-w:         var(--border-width-xs);       /* 2px focus ring */
+
+  /* Text */
+  --prompt-text-color:             var(--color-text-primary);
+  --prompt-placeholder-color:      var(--color-text-tertiary);
+  --prompt-min-height:             var(--height-md);             /* 28px */
+  --prompt-max-height:             120px;
+
+  /* Toolbar icon buttons */
+  --prompt-tool-btn-color:         var(--color-icon-light);
+  --prompt-tool-btn-hover-bg:      var(--color-bg-secondary);
+  --prompt-tool-btn-hover-color:   var(--color-text-secondary);
+  --prompt-toolbar-divider-w:      var(--border-width-2xs);      /* 1px */
+  --prompt-toolbar-divider-h:      var(--size-icon-md);          /* 16px */
+  --prompt-toolbar-icon-size:      var(--size-icon-lg);          /* 20px */
+
+  /* Send button */
+  --prompt-send-size:              var(--height-md);             /* 28px */
+  --prompt-send-radius:            var(--radius-sm);
+  --prompt-send-idle-bg:           var(--color-bg-tertiary);
+  --prompt-send-idle-color:        var(--color-icon-light);
+  --prompt-send-active-bg:         var(--color-ai-primary-bg);
+  --prompt-send-active-color:      var(--color-icon-on-color);
+  --prompt-send-icon-size:         var(--size-icon-md);          /* 16px */
+  --prompt-send-icon-stop-size:    var(--size-icon-sm);          /* 14px */
+  --prompt-send-disabled-op:       0.45;
+
+  /* Context pill */
+  --prompt-pill-height:            var(--height-md);             /* 28px */
+  --prompt-pill-py:                2px;                          /* no space token at 2px */
+  --prompt-pill-px:                10px;                         /* between space-xs(8) and space-sm(12) */
+  --prompt-pill-gap:               var(--space-2xs);             /* 4px */
+  --prompt-pill-empty-bg:          var(--color-bg-secondary);
+  --prompt-pill-empty-border:      var(--color-border-primary);
+  --prompt-pill-empty-color:       var(--color-text-secondary);
+  --prompt-pill-selected-bg:       var(--color-accent-bg-light);
+  --prompt-pill-selected-border:   var(--color-bg-active);
+  --prompt-pill-selected-color:    var(--color-text-primary);
+  --prompt-pill-divider:           var(--color-bg-active);
+  --prompt-pill-divider-w:         var(--border-width-2xs);      /* 1px */
+  --prompt-pill-divider-h:         var(--size-icon-sm);          /* 14px */
+  --prompt-pill-hover-bg:          rgba(37, 99, 235, 0.07);
+  --prompt-pill-close-hover-bg:    rgba(239, 68, 68, 0.08);
+
+  /* Attachment pill */
+  --prompt-attach-height:          var(--height-md);             /* 28px */
+  --prompt-attach-py:              2px;                          /* no space token at 2px */
+  --prompt-attach-px-r:            var(--space-xs);              /* 8px */
+  --prompt-attach-px-l:            6px;                          /* between space-2xs(4) and space-xs(8) */
+  --prompt-attach-label-max-w:     120px;
+  --prompt-attach-bg:              var(--color-bg-secondary);
+  --prompt-attach-border:          var(--color-border-primary);
+  --prompt-attach-color:           var(--color-text-secondary);
+  --prompt-remove-icon-size:       var(--size-icon-xs);          /* 12px */
+
+  /* Voice listening overlay */
+  --prompt-listen-overlay-bg:      var(--color-bg-tertiary);
+  --prompt-listen-z:               10;
+  --prompt-listen-stop-bg:         var(--color-icon-light);
+  --prompt-listen-stop-hover-bg:   var(--color-icon-dark);
+  --prompt-listen-timer-color:     var(--color-text-tertiary);
+  --prompt-timer-min-w:            var(--space-4xl);             /* 48px */
+  --prompt-stop-size:              var(--height-lg);             /* 32px */
+  --prompt-stop-icon-size:         var(--size-icon-xs);          /* 12px */
+
+  /* Waveform visualizer */
+  --prompt-waveform-h:             var(--height-lg);             /* 32px */
+  --prompt-waveform-bar-w:         var(--border-width-xs);       /* 2px */
+  --prompt-waveform-bar-gap:       2px;                          /* no space token at 2px */
+  --prompt-waveform-bar-h-rest:    var(--border-width-md);       /* 4px */
+  --prompt-waveform-bar-h-peak:    22px;                         /* animated peak height */
+
+  /* Popup menu */
+  --prompt-popup-z:                20;
+  --prompt-popup-max-h:            280px;
+  --prompt-popup-offset:           var(--space-xs);              /* 8px above input */
+  --prompt-popup-shadow:           0 12px 48px rgba(0, 0, 0, 0.12);
+  --prompt-popup-icon-size:        18px;                         /* popup item + close icons */
+
+
+  /* ── Workspace Selector ─────────────────────────────────── */
+
+  /* Trigger button */
+  --ws-trigger-width:           220px;
+  --ws-trigger-height:          var(--height-3xl);             /* 44px */
+  --ws-trigger-px:              var(--space-sm);               /* 12px */
+  --ws-trigger-gap:             var(--space-xs);               /* 8px */
+  --ws-trigger-bg:              var(--color-bg-primary);
+  --ws-trigger-border:          var(--color-border-primary);
+  --ws-trigger-radius:          var(--radius-xs);
+  --ws-trigger-bg-hover:        var(--color-bg-hover);
+  --ws-trigger-border-hover:    var(--color-border-dark);
+  --ws-trigger-border-open:     var(--color-accent-border);
+  --ws-trigger-text-gap:        var(--border-width-xs);        /* 2px */
+  --ws-trigger-name-gap:        var(--space-2xs);              /* 4px */
+  --ws-trigger-caret-size:      var(--size-icon-md);           /* 16px */
+  --ws-trigger-home-size:       var(--size-icon-xs);           /* 12px */
+  --ws-trigger-name-lh:         var(--line-height-tighter);    /* 1.2 */
+
+  /* Dropdown items */
+  --ws-item-height:             var(--height-3xl);             /* 44px */
+  --ws-item-px:                 var(--space-sm);               /* 12px */
+  --ws-item-gap:                var(--space-xs);               /* 8px */
+  --ws-item-text-gap:           var(--border-width-2xs);       /* 1px */
+  --ws-item-check-size:         var(--size-icon-sm);           /* 14px */
+  --ws-item-indicator-gap:      var(--space-2xs);              /* 4px */
+  --ws-item-name-lh:            var(--line-height-tighter);    /* 1.2 */
+
+  /* Dropdown panel */
+  --ws-dropdown-width:          240px;
+  --ws-section-px:              var(--space-sm);               /* 12px */
+
+  /* Sidenav header (workspace selector row) */
+  --sidenav-header-height:      60px;                          /* 44px trigger + 8px*2 padding */
+  --sidenav-header-py:          var(--space-xs);               /* 8px  */
+  --sidenav-header-px:          var(--space-2xs);              /* 4px  */
+  --sidenav-header-border:      var(--color-border-primary);
+
+  /* ── Sidenav Nav (vertical icon column inside sidenav body) */
+
+  --sidenav-nav-width:              var(--height-6xl);             /* 64px */
+  --sidenav-nav-bg:                 var(--color-ai-surface-bg);    /* AI teal→warm gradient */
+  --sidenav-nav-py:                 var(--space-xs);               /* 8px  */
+  --sidenav-nav-px:                 var(--space-xs);               /* 8px  */
+  --sidenav-nav-gap:                var(--space-xs);               /* 8px  */
+  --sidenav-nav-border:             var(--color-border-primary);
+  --sidenav-nav-item-size:          var(--height-2xl);             /* 40px */
+  --sidenav-nav-item-radius:        var(--radius-md);              /* 8px — rounder pill */
+  --sidenav-nav-item-color:         var(--color-icon-dark);        /* neutral-700 */
+  --sidenav-nav-item-color-active:  var(--color-ai-brand-text);    /* brand blue on selected */
+  --sidenav-nav-item-bg-hover:      rgba(255, 255, 255, 0.4);      /* translucent white lift on gradient */
+  --sidenav-nav-item-bg-active:     var(--color-bg-primary);       /* solid white pill — pops on gradient */
+  --sidenav-nav-icon-size:          var(--size-icon-xl);           /* 24px — better visual weight */
 
 
   /* ── Padding: Backwards-compat aliases from tokens.css ──── */
@@ -1778,4 +1975,153 @@
   --support-fg-10: var(--color-support-fg-10);
   --support-fg-11: var(--color-support-fg-11);
   --support-fg-12: var(--color-support-fg-12);
+}
+
+
+/* ============================================================
+   LAYER 3 · COMPONENTS — Suggestion List Item
+   ============================================================ */
+:root {
+
+  /* ── Suggestion List Item ───────────────────────────────── */
+
+  /* Layout */
+  --suggestion-list-item-radius:          var(--primitive-radius-2xs);        /* 2px  */
+  --suggestion-list-item-gap:             var(--primitive-space-xs);           /* 8px  */
+  --suggestion-list-item-py:              var(--primitive-space-xs);           /* 8px  */
+  --suggestion-list-item-px:              var(--primitive-space-sm);           /* 12px */
+  --suggestion-list-item-min-h:           var(--primitive-height-32);          /* 32px */
+  --suggestion-list-item-icon-size:       var(--size-icon-md);                 /* 16px */
+  --suggestion-list-item-font-size:       var(--font-size-md);                 /* 14px */
+  --suggestion-list-item-line-height:     20px;
+  --suggestion-list-item-transition:      var(--primitive-transition-150);
+
+  /* List container */
+  --suggestion-list-width:                100%;
+
+  /* Default state */
+  --suggestion-list-item-bg:              var(--color-bg-primary);             /* white    */
+  --suggestion-list-item-text:            var(--color-text-secondary);         /* #444f5c  */
+  --suggestion-list-item-icon-color:      var(--color-icon-dark);              /* #444f5c  */
+
+  /* Hover state */
+  --suggestion-list-item-bg-hover:        var(--color-ai-blue-subtle);         /* #ebf4ff  */
+  --suggestion-list-item-text-hover:      var(--primitive-color-neutral-500);  /* #6d707a  */
+  --suggestion-list-item-icon-hover:      var(--primitive-color-neutral-500);  /* #6d707a  */
+
+  /* Active state */
+  --suggestion-list-item-bg-active:       var(--color-bg-active);              /* #dbebff  */
+  --suggestion-list-item-text-active:     var(--primitive-color-neutral-500);  /* #6d707a  */
+  --suggestion-list-item-icon-active:     var(--primitive-color-neutral-500);  /* #6d707a  */
+
+  /* Disabled state */
+  --suggestion-list-item-bg-disabled:     var(--color-bg-muted);               /* #f4f5f6  */
+  --suggestion-list-item-text-disabled:   var(--color-text-tertiary);          /* #969aa3  */
+  --suggestion-list-item-icon-disabled:   var(--color-icon-light);             /* #969aa3  */
+
+}
+
+/* ── Layer 3 · Thinking Indicator (Reasoning Log) ─────────────── */
+:root {
+
+  /* --- Shared --- */
+  --reasoning-font-size:                  var(--font-size-sm);                 /* 12px     */
+  --reasoning-line-height:                16px;
+  --reasoning-font-weight-medium:         500;
+  --reasoning-font-weight-regular:        400;
+  --reasoning-transition:                 var(--primitive-transition-150);
+
+  /* --- Log container (aiT1ReasoningLog) --- */
+  --reasoning-log-gap:                    var(--primitive-space-xs);           /* 8px      */
+  --reasoning-log-logo-size:              var(--size-icon-md);                 /* 16px     */
+
+  /* --- Header (aiT1Reasoning) --- */
+  --reasoning-header-gap:                 var(--primitive-space-xs);           /* 8px      */
+  --reasoning-header-content-gap:         var(--border-width-xs);              /* 2px      */
+
+  /* Text gradient (in-progress "Thinking...") */
+  --reasoning-gradient:                   linear-gradient(121.36deg, #1a6cc4 0%, #1b90b4 50%, #25c8a5 100%);
+
+  /* Header label colors */
+  --reasoning-label-in-progress:          transparent;                         /* gradient */
+  --reasoning-label-done:                 var(--color-text-tertiary);          /* #969aa3  */
+  --reasoning-label-done-hover:           var(--primitive-color-neutral-500);  /* #6d707a  */
+  --reasoning-label-disabled:             var(--primitive-color-neutral-500);  /* #6d707a  */
+
+  /* Time/description text colors */
+  --reasoning-meta-default:              var(--color-text-tertiary);           /* #969aa3  */
+  --reasoning-meta-hover:                var(--primitive-color-neutral-500);   /* #6d707a  */
+  --reasoning-meta-disabled:             var(--primitive-color-neutral-500);   /* #6d707a  */
+
+  /* Caret icon */
+  --reasoning-caret-color:               var(--color-icon-light);              /* #969aa3  */
+  --reasoning-caret-size:                var(--size-icon-md);                  /* 16px     */
+
+  /* --- Step (aiT1ReasoningStep) --- */
+  --reasoning-step-gap:                   var(--primitive-space-xs);           /* 8px      */
+  --reasoning-step-indicator-width:       var(--border-width-xs);              /* 2px      */
+  --reasoning-step-indicator-padding:     var(--primitive-space-2xs);          /* 4px      */
+  --reasoning-step-bar-default:           var(--primitive-color-neutral-200);  /* #d4d5d6  */
+  --reasoning-step-bar-active:            var(--primitive-color-blue-500);     /* #4285f4  */
+  --reasoning-step-bar-done:              var(--color-positive-bg-light);      /* positive green */
+  --reasoning-step-text-default:          var(--color-text-secondary);         /* #444f5c  */
+  --reasoning-step-text-active:           var(--color-text-secondary);         /* #444f5c  */
+  --reasoning-step-text-disabled:         var(--primitive-color-neutral-500);  /* #6d707a  */
+
+  /* --- Step Group (aiT1ReasoningStepGroup) --- */
+  --reasoning-step-group-gap:             var(--primitive-space-xs);           /* 8px      */
+
+  /* ============================================================
+     Chat Bubble (aiT1ChatBubble)
+     ============================================================ */
+
+  --chat-bubble-padding:                  var(--primitive-space-sm);           /* 12px     */
+  --chat-bubble-gap:                      var(--primitive-space-2xs);          /* 4px  gap between bubble and action row */
+  --chat-bubble-radius:                   var(--primitive-radius-md);          /* 8px      */
+  --chat-bubble-bg:                       var(--color-bg-secondary);           /* #edeef0  */
+  --chat-bubble-text-size:                var(--font-size-md);                 /* 14px     */
+  --chat-bubble-text-weight:              var(--font-weight-medium);           /* 500      */
+  --chat-bubble-text-line-height:         var(--line-height-normal);           /* 1.5      */
+  --chat-bubble-text-color:               var(--color-text-primary);           /* #161616  */
+  --chat-bubble-action-btn-size:          var(--primitive-size-icon-xl);       /* 24px     */
+  --chat-bubble-action-icon-size:         var(--primitive-size-icon-md);       /* 16px     */
+  --chat-bubble-action-icon-color:        var(--color-icon-light);             /* #969aa3  */
+  --chat-bubble-action-icon-color-hover:  var(--color-icon-dark);              /* #444f5c  */
+  --chat-bubble-action-btn-radius:        var(--primitive-radius-sm);          /* 4px      */
+
+  /* ============================================================
+     Feedback Action (aiT1FeedbackAction)
+     ============================================================ */
+
+  --feedback-action-gap:               var(--primitive-space-xs);          /* 8px  between icon group and pills  */
+  --feedback-action-icons-gap:         var(--primitive-space-2xs);         /* 4px  between icon buttons          */
+  --feedback-action-evidence-gap:      var(--primitive-space-xs);          /* 8px  between evidence chips        */
+  --feedback-action-pills-gap:         var(--primitive-space-xs);          /* 8px  between pills                 */
+
+  /* Icon buttons */
+  --feedback-action-btn-size:          var(--primitive-size-icon-xl);      /* 24px                               */
+  --feedback-action-btn-icon-size:     var(--primitive-size-icon-md);      /* 16px                               */
+  --feedback-action-btn-radius:        var(--primitive-radius-2xs);        /* 2px                                */
+  --feedback-action-btn-color:         var(--color-icon-light);            /* #969aa3                            */
+  --feedback-action-btn-color-hover:   var(--color-icon-dark);             /* #444f5c                            */
+  --feedback-action-btn-color-active:  var(--color-accent-icon);           /* blue                               */
+
+  /* Pills (shared between outlined + soft variants) */
+  --feedback-pill-height:              20px;
+  --feedback-pill-padding-x:           6px;
+  --feedback-pill-gap:                 var(--primitive-space-2xs);         /* 4px                                */
+  --feedback-pill-radius:              9999px;
+  --feedback-pill-font-size:           var(--font-size-sm);                /* 12px                               */
+  --feedback-pill-font-weight:         var(--font-weight-medium);          /* 500                                */
+  --feedback-pill-line-height:         1;
+  --feedback-pill-icon-size:           var(--primitive-size-icon-xs);      /* 12px                               */
+
+  /* Outlined pill (default, in action bar) */
+  --feedback-pill-outlined-border:     var(--color-text-secondary);        /* #444f5c                            */
+  --feedback-pill-outlined-text:       var(--color-text-secondary);
+
+  /* Soft pill (evidence section) */
+  --feedback-pill-soft-bg:             var(--color-bg-secondary);          /* #edeef0                            */
+  --feedback-pill-soft-text:           var(--color-text-secondary);
+
 }

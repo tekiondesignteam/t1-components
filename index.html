@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T1 · AI Design Library — Tekion</title>
+  <title>T1 · AI Design Components — Tekion</title>
   <link rel="stylesheet" href="./css/app-tokens.css">
   <style>
 
@@ -98,52 +98,46 @@
 
     .search-input {
       width:        100%;
-      height:       38px;
-      padding:      0 44px 0 34px;
-      border:       1px solid #edeef0;
+      height:       36px;
+      padding:      0 36px 0 34px;
+      border:       1px solid var(--color-border-primary);
       border-radius: 8px;
-      background:   var(--color-bg-secondary);
+      background:   var(--color-bg-primary);
+      font-family:  var(--font-family);
       font-size:    13px;
       color:        var(--color-text-primary);
-      font-family:  var(--font-family);
       outline:      none;
-      transition:   border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      transition:   border-color 0.15s, box-shadow 0.15s;
     }
 
-    .search-input::placeholder { color: var(--color-text-tertiary); }
-
     .search-input:focus {
-      border-color: #2157f5;
-      background:   #ffffff;
-      box-shadow:   0 0 0 3px rgba(33, 87, 245, 0.1);
+      border-color: var(--color-accent-bg);
+      box-shadow:   0 0 0 3px rgba(66,133,244,0.12);
     }
 
     .search-kbd {
-      position:       absolute;
-      right:          10px;
-      top:            50%;
-      transform:      translateY(-50%);
-      padding:        1px 6px;
-      background:     rgba(0,0,0,0.05);
-      border:         1px solid rgba(0,0,0,0.10);
-      border-radius:  4px;
-      font-size:      11px;
-      font-family:    monospace;
-      color:          var(--color-text-tertiary);
+      position:    absolute;
+      right:       10px;
+      top:         50%;
+      transform:   translateY(-50%);
+      font-size:   10px;
+      color:       var(--color-text-tertiary);
+      background:  var(--color-bg-secondary);
+      border:      1px solid var(--color-border-primary);
+      border-radius: 4px;
+      padding:     1px 5px;
+      font-family: var(--font-family);
       pointer-events: none;
-      transition:     opacity 0.15s;
-      line-height:    18px;
     }
 
-    .search-input:focus ~ .search-kbd,
-    .search-input:not(:placeholder-shown) ~ .search-kbd {
-      opacity: 0;
-    }
-
-    /* ── Grid ─────────────────────────────────────────────── */
+    /* ── Section ───────────────────────────────────────────── */
 
     .section {
-      padding: 28px 48px 48px;
+      padding: 32px 48px 0;
+    }
+
+    .section:last-of-type {
+      padding-bottom: 48px;
     }
 
     .section-label {
@@ -183,6 +177,7 @@
 
     .card__preview {
       height:        120px;
+      background:    #ffffff;
       border-bottom: 1px solid #edeef0;
       flex-shrink:   0;
       overflow:      hidden;
@@ -222,6 +217,32 @@
       line-height: 1.45;
     }
 
+    /* ── App Shell button ─────────────────────────────────── */
+
+    .appshell-btn {
+      display:         flex;
+      align-items:     center;
+      gap:             8px;
+      height:          36px;
+      padding:         0 24px;
+      background:      var(--button-ai-primary-bg);
+      border:          none;
+      border-radius:   var(--button-border-radius);
+      font-family:     var(--font-family);
+      font-size:       var(--font-size-sm);
+      font-weight:     var(--font-weight-semibold);
+      color:           #fff;
+      cursor:          pointer;
+      text-decoration: none;
+      white-space:     nowrap;
+      flex-shrink:     0;
+      transition:      filter var(--transition-fast);
+    }
+
+    .appshell-btn:hover {
+      filter: brightness(0.88);
+    }
+
     /* ── No results ───────────────────────────────────────── */
 
     .empty {
@@ -238,20 +259,23 @@
   <header class="header">
     <div class="header__top">
       <div class="header__info">
-        <p class="header__eyebrow">Tekion</p>
+        <p class="header__eyebrow">TEKION · Alloy Design System</p>
         <div class="header__title">
           <img src="./assets/aiLogo.svg" alt="Tekion AI">
-          <h1>T1 · AI Design Library</h1>
+          <h1>T1 · AI Design Components</h1>
         </div>
-        <p class="header__sub">Component library derived from the Alloy Design System — tokens, specs, and interactive previews for Tekion AI T1.</p>
+        <p class="header__sub">Component library derived from the Alloy Design System — tokens, specs, and interactive previews for Tekion AI T1 Design Components.</p>
       </div>
-      <div class="search-wrap">
-        <svg class="search-icon" viewBox="0 0 16 16" fill="none">
-          <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <input class="search-input" id="search" type="search" placeholder="Search components…" aria-label="Search components" autocomplete="off">
-        <kbd class="search-kbd">/</kbd>
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-end;flex-shrink:0;">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="search-input" id="search" type="search" placeholder="Search components…" aria-label="Search components" autocomplete="off">
+          <kbd class="search-kbd">/</kbd>
+        </div>
+        <button class="appshell-btn" onclick="window.open('./components/app-shell.html','_blank')">Demo</button>
       </div>
     </div>
   </header>
@@ -265,14 +289,22 @@
 
       <!-- Colors -->
       <a class="card" href="./components/colors.html" data-name="colors semantic color tokens palette swatches">
-        <div class="card__preview" style="background:#ffffff;">
-          <div class="card__preview-inner" style="gap:8px;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#2c70f5;flex-shrink:0;"></div>
-            <div style="width:20px;height:20px;border-radius:50%;background:#c87ae7;flex-shrink:0;"></div>
-            <div style="width:20px;height:20px;border-radius:50%;background:#60d156;flex-shrink:0;"></div>
-            <div style="width:20px;height:20px;border-radius:50%;background:#ffd500;flex-shrink:0;"></div>
-            <div style="width:20px;height:20px;border-radius:50%;background:#c42106;flex-shrink:0;"></div>
-            <div style="width:20px;height:20px;border-radius:50%;background:#f0f0f2;border:1px solid #e0e0e2;flex-shrink:0;"></div>
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:#2c70f5;"></div>
+              <div style="width:24px;height:24px;border-radius:50%;background:#c87ae7;"></div>
+              <div style="width:24px;height:24px;border-radius:50%;background:#60d156;"></div>
+              <div style="width:24px;height:24px;border-radius:50%;background:#ffd500;"></div>
+              <div style="width:24px;height:24px;border-radius:50%;background:#ef4444;"></div>
+            </div>
+            <div style="display:flex;gap:7px;">
+              <div style="width:24px;height:24px;border-radius:6px;background:#c0d8ff;"></div>
+              <div style="width:24px;height:24px;border-radius:6px;background:#d4d5d6;"></div>
+              <div style="width:24px;height:24px;border-radius:6px;background:#969aa3;"></div>
+              <div style="width:24px;height:24px;border-radius:6px;background:#6d707a;"></div>
+              <div style="width:24px;height:24px;border-radius:6px;background:#444f5c;"></div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -283,11 +315,18 @@
 
       <!-- Typography -->
       <a class="card" href="./components/typography.html" data-name="typography type scale font heading paragraph label">
-        <div class="card__preview" style="background:#ffffff;">
-          <div class="card__preview-inner" style="flex-direction:column; align-items:flex-start; padding:16px 22px; gap:5px;">
-            <span style="font-family:'Manrope',sans-serif; font-size:20px; font-weight:700; color:#161616; line-height:1.2; letter-spacing:-0.02em;">Heading</span>
-            <span style="font-family:'Manrope',sans-serif; font-size:13px; font-weight:400; color:#444f5c; line-height:1.5;">Body paragraph text</span>
-            <span style="font-family:'Manrope',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:#969aa3;">LABEL OVERLINE</span>
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="display:flex;flex-direction:column;gap:5px;width:150px;padding:4px 0;">
+              <div style="font-family:system-ui,sans-serif;font-size:18px;font-weight:700;color:#1a1a2e;line-height:1.1;letter-spacing:-0.02em;">Heading 1</div>
+              <div style="font-family:system-ui,sans-serif;font-size:13px;font-weight:600;color:#444f5c;line-height:1.2;">Heading 3</div>
+              <div style="font-family:system-ui,sans-serif;font-size:11px;font-weight:400;color:#969aa3;line-height:1.4;">Body / paragraph text at regular weight</div>
+              <div style="display:flex;gap:6px;margin-top:2px;">
+                <div style="font-family:system-ui,sans-serif;font-size:9px;font-weight:600;color:#2c70f5;letter-spacing:0.06em;text-transform:uppercase;">LABEL</div>
+                <div style="font-family:system-ui,sans-serif;font-size:9px;font-weight:400;color:#d4d5d6;">·</div>
+                <div style="font-family:'Courier New',monospace;font-size:9px;font-weight:400;color:#969aa3;">caption</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -298,11 +337,29 @@
 
       <!-- Tokens -->
       <a class="card" href="./components/tokens.html" data-name="tokens css variables primitives design system reference">
-        <div class="card__preview" style="background:#ffffff;">
-          <div class="card__preview-inner" style="flex-direction:column; align-items:flex-start; gap:7px; padding: 0 24px;">
-            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--color-bg-primary</span>
-            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--font-size-md</span>
-            <span style="font-family:'Fragment Mono',monospace; font-size:10px; color:#969aa3; white-space:nowrap;">--space-xs</span>
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="display:flex;flex-direction:column;gap:5px;width:160px;font-family:'Courier New',monospace;font-size:9.5px;line-height:1.5;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:#2c70f5;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);"></div>
+                <span style="color:#6d707a;">--color-accent-bg:</span>
+                <span style="color:#2c70f5;">#2c70f5</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:#1a1a2e;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);"></div>
+                <span style="color:#6d707a;">--color-text-primary:</span>
+                <span style="color:#444f5c;">#1a1a2e</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:10px;height:10px;border-radius:2px;background:#edeef0;flex-shrink:0;border:1px solid #d4d5d6;"></div>
+                <span style="color:#6d707a;">--radius-md:</span>
+                <span style="color:#444f5c;">8px</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#2157f5,#86ffbb);flex-shrink:0;"></div>
+                <span style="color:#6d707a;">--color-ai-logo-bg</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -318,10 +375,28 @@
     <p class="section-label">AI Components</p>
     <div class="grid" id="grid">
 
+      <!-- Action Overflow Menu -->
       <a class="card" href="./components/action-overflow-menu.html" data-name="action overflow menu dropdown contextual">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,0.07);overflow:hidden;width:120px;">
+              <div style="padding:4px 0;border-bottom:1px solid #edeef0;">
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
+                  <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
+                  <div style="height:6px;background:#d4d5d6;border-radius:3px;width:45px;"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
+                  <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
+                  <div style="height:6px;background:#d4d5d6;border-radius:3px;width:55px;"></div>
+                </div>
+              </div>
+              <div style="padding:4px 0;">
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
+                  <div style="width:8px;height:8px;border-radius:2px;background:#fecaca;flex-shrink:0;"></div>
+                  <div style="height:6px;background:#fecaca;border-radius:3px;width:40px;"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -330,10 +405,22 @@
         </div>
       </a>
 
+      <!-- App Bar -->
       <a class="card" href="./components/app-bar.html" data-name="app bar title header navigation window">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
-          <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:8px;padding:0 18px;width:100%;box-sizing:border-box;">
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 10px;height:36px;display:flex;align-items:center;gap:9px;width:100%;">
+              <div style="width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
+              <div style="flex:1;height:7px;background:#d4d5d6;border-radius:3px;"></div>
+              <div style="display:flex;gap:4px;">
+                <div style="width:14px;height:14px;border-radius:3px;background:#edeef0;"></div>
+                <div style="width:14px;height:14px;border-radius:3px;background:#edeef0;"></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 10px;height:26px;display:flex;align-items:center;gap:9px;width:100%;opacity:0.45;">
+              <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
+              <div style="flex:1;height:5px;background:#edeef0;border-radius:3px;"></div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -342,10 +429,44 @@
         </div>
       </a>
 
+      <!-- Avatar -->
+      <a class="card" href="./components/avatar.html" data-name="avatar badge initials workspace hierarchy circle user photo">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:10px;align-items:center;">
+              <!-- Square with initials -->
+              <div style="width:36px;height:36px;border-radius:8px;background:#2c70f5;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:sans-serif;letter-spacing:0.02em;">JR</div>
+              <!-- Circle with initials -->
+              <div style="width:36px;height:36px;border-radius:50%;background:#0d9488;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:sans-serif;letter-spacing:0.02em;">JR</div>
+              <!-- Circle user icon -->
+              <div style="width:36px;height:36px;border-radius:50%;background:#6d707a;display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="white"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Avatar</p>
+          <p class="card__desc">Initials badge in square and circle — workspace hierarchy colours plus user icon variant.</p>
+        </div>
+      </a>
+
+      <!-- Button -->
       <a class="card" href="./components/button.html" data-name="button primary secondary tertiary">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:8px;">
+                <div style="height:28px;width:72px;background:#4285f4;border-radius:6px;"></div>
+                <div style="height:28px;width:72px;background:linear-gradient(135deg,#2c70f5 28%,#c87ae7 111%);border-radius:6px;"></div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <div style="height:28px;width:72px;background:#fff;border:1.5px solid #d4d5d6;border-radius:6px;"></div>
+                <div style="height:28px;width:72px;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:44px;height:6px;background:#c6d4fd;border-radius:3px;"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -353,11 +474,24 @@
           <p class="card__desc">Primary, secondary, and tertiary button variants with all states.</p>
         </div>
       </a>
+      <!-- Chat Bubble -->
+      <a class="card" href="./components/chat-bubble.html" data-name="chat bubble user message conversation reply edit copy">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="align-items:flex-end;">
+            <div style="max-width:140px;background:#edeef0;border-radius:8px 8px 0 8px;padding:8px 10px;font-size:11px;color:#161616;font-family:sans-serif;line-height:1.4;">Show me Honda Civics in white</div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Chat Bubble</p>
+          <p class="card__desc">Right-aligned user message bubble with copy and edit actions on hover.</p>
+        </div>
+      </a>
 
+      <!-- FAB -->
       <a class="card" href="./components/fab.html" data-name="fab floating action button">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);border:1px solid #d4d5d6;box-shadow:0 4px 16px rgba(0,0,0,0.10);"><img src="./assets/aiLogo.svg" style="width:100%;height:100%;padding:14px;"></div>
           </div>
         </div>
         <div class="card__body">
@@ -366,10 +500,11 @@
         </div>
       </a>
 
+      <!-- Fav Bar Icon -->
       <a class="card" href="./components/fav-bar-icon.html" data-name="fav bar icon favourite sidebar">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);box-shadow:0 4px 16px rgba(33,87,245,0.28);"><img src="./assets/aiLogo.svg" style="width:100%;height:100%;padding:13px;filter:brightness(10);"></div>
           </div>
         </div>
         <div class="card__body">
@@ -378,10 +513,80 @@
         </div>
       </a>
 
-      <a class="card" href="./components/search.html" data-name="search input results filter">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+      <!-- Feedback Action -->
+      <a class="card" href="./components/feedback-action.html" data-name="feedback action copy thumbs up down regenerate more pill filter sources evidence">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="display:flex;align-items:center;gap:4px;">
+              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
+                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              </div>
+              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
+                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              </div>
+              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
+                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              </div>
+              <div style="width:1px;height:14px;background:var(--color-border-default);margin:0 2px;"></div>
+              <div style="display:flex;align-items:center;gap:4px;height:20px;padding:0 6px;border:1px solid var(--color-text-tertiary);border-radius:9999px;">
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--color-text-tertiary);"></div>
+                <div style="width:16px;height:6px;border-radius:2px;background:var(--color-text-tertiary);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Feedback Action</p>
+          <p class="card__desc">AI response action bar with icon buttons, filter/source pills, and evidence chips.</p>
+        </div>
+      </a>
+
+      <!-- Prompt Input -->
+      <a class="card" href="./components/prompt-input.html" data-name="prompt input text area send chat compose">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="padding:0 16px;width:100%;box-sizing:border-box;">
+            <div style="background:#fff;border:1.5px solid #2157f5;border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box;box-shadow:0 0 0 3px rgba(33,87,245,0.07);">
+              <div style="height:6px;background:#edeef0;border-radius:3px;width:60%;margin-bottom:8px;"></div>
+              <div style="height:6px;background:#edeef0;border-radius:3px;width:40%;margin-bottom:12px;"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:6px;">
+                  <div style="width:18px;height:18px;border-radius:4px;background:#edeef0;"></div>
+                  <div style="width:18px;height:18px;border-radius:4px;background:#edeef0;"></div>
+                </div>
+                <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Prompt Input</p>
+          <p class="card__desc">Chat compose area with send button, attachment, and action controls.</p>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <a class="card" href="./components/search.html" data-name="search input results filter">
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;overflow:hidden;width:162px;">
+              <div style="padding:10px 10px;border-bottom:1px solid #edeef0;">
+                <div style="height:28px;border:1.5px solid #2157f5;border-radius:6px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;box-shadow:0 0 0 3px rgba(33,87,245,0.07);">
+                  <div style="width:10px;height:10px;border-radius:50%;border:1.5px solid #d4d5d6;flex-shrink:0;"></div>
+                  <div style="flex:1;height:6px;background:#edeef0;border-radius:3px;"></div>
+                </div>
+              </div>
+              <div style="padding:4px 0;">
+                <div style="padding:6px 10px;background:#ebf4ff;">
+                  <div style="height:6px;background:#c6d4fd;border-radius:3px;width:55%;"></div>
+                </div>
+                <div style="padding:6px 10px;">
+                  <div style="height:6px;background:#edeef0;border-radius:3px;width:70%;"></div>
+                </div>
+                <div style="padding:6px 10px;">
+                  <div style="height:6px;background:#edeef0;border-radius:3px;width:45%;"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -390,34 +595,61 @@
         </div>
       </a>
 
-      <a class="card" href="./components/side-nav-item.html" data-name="side nav item chat list row">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
-          <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+      <!-- Side Nav -->
+      <a class="card" href="./components/sidenav.html" data-name="side nav chat navigation panel full">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="padding:0;width:100%;height:100%;overflow:hidden;">
+            <div style="display:flex;width:100%;height:100%;background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);">
+              <!-- Icon rail with labels -->
+              <div style="width:36px;display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:0;flex-shrink:0;">
+                <div style="width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);margin-bottom:8px;"></div>
+                <!-- Active nav item with left strip -->
+                <div style="position:relative;width:100%;display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:2px;">
+                  <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(135deg,#2157f5,#86ffbb);border-radius:0 2px 2px 0;"></div>
+                  <div style="width:14px;height:14px;border-radius:4px;background:linear-gradient(135deg,#2157f5,#86ffbb);opacity:0.9;"></div>
+                  <div style="height:4px;background:#2157f5;border-radius:2px;width:20px;opacity:0.7;"></div>
+                </div>
+                <!-- Default nav item -->
+                <div style="display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:2px;">
+                  <div style="width:14px;height:14px;border-radius:4px;background:rgba(255,255,255,0.35);"></div>
+                  <div style="height:4px;background:rgba(255,255,255,0.4);border-radius:2px;width:20px;"></div>
+                </div>
+                <div style="flex:1;"></div>
+                <div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.5);"></div>
+              </div>
+              <!-- Panel column (white card) -->
+              <div style="flex:1;background:#fff;border-radius:6px;margin:4px 4px 4px 0;display:flex;flex-direction:column;padding:6px;gap:4px;overflow:hidden;">
+                <div style="height:10px;border-radius:3px;background:#edeef0;margin-bottom:2px;"></div>
+                <div style="height:6px;border-radius:3px;background:#c6d4fd;width:70%;"></div>
+                <div style="height:6px;border-radius:3px;background:#ebf4ff;width:85%;"></div>
+                <div style="height:6px;border-radius:3px;background:#edeef0;width:55%;"></div>
+                <div style="height:6px;border-radius:3px;background:#edeef0;width:70%;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
-          <p class="card__name">Side Nav Item</p>
-          <p class="card__desc">Chat list row with title, timestamp, and hover actions.</p>
+          <p class="card__name">Side Nav</p>
+          <p class="card__desc">Full chat navigation panel — icon rail with labels, workspace selector, pinned &amp; recent chats.</p>
         </div>
       </a>
 
-      <a class="card" href="./components/side-nav-section-header.html" data-name="side nav section header group label">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
-          <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
-          </div>
-        </div>
-        <div class="card__body">
-          <p class="card__name">Side Nav Section Header</p>
-          <p class="card__desc">Chat list group label with collapsible toggle.</p>
-        </div>
-      </a>
-
+      <!-- Side Nav Footer -->
       <a class="card" href="./components/sidenav-footer.html" data-name="side nav footer settings utility bottom nav">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;overflow:hidden;width:172px;">
+              <div style="padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;">
+                <div style="height:6px;background:#d4d5d6;border-radius:3px;width:60%;"></div>
+                <div style="height:6px;background:#edeef0;border-radius:3px;width:40%;"></div>
+              </div>
+              <div style="border-top:1px solid #edeef0;padding:10px 12px;display:flex;align-items:center;gap:7px;">
+                <div style="width:26px;height:26px;border-radius:6px;background:#edeef0;flex-shrink:0;"></div>
+                <div style="width:26px;height:26px;border-radius:6px;background:#edeef0;flex-shrink:0;"></div>
+                <div style="flex:1;"></div>
+                <div style="width:28px;height:28px;border-radius:50%;background:#2c70f5;flex-shrink:0;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -426,27 +658,156 @@
         </div>
       </a>
 
-      <a class="card" href="./components/sidenav.html" data-name="side nav chat navigation panel full">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+      <!-- Side Nav Item -->
+      <a class="card" href="./components/side-nav-item.html" data-name="side nav item chat list row">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="width:170px;display:flex;flex-direction:column;gap:3px;">
+              <div style="height:32px;border-radius:6px;background:#ebf4ff;display:flex;align-items:center;padding:0 12px;gap:10px;">
+                <div style="flex:1;height:6px;background:#c6d4fd;border-radius:3px;"></div>
+                <div style="width:10px;height:10px;border-radius:3px;background:#c6d4fd;flex-shrink:0;"></div>
+              </div>
+              <div style="height:32px;border-radius:6px;display:flex;align-items:center;padding:0 12px;">
+                <div style="width:65%;height:6px;background:#d4d5d6;border-radius:3px;"></div>
+              </div>
+              <div style="height:32px;border-radius:6px;display:flex;align-items:center;padding:0 12px;">
+                <div style="width:48%;height:6px;background:#d4d5d6;border-radius:3px;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
-          <p class="card__name">Side Nav</p>
-          <p class="card__desc">Full chat navigation panel — search, pinned &amp; recent chats, empty states, and settings footer.</p>
+          <p class="card__name">Side Nav Item</p>
+          <p class="card__desc">Chat list row with title, timestamp, and hover actions.</p>
         </div>
       </a>
 
-      <a class="card" href="./components/title-bar.html" data-name="title bar chat header navigation">
-        <div class="card__preview" style="background: linear-gradient(143.74deg, #e7f7f9 0%, #fbf8f2 100%);">
+      <!-- Side Nav Section Header -->
+      <a class="card" href="./components/side-nav-section-header.html" data-name="side nav section header group label">
+        <div class="card__preview">
           <div class="card__preview-inner">
-            <img src="./assets/aiLogo.svg" alt="" style="width:36px;height:36px;opacity:0.65;">
+            <div style="width:162px;display:flex;flex-direction:column;gap:3px;">
+              <div style="display:flex;align-items:center;padding:4px 4px 6px;gap:8px;">
+                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:36px;"></div>
+                <div style="flex:1;"></div>
+                <div style="width:10px;height:10px;border-radius:2px;background:#d4d5d6;"></div>
+              </div>
+              <div style="height:26px;border-radius:5px;background:#edeef0;"></div>
+              <div style="height:26px;border-radius:5px;background:#edeef0;"></div>
+              <div style="padding:7px 4px 2px;">
+                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:44px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Side Nav Section Header</p>
+          <p class="card__desc">Chat list group label with collapsible toggle.</p>
+        </div>
+      </a>
+
+      <!-- Suggestion List Item -->
+      <a class="card" href="./components/suggestion-list-item.html" data-name="suggestion list item autocomplete prompt chip">
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="width:170px;display:flex;flex-direction:column;gap:3px;">
+              <div style="height:30px;border-radius:6px;background:#ebf4ff;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;background:#c6d4fd;flex-shrink:0;"></div>
+                <div style="flex:1;height:5px;background:#c6d4fd;border-radius:3px;"></div>
+              </div>
+              <div style="height:30px;border-radius:6px;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
+                <div style="flex:1;height:5px;background:#d4d5d6;border-radius:3px;width:75%;"></div>
+              </div>
+              <div style="height:30px;border-radius:6px;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
+                <div style="flex:1;height:5px;background:#d4d5d6;border-radius:3px;width:55%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Suggestion List Item</p>
+          <p class="card__desc">Autocomplete and prompt suggestion rows with active and default states.</p>
+        </div>
+      </a>
+
+      <!-- Thinking Indicator -->
+      <a class="card" href="./components/thinking-indicator.html" data-name="thinking indicator reasoning ai progress loading">
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #edeef0;border-radius:8px;padding:8px 12px;">
+              <div style="width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="height:6px;background:linear-gradient(90deg,#1a6cc4,#25c8a5,#1a6cc4);border-radius:3px;width:60px;"></div>
+                <div style="height:5px;background:#edeef0;border-radius:3px;width:44px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Thinking Indicator</p>
+          <p class="card__desc">AI reasoning progress with shimmer animation and expandable detail states.</p>
+        </div>
+      </a>
+
+      <!-- Title Bar -->
+      <a class="card" href="./components/title-bar.html" data-name="title bar chat header navigation">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="padding:0 18px;width:100%;box-sizing:border-box;">
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 12px;height:44px;display:flex;align-items:center;gap:10px;width:100%;">
+              <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;flex-shrink:0;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
+                <div style="height:7px;background:#444f5c;border-radius:3px;width:52%;opacity:0.6;"></div>
+                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:32%;"></div>
+              </div>
+              <div style="display:flex;gap:5px;flex-shrink:0;">
+                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
+                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
+                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card__body">
           <p class="card__name">Title Bar</p>
           <p class="card__desc">Chat title navigation bar with back, actions, and overflow controls.</p>
+        </div>
+      </a>
+
+      <!-- Workspace Selector -->
+      <a class="card" href="./components/workspace-selector.html" data-name="workspace selector enterprise region dealership site">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:6px;">
+            <!-- Trigger -->
+            <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #edeef0;border-radius:7px;padding:7px 10px;width:150px;box-sizing:border-box;">
+              <div style="width:18px;height:18px;border-radius:4px;background:#2c70f5;flex-shrink:0;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+                <div style="height:5px;background:#444f5c;border-radius:3px;width:65%;opacity:0.6;"></div>
+                <div style="height:4px;background:#d4d5d6;border-radius:3px;width:85%;"></div>
+              </div>
+              <div style="width:8px;height:8px;border-left:1.5px solid #d4d5d6;border-bottom:1.5px solid #d4d5d6;transform:rotate(-45deg) translateY(-2px);"></div>
+            </div>
+            <!-- Dropdown -->
+            <div style="background:#fff;border:1px solid #edeef0;border-radius:7px;width:150px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.07);">
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#ebf4ff;">
+                <div style="width:12px;height:12px;border-radius:3px;background:#2c70f5;flex-shrink:0;"></div>
+                <div style="height:5px;background:#c6d4fd;border-radius:3px;flex:1;"></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;">
+                <div style="width:12px;height:12px;border-radius:3px;background:#0d9488;flex-shrink:0;"></div>
+                <div style="height:5px;background:#edeef0;border-radius:3px;flex:1;"></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;">
+                <div style="width:12px;height:12px;border-radius:3px;background:#ea7317;flex-shrink:0;"></div>
+                <div style="height:5px;background:#edeef0;border-radius:3px;flex:1;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Workspace Selector</p>
+          <p class="card__desc">Switch between workspaces across the hierarchy — Enterprise, Region, Dealership, Site, and Warehouse.</p>
         </div>
       </a>
 

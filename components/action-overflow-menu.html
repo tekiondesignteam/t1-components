@@ -3,105 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI T1 Action Overflow Menu — Tekion AI Design System</title>
+  <title>AI T1 Action Overflow Menu — Tekion T1 · AI Design Components</title>
   <link rel="stylesheet" href="../css/app-tokens.css">
   <link rel="stylesheet" href="./_nav.css">
   <link rel="stylesheet" href="./_components.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
   <style>
-
-/* ── Page ─────────────────────────────────────────────── */
-
-    /* ── Action Overflow Menu ─────────────────────────────── */
-
-    .action-menu {
-      width:         var(--action-menu-width);
-      background:    var(--action-menu-bg);
-      border:        var(--action-menu-border-width) solid var(--action-menu-border-color);
-      border-radius: var(--action-menu-border-radius);
-      box-shadow:    var(--action-menu-shadow);
-      overflow:      hidden;
-      box-sizing:    border-box;
-    }
-
-    .action-menu__section {
-      padding: var(--action-menu-section-padding-y) 0;
-    }
-
-    /* Divider between sections */
-    .action-menu__section + .action-menu__section {
-      border-top: var(--action-menu-border-width) solid var(--action-menu-border-color);
-    }
-
-    /* ── Menu Item ────────────────────────────────────────── */
-
-    .action-menu__item {
-      display:         flex;
-      align-items:     center;
-      gap:             var(--action-menu-item-gap);
-      height:          var(--action-menu-item-height);
-      padding:         0 var(--action-menu-item-padding-x);
-      background:      none;
-      border:          none;
-      width:           100%;
-      cursor:          pointer;
-      box-sizing:      border-box;
-      text-align:      left;
-      text-decoration: none;
-      transition:      background var(--transition-fast) var(--ease-in-out);
-    }
-
-    .action-menu__item:hover  { background: var(--action-menu-item-bg-hover); }
-    .action-menu__item:active { background: var(--action-menu-item-bg-active); }
-
-    .action-menu__item i {
-      font-size:   var(--action-menu-item-icon-size);
-      line-height: 1;
-      display:     block;
-      flex-shrink: 0;
-      color:       var(--action-menu-item-icon-color);
-    }
-
-    .action-menu__item-label {
-      font-size:   var(--action-menu-item-font-size);
-      font-weight: var(--action-menu-item-font-weight);
-      color:       var(--action-menu-item-text);
-      line-height: var(--line-height-normal);
-      white-space: nowrap;
-    }
-
-    /* ── Destructive variant ──────────────────────────────── */
-
-    .action-menu__item--destructive i {
-      color: var(--action-menu-item-destructive-icon);
-    }
-
-    .action-menu__item--destructive .action-menu__item-label {
-      color: var(--action-menu-item-destructive-text);
-    }
-
-    .action-menu__item--destructive:hover {
-      background: var(--action-menu-item-destructive-bg-hover);
-    }
-
-    /* ── Trigger demo wrapper ─────────────────────────────── */
-
+    /* ── Trigger demo wrapper (page-specific layout helper) ── */
     .demo-trigger-wrap {
-      position: relative;
-      display:  inline-flex;
+      position:       relative;
+      display:        inline-flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: var(--gap-xs);
+      align-items:    flex-start;
+      gap:            var(--gap-xs);
     }
 
     .demo-trigger-wrap .action-menu {
       position: absolute;
-      top: calc(100% + var(--space-2xs));
-      right: 0;
-      z-index: var(--action-menu-z-index);
+      top:      calc(100% + var(--space-2xs));
+      right:    0;
+      z-index:  var(--action-menu-z-index);
     }
-
-</style>
+  </style>
 </head>
 <body>
 
@@ -110,7 +33,7 @@
     <div class="nav-header">
       <a class="nav-logo" href="../index.html">
         <img src="../assets/aiLogo.svg" alt="Tekion AI">
-        <span>AI Design System</span>
+        <span>T1 · AI Design Components</span>
       </a>
       <div class="nav-search-wrap">
         <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
@@ -139,9 +62,17 @@
         <span class="nav-item-name">App Bar</span>
         <span class="nav-item-desc">AI assistant title bar</span>
       </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
       <a class="nav-item" href="button.html">
         <span class="nav-item-name">Button</span>
         <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
       </a>
       <a class="nav-item" href="fab.html">
         <span class="nav-item-name">FAB</span>
@@ -151,9 +82,25 @@
         <span class="nav-item-name">Fav Bar Icon</span>
         <span class="nav-item-desc">Favorite bar logo icon</span>
       </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
       <a class="nav-item" href="search.html">
         <span class="nav-item-name">Search</span>
         <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
       </a>
       <a class="nav-item" href="side-nav-item.html">
         <span class="nav-item-name">Side Nav Item</span>
@@ -163,20 +110,24 @@
         <span class="nav-item-name">Side Nav Section Header</span>
         <span class="nav-item-desc">Chat list group label</span>
       </a>
-      <a class="nav-item" href="sidenav-footer.html">
-        <span class="nav-item-name">Side Nav Footer</span>
-        <span class="nav-item-desc">Utility links at nav bottom</span>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
       </a>
-      <a class="nav-item" href="sidenav.html">
-        <span class="nav-item-name">Side Nav</span>
-        <span class="nav-item-desc">Full chat navigation panel</span>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
       </a>
       <a class="nav-item" href="title-bar.html">
         <span class="nav-item-name">Title Bar</span>
         <span class="nav-item-desc">Chat title navigation bar</span>
       </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
     </div>
-    <div class="nav-footer">Tekion AI · Design Tokens</div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
   </nav>
   <script>
     (function() {

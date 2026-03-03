@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Bubble — Tekion T1 · AI Design Components</title>
+
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+
+  <!-- Phosphor Icons — Bold weight -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+  <style>
+    /* ── Demo scaffold ──────────────────────────────────────── */
+    .variants-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .variant-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 160px;
+    }
+
+    /* Chat context scaffold */
+    .chat-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 360px;
+      padding: 16px;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--primitive-radius-lg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ──────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>T1 · AI Design Components</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item active" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
+      </a>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
+    </div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
+  </nav>
+
+  <!-- Nav: auto-active + search filter -->
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ──────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Chat Bubble</h1>
+    <p class="page-desc">Right-aligned user message bubble with copy and edit actions revealed on hover. The bottom-right corner is flat to indicate message ownership.</p>
+  </div>
+
+  <!-- ── States ───────────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">States</span>
+    <div class="variants-row">
+
+      <div class="variant-col">
+        <span class="demo-label">Default</span>
+        <div class="chat-bubble">
+          <div class="chat-bubble__bubble">
+            <p class="chat-bubble__text">Placeholder text</p>
+          </div>
+          <div class="chat-bubble__actions">
+            <button class="chat-bubble__action-btn" title="Copy">
+              <i class="ph-bold ph-copy"></i>
+            </button>
+            <button class="chat-bubble__action-btn" title="Edit">
+              <i class="ph-bold ph-pencil-simple"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Hover</span>
+        <div class="chat-bubble chat-bubble--hover">
+          <div class="chat-bubble__bubble">
+            <p class="chat-bubble__text">Placeholder text</p>
+          </div>
+          <div class="chat-bubble__actions">
+            <button class="chat-bubble__action-btn" title="Copy">
+              <i class="ph-bold ph-copy"></i>
+            </button>
+            <button class="chat-bubble__action-btn" title="Edit">
+              <i class="ph-bold ph-pencil-simple"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Long message ─────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Long message</span>
+    <div class="variants-row">
+
+      <div class="variant-col" style="max-width:320px;">
+        <span class="demo-label">Wrapping text</span>
+        <div class="chat-bubble chat-bubble--hover" style="max-width:100%;">
+          <div class="chat-bubble__bubble">
+            <p class="chat-bubble__text">What are the financing options available for a 2024 Ford F-150 with a trade-in value of around $18,000?</p>
+          </div>
+          <div class="chat-bubble__actions">
+            <button class="chat-bubble__action-btn" title="Copy">
+              <i class="ph-bold ph-copy"></i>
+            </button>
+            <button class="chat-bubble__action-btn" title="Edit">
+              <i class="ph-bold ph-pencil-simple"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Action Icons ──────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Action Icons</span>
+    <div class="variants-row">
+
+      <div class="variant-col">
+        <span class="demo-label">Default</span>
+        <div style="display:flex; gap:0;">
+          <button class="chat-bubble__action-btn" title="Copy">
+            <i class="ph-bold ph-copy"></i>
+          </button>
+          <button class="chat-bubble__action-btn" title="Edit">
+            <i class="ph-bold ph-pencil-simple"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Copy — Hover</span>
+        <button class="chat-bubble__action-btn" title="Copy" style="color:var(--chat-bubble-action-icon-color-hover); background:var(--color-bg-hover);">
+          <i class="ph-bold ph-copy"></i>
+        </button>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Edit — Hover</span>
+        <button class="chat-bubble__action-btn" title="Edit" style="color:var(--chat-bubble-action-icon-color-hover); background:var(--color-bg-hover);">
+          <i class="ph-bold ph-pencil-simple"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── In context ───────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">In context</span>
+    <div class="chat-thread">
+
+      <!-- AI message (plain text, left side) -->
+      <p style="font-size:var(--font-size-md); color:var(--color-text-primary); margin:0; line-height:var(--line-height-normal);">
+        Hi! How can I help you today?
+      </p>
+
+      <!-- User bubble 1 -->
+      <div class="chat-bubble">
+        <div class="chat-bubble__bubble">
+          <p class="chat-bubble__text">Show me inventory for Honda Civic 2024</p>
+        </div>
+        <div class="chat-bubble__actions">
+          <button class="chat-bubble__action-btn" title="Copy"><i class="ph-bold ph-copy"></i></button>
+          <button class="chat-bubble__action-btn" title="Edit"><i class="ph-bold ph-pencil-simple"></i></button>
+        </div>
+      </div>
+
+      <!-- AI message -->
+      <p style="font-size:var(--font-size-md); color:var(--color-text-primary); margin:0; line-height:var(--line-height-normal);">
+        Found 12 Honda Civic units. Would you like me to filter by trim or color?
+      </p>
+
+      <!-- User bubble 2 — hover state -->
+      <div class="chat-bubble chat-bubble--hover">
+        <div class="chat-bubble__bubble">
+          <p class="chat-bubble__text">Only show Sport trim in white or grey</p>
+        </div>
+        <div class="chat-bubble__actions">
+          <button class="chat-bubble__action-btn" title="Copy"><i class="ph-bold ph-copy"></i></button>
+          <button class="chat-bubble__action-btn" title="Edit"><i class="ph-bold ph-pencil-simple"></i></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

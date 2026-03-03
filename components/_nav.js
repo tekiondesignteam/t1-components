@@ -199,7 +199,7 @@
     <div class="nav-header">
       <a class="nav-logo" href="../index.html">
         <img src="../assets/aiLogo.svg" alt="Tekion AI">
-        <span>AI Design System</span>
+        <span>T1 · AI Design Components</span>
       </a>
       <div class="nav-search-wrap">
         <svg class="nav-search-icon" viewBox="0 0 16 16" fill="none">
@@ -210,7 +210,7 @@
       </div>
     </div>
     <div class="nav-body" id="ds-nav-body"></div>
-    <div class="nav-footer">Tekion AI · Design Tokens</div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
   `;
 
   document.body.prepend(nav);

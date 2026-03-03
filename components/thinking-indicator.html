@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinking Indicator — Tekion T1 · AI Design Components</title>
+
+  <!-- Shared tokens + nav sidebar -->
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+
+  <!-- Phosphor Icons — Bold weight -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+  <style>
+
+    /* ── Demo scaffold ──────────────────────────────────────── */
+
+    .variants-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .variant-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 240px;
+      max-width: 320px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ──────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>T1 · AI Design Components</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
+      </a>
+      <a class="nav-item active" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
+    </div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
+  </nav>
+
+  <!-- Nav: auto-active + search filter -->
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ──────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Thinking Indicator</h1>
+    <p class="page-desc">Displays the AI reasoning process with expandable step groups. Supports in-progress (animated), done, interrupted, and disabled states.</p>
+  </div>
+
+  <!-- ── Reasoning Step ────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Reasoning Step</span>
+    <div class="variants-row">
+
+      <div class="variant-col">
+        <span class="demo-label">Active</span>
+        <div class="reasoning-step reasoning-step--active">
+          <div class="reasoning-step__bar"></div>
+          <span class="reasoning-step__label">Analyzing deal structure...</span>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Done</span>
+        <div class="reasoning-step reasoning-step--done">
+          <div class="reasoning-step__bar"></div>
+          <span class="reasoning-step__label">Analyzed deal structure</span>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Disabled</span>
+        <div class="reasoning-step reasoning-step--disabled">
+          <div class="reasoning-step__bar"></div>
+          <span class="reasoning-step__label">Analyzing deal structure...</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Reasoning Step Group ──────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Step Group</span>
+    <div class="reasoning-step-group">
+      <div class="reasoning-step reasoning-step--done">
+        <div class="reasoning-step__bar"></div>
+        <span class="reasoning-step__label">Checked inventory availability</span>
+      </div>
+      <div class="reasoning-step reasoning-step--done">
+        <div class="reasoning-step__bar"></div>
+        <span class="reasoning-step__label">Calculated trade-in value</span>
+      </div>
+      <div class="reasoning-step reasoning-step--active">
+        <div class="reasoning-step__bar"></div>
+        <span class="reasoning-step__label">Verifying financing options...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Reasoning Header ──────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Reasoning Header States</span>
+    <div class="variants-row">
+
+      <div class="variant-col">
+        <span class="demo-label">In Progress — Collapsed</span>
+        <div class="reasoning reasoning--in-progress">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thinking…</span>
+              <span style="font-size:var(--reasoning-font-size);color:var(--color-text-tertiary);font-weight:400;">2.7s</span>
+              <i class="ph-bold ph-caret-down reasoning__caret"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">In Progress — Expanded</span>
+        <div class="reasoning reasoning--in-progress reasoning--expanded">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thinking…</span>
+              <span style="font-size:var(--reasoning-font-size);color:var(--color-text-tertiary);font-weight:400;">2.7s</span>
+              <i class="ph-bold ph-caret-up reasoning__caret"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Done — Collapsed</span>
+        <div class="reasoning reasoning--done">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thought for 7.5s</span>
+              <i class="ph-bold ph-caret-down reasoning__caret"></i>
+            </div>
+            <span class="reasoning__summary">Reviewed vehicle inventory, trade-in value, and financing options</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Done — Hover</span>
+        <div class="reasoning reasoning--done reasoning--hover">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thought for 7.5s</span>
+              <i class="ph-bold ph-caret-down reasoning__caret"></i>
+            </div>
+            <span class="reasoning__summary">Reviewed vehicle inventory, trade-in value, and financing options</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Done — Expanded</span>
+        <div class="reasoning reasoning--done reasoning--expanded">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thought for 7.5s</span>
+              <i class="ph-bold ph-caret-up reasoning__caret"></i>
+            </div>
+            <span class="reasoning__summary">Reviewed vehicle inventory, trade-in value, and financing options</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Interrupted</span>
+        <div class="reasoning reasoning--done">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thought for 10s</span>
+              <i class="ph-bold ph-caret-down reasoning__caret"></i>
+            </div>
+            <span class="reasoning__meta">Response stopped by you.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Disabled</span>
+        <div class="reasoning reasoning--disabled">
+          <div class="reasoning__content">
+            <div class="reasoning__label-row">
+              <span class="reasoning__label">Thought for 7.5s</span>
+              <i class="ph-bold ph-caret-down reasoning__caret"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Full Reasoning Log ────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Reasoning Log</span>
+    <div class="variants-row">
+
+      <!-- In Progress + Collapsed -->
+      <div class="variant-col">
+        <span class="demo-label">In Progress — Collapsed</span>
+        <div class="reasoning-log reasoning-log--in-progress">
+          <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+          <div class="reasoning-log__body">
+            <div class="reasoning reasoning--in-progress">
+              <div class="reasoning__content">
+                <div class="reasoning__label-row">
+                  <span class="reasoning__label">Thinking…</span>
+                  <span style="font-size:var(--reasoning-font-size);color:var(--color-text-tertiary);font-weight:400;">1.2s</span>
+                  <i class="ph-bold ph-caret-down reasoning__caret"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Progress + Expanded -->
+      <div class="variant-col">
+        <span class="demo-label">In Progress — Expanded</span>
+        <div class="reasoning-log reasoning-log--in-progress reasoning-log--expanded">
+          <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+          <div class="reasoning-log__body">
+            <div class="reasoning reasoning--in-progress reasoning--expanded">
+              <div class="reasoning__content">
+                <div class="reasoning__label-row">
+                  <span class="reasoning__label">Thinking…</span>
+                  <span style="font-size:var(--reasoning-font-size);color:var(--color-text-tertiary);font-weight:400;">2.7s</span>
+                  <i class="ph-bold ph-caret-up reasoning__caret"></i>
+                </div>
+              </div>
+            </div>
+            <div class="reasoning-log__steps">
+              <div class="reasoning-step-group">
+                <div class="reasoning-step reasoning-step--done">
+                  <div class="reasoning-step__bar"></div>
+                  <span class="reasoning-step__label">Checked inventory availability</span>
+                </div>
+                <div class="reasoning-step reasoning-step--active">
+                  <div class="reasoning-step__bar"></div>
+                  <span class="reasoning-step__label">Calculating trade-in value...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Done + Collapsed -->
+      <div class="variant-col">
+        <span class="demo-label">Done — Collapsed</span>
+        <div class="reasoning-log">
+          <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+          <div class="reasoning-log__body">
+            <div class="reasoning reasoning--done">
+              <div class="reasoning__content">
+                <div class="reasoning__label-row">
+                  <span class="reasoning__label">Thought for 7.5s</span>
+                  <i class="ph-bold ph-caret-down reasoning__caret"></i>
+                </div>
+                <span class="reasoning__summary">Reviewed vehicle inventory, trade-in value, and financing options</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Done + Expanded -->
+      <div class="variant-col">
+        <span class="demo-label">Done — Expanded</span>
+        <div class="reasoning-log reasoning-log--expanded">
+          <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+          <div class="reasoning-log__body">
+            <div class="reasoning reasoning--done reasoning--expanded">
+              <div class="reasoning__content">
+                <div class="reasoning__label-row">
+                  <span class="reasoning__label">Thought for 7.5s</span>
+                  <i class="ph-bold ph-caret-up reasoning__caret"></i>
+                </div>
+                <span class="reasoning__summary">Reviewed vehicle inventory, trade-in value, and financing options</span>
+              </div>
+            </div>
+            <div class="reasoning-log__steps">
+              <div class="reasoning-step-group">
+                <div class="reasoning-step reasoning-step--done">
+                  <div class="reasoning-step__bar"></div>
+                  <span class="reasoning-step__label">Checked inventory availability</span>
+                </div>
+                <div class="reasoning-step reasoning-step--done">
+                  <div class="reasoning-step__bar"></div>
+                  <span class="reasoning-step__label">Calculated trade-in value</span>
+                </div>
+                <div class="reasoning-step reasoning-step--done">
+                  <div class="reasoning-step__bar"></div>
+                  <span class="reasoning-step__label">Verified financing options</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interrupted -->
+      <div class="variant-col">
+        <span class="demo-label">Interrupted</span>
+        <div class="reasoning-log">
+          <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+          <div class="reasoning-log__body">
+            <div class="reasoning reasoning--done">
+              <div class="reasoning__content">
+                <div class="reasoning__label-row">
+                  <span class="reasoning__label">Thought for 10s</span>
+                  <i class="ph-bold ph-caret-down reasoning__caret"></i>
+                </div>
+                <span class="reasoning__meta">Response stopped by you.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Interactive Demo ──────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Interactive</span>
+    <div style="display:flex; flex-direction:column; gap:12px; max-width:320px;">
+
+      <!-- Play / Replay button -->
+      <button id="play-btn" style="
+        display: inline-flex; align-items: center; gap: 6px;
+        width: fit-content; padding: 6px 14px;
+        border: 1px solid var(--color-border-default);
+        border-radius: var(--primitive-radius-sm);
+        background: var(--color-bg-primary);
+        color: var(--color-text-secondary);
+        font-size: var(--font-size-sm); font-weight: 500;
+        cursor: pointer; transition: background 150ms;
+      ">
+        <i id="play-icon" class="ph-bold ph-play" style="font-size:13px;"></i>
+        <span id="play-label">Play</span>
+      </button>
+
+      <!-- Reasoning log -->
+      <div class="reasoning-log" id="interactive-log">
+        <img class="reasoning-log__logo" src="../assets/aiLogo.svg" alt="Tekion AI">
+        <div class="reasoning-log__body">
+          <div class="reasoning" id="interactive-header">
+            <div class="reasoning__content">
+              <div class="reasoning__label-row">
+                <span class="reasoning__label" id="interactive-label" style="color:var(--color-text-tertiary);">Preparing response…</span>
+                <!-- live elapsed timer sits right after the label -->
+                <span id="interactive-timer" style="
+                  font-size: var(--reasoning-font-size);
+                  color: var(--color-text-tertiary);
+                  font-weight: 400;
+                  font-variant-numeric: tabular-nums;
+                "></span>
+                <i class="ph-bold ph-caret-down reasoning__caret" id="interactive-caret"></i>
+              </div>
+              <!-- summary shown in done state -->
+              <span id="interactive-summary" class="reasoning__summary" style="display:none;"></span>
+            </div>
+          </div>
+          <div class="reasoning-log__steps" id="interactive-steps-panel">
+            <!-- Steps added dynamically -->
+            <div class="reasoning-step-group" id="istep-group"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase label -->
+      <span id="phase-label" style="
+        font-size: 11px; color: var(--color-text-tertiary);
+        letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500;
+      ">State: Start</span>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var log        = document.getElementById('interactive-log');
+      var header     = document.getElementById('interactive-header');
+      var label      = document.getElementById('interactive-label');
+      var timerEl    = document.getElementById('interactive-timer');
+      var summaryEl  = document.getElementById('interactive-summary');
+      var caret      = document.getElementById('interactive-caret');
+      var stepsPanel = document.getElementById('interactive-steps-panel');
+      var stepGroup  = document.getElementById('istep-group');
+      var btn        = document.getElementById('play-btn');
+      var icon       = document.getElementById('play-icon');
+      var lbl        = document.getElementById('play-label');
+      var phaseLabel = document.getElementById('phase-label');
+
+      /* Step text: typed text while active (with ...), done text (past tense) */
+      var stepTexts = [
+        { active: 'Checking inventory availability...', done: 'Checked inventory availability'  },
+        { active: 'Calculating trade-in value...',       done: 'Calculated trade-in value'        },
+        { active: 'Verifying financing options...',      done: 'Verified financing options'       }
+      ];
+
+      /* Short natural-language summary shown in done state */
+      var doneSummary = 'Reviewed vehicle inventory, trade-in value, and financing options';
+
+      var CHAR_MS      = 42;   /* ms per character — typewriter speed */
+      var HOLD_MS      = 700;  /* pause at end of typing before completing step */
+      var START_HOLD   = 1000; /* time to show "start" state before in-progress */
+
+      var currentIdx    = 0;
+      var seqTimer      = null;
+      var timerInterval = null;
+      var typeInterval  = null;
+      var startTime     = 0;
+
+      /* ── Button hover ── */
+      btn.addEventListener('mouseenter', function () { btn.style.background = 'var(--color-bg-hover)'; });
+      btn.addEventListener('mouseleave', function () { btn.style.background = 'var(--color-bg-primary)'; });
+
+      /* ── Typewriter ─────────────────────────────────────── */
+      function typeText(labelEl, text, onDone) {
+        var i = 0;
+        if (typeInterval) clearInterval(typeInterval);
+        typeInterval = setInterval(function () {
+          /* Show typed chars + blinking cursor is handled by CSS ::after */
+          labelEl.textContent = text.slice(0, i);
+          i++;
+          if (i > text.length) {
+            clearInterval(typeInterval);
+            typeInterval = null;
+            if (onDone) onDone();
+          }
+        }, CHAR_MS);
+      }
+
+      /* ── Click-to-toggle expand/collapse (in-progress & done) ── */
+      header.addEventListener('click', function () {
+        var isInProgress = log.classList.contains('reasoning-log--in-progress');
+        var isDone       = header.classList.contains('reasoning--done');
+        if (!isInProgress && !isDone) return;   /* no-op in start state */
+
+        var isExpanded = log.classList.contains('reasoning-log--expanded');
+        if (isExpanded) {
+          log.classList.remove('reasoning-log--expanded');
+          header.classList.remove('reasoning--expanded');
+          caret.className = 'ph-bold ph-caret-down reasoning__caret';
+        } else {
+          log.classList.add('reasoning-log--expanded');
+          header.classList.add('reasoning--expanded');
+          caret.className = 'ph-bold ph-caret-up reasoning__caret';
+        }
+      });
+
+      /* ── PHASE 1: Start ─────────────────────────────────── */
+      function showStart() {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        if (typeInterval)  { clearInterval(typeInterval);  typeInterval  = null; }
+
+        log.className    = 'reasoning-log';
+        header.className = 'reasoning';
+        stepGroup.innerHTML = '';
+        stepsPanel.style.display = 'none';
+
+        label.style.cssText = 'color: var(--color-text-tertiary);';
+        label.textContent   = 'Preparing response\u2026';
+        timerEl.textContent = '';
+        summaryEl.textContent = '';
+        summaryEl.style.display = 'none';
+        caret.className     = 'ph-bold ph-caret-down reasoning__caret';
+        phaseLabel.textContent = 'State: Start';
+        currentIdx = 0;
+      }
+
+      /* ── PHASE 2: In Progress ───────────────────────────── */
+      function showInProgress() {
+        startTime = Date.now();
+
+        log.classList.add('reasoning-log--in-progress', 'reasoning-log--expanded');
+        header.classList.add('reasoning--in-progress', 'reasoning--expanded');
+
+        label.style.cssText = [
+          'color: transparent',
+          'background: linear-gradient(121.36deg, #1a6cc4 0%, #1b90b4 50%, #25c8a5 100%)',
+          '-webkit-background-clip: text',
+          'background-clip: text',
+          '-webkit-text-fill-color: transparent'
+        ].join(';');
+        label.textContent   = 'Thinking\u2026';
+        summaryEl.textContent = '';
+        summaryEl.style.display = 'none';
+        caret.className     = 'ph-bold ph-caret-up reasoning__caret';
+        stepsPanel.style.display = '';
+        phaseLabel.textContent  = 'State: In Progress';
+
+        /* Live timer: updates every 100ms */
+        timerInterval = setInterval(function () {
+          timerEl.textContent = ((Date.now() - startTime) / 1000).toFixed(1) + 's';
+        }, 100);
+
+        runStep();
+      }
+
+      /* ── PHASE 3: Done ──────────────────────────────────── */
+      function showDone() {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        var elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+
+        /* Collapse */
+        log.classList.remove('reasoning-log--in-progress', 'reasoning-log--expanded');
+        header.classList.remove('reasoning--in-progress', 'reasoning--expanded');
+        header.classList.add('reasoning--done');
+
+        label.style.cssText = '';
+        label.textContent   = 'Thought for ' + elapsed + 's';
+        timerEl.textContent = '';
+
+        summaryEl.textContent = doneSummary;
+        summaryEl.style.display = '';
+
+        caret.className     = 'ph-bold ph-caret-down reasoning__caret';
+        phaseLabel.textContent = 'State: Done';
+
+        btn.disabled    = false;
+        icon.className  = 'ph-bold ph-arrow-counter-clockwise';
+        lbl.textContent = 'Replay';
+      }
+
+      /* ── Step runner ────────────────────────────────────── */
+      function runStep() {
+        if (currentIdx >= stepTexts.length) {
+          seqTimer = setTimeout(showDone, 500);
+          return;
+        }
+
+        var idx      = currentIdx;   /* capture for closures */
+        var stepData = stepTexts[idx];
+
+        /* Create new step element and append to list */
+        var stepEl   = document.createElement('div');
+        stepEl.className = 'reasoning-step reasoning-step--active';
+        stepEl.innerHTML = '<div class="reasoning-step__bar"></div><span class="reasoning-step__label"></span>';
+        stepGroup.appendChild(stepEl);
+
+        var labelEl  = stepEl.querySelector('.reasoning-step__label');
+
+        /* Type the active text */
+        typeText(labelEl, stepData.active, function () {
+          /* Hold briefly so user can read the completed text */
+          seqTimer = setTimeout(function () {
+            /* Transition step to done: grey bar, past-tense text */
+            stepEl.classList.remove('reasoning-step--active');
+            seqTimer = setTimeout(function () {
+              /* After CSS transition settles, swap text and mark done */
+              labelEl.textContent = stepData.done;
+              stepEl.classList.add('reasoning-step--done');
+              currentIdx++;
+              seqTimer = setTimeout(runStep, 120);
+            }, 500);   /* matches CSS transition 550ms */
+          }, HOLD_MS);
+        });
+      }
+
+      /* ── Full sequence ───────────────────────────────────── */
+      function start() {
+        if (seqTimer)      clearTimeout(seqTimer);
+        if (timerInterval) clearInterval(timerInterval);
+        if (typeInterval)  clearInterval(typeInterval);
+
+        btn.disabled    = true;
+        icon.className  = 'ph-bold ph-circle-notch';
+        lbl.textContent = 'Playing\u2026';
+
+        showStart();
+        seqTimer = setTimeout(showInProgress, START_HOLD);
+      }
+
+      btn.addEventListener('click', start);
+      showStart();
+    })();
+  </script>
+
+</body>
+</html>

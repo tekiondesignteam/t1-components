@@ -3,41 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--
-    PAGE TITLE: update to match the component name
-    Pattern: "[Component Name] — Tekion T1 · AI Design Components"
-  -->
-  <title>Component Name — Tekion T1 · AI Design Components</title>
+  <title>Suggestion List Item — Tekion T1 · AI Design Components</title>
 
   <!-- Shared tokens + nav sidebar -->
   <link rel="stylesheet" href="../css/app-tokens.css">
   <link rel="stylesheet" href="./_nav.css">
   <link rel="stylesheet" href="./_components.css">
 
-  <!--
-    OPTIONAL: Phosphor Icons — uncomment if your component uses ph-* icons
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
-  -->
+  <!-- Phosphor Icons — Regular weight for ChatCircleText -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
 
   <style>
 
-/* ── Page layout ───────────────────────────────────────── */
+    /* ── Demo scaffold ──────────────────────────────────────── */
 
-    /* ── Demo helpers ──────────────────────────────────────── */
+    .variants-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
 
-    /* ── Component styles ──────────────────────────────────── */
-    /* Add component-specific CSS below this line               */
+    .variant-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-</style>
+  </style>
 </head>
 <body>
 
-  <!-- ── Sidebar nav ─────────────────────────────────────────
-       The script below auto-marks the current page as active.
-       To add a new page: add an <a class="nav-item"> entry in
-       BOTH the Foundation and AI Components sections as needed,
-       then add the page to index.html.
-  ─────────────────────────────────────────────────────────── -->
+  <!-- ── Sidebar nav ──────────────────────────────────────── -->
   <nav id="ds-nav" aria-label="Component navigation">
     <div class="nav-header">
       <a class="nav-logo" href="../index.html">
@@ -120,7 +118,7 @@
         <span class="nav-item-name">Side Nav Section Header</span>
         <span class="nav-item-desc">Chat list group label</span>
       </a>
-      <a class="nav-item" href="suggestion-list-item.html">
+      <a class="nav-item active" href="suggestion-list-item.html">
         <span class="nav-item-name">Suggestion List Item</span>
         <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
       </a>
@@ -162,34 +160,98 @@
     })();
   </script>
 
-  <!-- ── Page header ─────────────────────────────────────────
-       CSS for .page-header / .page-eyebrow / .page-title /
-       .page-desc is defined in _nav.css — do not duplicate here.
-       Spacing between header and first section comes from
-       body { gap: var(--gap-2xl) } above.
-
-       EYEBROW: "Foundation" or "AI Components"
-       TITLE:   Component name exactly as shown in the nav
-       DESC:    One sentence — what the component is and where it's used
-  ─────────────────────────────────────────────────────────── -->
+  <!-- ── Page header ──────────────────────────────────────── -->
   <div class="page-header">
     <p class="page-eyebrow">AI Components</p>
-    <h1 class="page-title">Component Name</h1>
-    <p class="page-desc">One-sentence description of what this component is and where it appears in the product.</p>
+    <h1 class="page-title">Suggestion List Item</h1>
+    <p class="page-desc">A selectable row used in autocomplete dropdowns, command palettes, and AI prompt suggestion lists. Supports default, hover, active, and disabled states.</p>
   </div>
 
-  <!-- ── Content ─────────────────────────────────────────────
-       Each visual state goes in its own .demo-row.
-       Use .demo-label for state names (Default, Hover, Disabled…)
-  ─────────────────────────────────────────────────────────── -->
+  <!-- ── States — single item ─────────────────────────────── -->
   <div class="demo-row">
-    <span class="demo-label">Default</span>
-    <!-- component markup here -->
+    <span class="demo-label">States</span>
+    <div class="variants-row">
+
+      <div class="variant-col">
+        <span class="demo-label">Default</span>
+        <div class="suggestion-list">
+          <div class="suggestion-list-item">
+            <span class="suggestion-list-item__icon">
+              <i class="ph-bold ph-chat-circle-text"></i>
+            </span>
+            <span class="suggestion-list-item__label">Label</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Hover</span>
+        <div class="suggestion-list">
+          <div class="suggestion-list-item suggestion-list-item--hover">
+            <span class="suggestion-list-item__icon">
+              <i class="ph-bold ph-chat-circle-text"></i>
+            </span>
+            <span class="suggestion-list-item__label">Label</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Active</span>
+        <div class="suggestion-list">
+          <div class="suggestion-list-item suggestion-list-item--active">
+            <span class="suggestion-list-item__icon">
+              <i class="ph-bold ph-chat-circle-text"></i>
+            </span>
+            <span class="suggestion-list-item__label">Label</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-col">
+        <span class="demo-label">Disabled</span>
+        <div class="suggestion-list">
+          <div class="suggestion-list-item suggestion-list-item--disabled" aria-disabled="true">
+            <span class="suggestion-list-item__icon">
+              <i class="ph-bold ph-chat-circle-text"></i>
+            </span>
+            <span class="suggestion-list-item__label">Label</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
+  <!-- ── Interactive demo ──────────────────────────────────── -->
   <div class="demo-row">
-    <span class="demo-label">Variant / State</span>
-    <!-- component markup here -->
+    <span class="demo-label">Interactive</span>
+    <div class="suggestion-list">
+      <div class="suggestion-list-item" tabindex="0" role="option">
+        <span class="suggestion-list-item__icon">
+          <i class="ph-bold ph-chat-circle-text"></i>
+        </span>
+        <span class="suggestion-list-item__label">Hover or click to see states</span>
+      </div>
+      <div class="suggestion-list-item" tabindex="0" role="option">
+        <span class="suggestion-list-item__icon">
+          <i class="ph-bold ph-chat-circle-text"></i>
+        </span>
+        <span class="suggestion-list-item__label">Another suggestion item</span>
+      </div>
+      <div class="suggestion-list-item" tabindex="0" role="option">
+        <span class="suggestion-list-item__icon">
+          <i class="ph-bold ph-chat-circle-text"></i>
+        </span>
+        <span class="suggestion-list-item__label">Third suggestion option</span>
+      </div>
+      <div class="suggestion-list-item suggestion-list-item--disabled" aria-disabled="true" tabindex="-1" role="option" aria-selected="false">
+        <span class="suggestion-list-item__icon">
+          <i class="ph-bold ph-chat-circle-text"></i>
+        </span>
+        <span class="suggestion-list-item__label">Disabled — not selectable</span>
+      </div>
+    </div>
   </div>
 
 </body>

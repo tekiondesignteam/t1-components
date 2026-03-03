@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colors — Tekion AI Design System</title>
+  <title>Colors — Tekion T1 · AI Design Components</title>
   <link rel="stylesheet" href="../css/app-tokens.css">
   <link rel="stylesheet" href="./_nav.css">
   <link rel="stylesheet" href="./_components.css">
@@ -135,7 +135,7 @@
     <div class="nav-header">
       <a class="nav-logo" href="../index.html">
         <img src="../assets/aiLogo.svg" alt="Tekion AI">
-        <span>AI Design System</span>
+        <span>T1 · AI Design Components</span>
       </a>
       <div class="nav-search-wrap">
         <svg class="nav-search-icon" viewBox="0 0 16 16" fill="none">
@@ -167,9 +167,17 @@
         <span class="nav-item-name">App Bar</span>
         <span class="nav-item-desc">AI assistant title bar</span>
       </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
       <a class="nav-item" href="button.html">
         <span class="nav-item-name">Button</span>
         <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
       </a>
       <a class="nav-item" href="fab.html">
         <span class="nav-item-name">FAB</span>
@@ -179,9 +187,25 @@
         <span class="nav-item-name">Fav Bar Icon</span>
         <span class="nav-item-desc">Favorite bar logo icon</span>
       </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
       <a class="nav-item" href="search.html">
         <span class="nav-item-name">Search</span>
         <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
       </a>
       <a class="nav-item" href="side-nav-item.html">
         <span class="nav-item-name">Side Nav Item</span>
@@ -191,17 +215,21 @@
         <span class="nav-item-name">Side Nav Section Header</span>
         <span class="nav-item-desc">Chat list group label</span>
       </a>
-      <a class="nav-item" href="sidenav-footer.html">
-        <span class="nav-item-name">Side Nav Footer</span>
-        <span class="nav-item-desc">Utility links at nav bottom</span>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
       </a>
-      <a class="nav-item" href="sidenav.html">
-        <span class="nav-item-name">Side Nav</span>
-        <span class="nav-item-desc">Full chat navigation panel</span>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
       </a>
       <a class="nav-item" href="title-bar.html">
         <span class="nav-item-name">Title Bar</span>
         <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
       </a>
     </div>
     <div class="nav-footer">Tekion AI · Design System</div>
@@ -448,8 +476,20 @@
       <div class="color-row">
         <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);"></div>
         <span class="color-name">--color-ai-surface-bg</span>
-        <span class="color-usage">FAB default, AI panel surface</span>
+        <span class="color-usage">FAB default, AI panel surface, nav rail bg</span>
         <span class="color-value">143.74deg · teal→warm</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(143.74deg,#8eccd3 0%,#ebe3d1 100%);"></div>
+        <span class="color-name">--color-ai-fab-bg-hover</span>
+        <span class="color-usage">FAB hover, nav rail icon hover</span>
+        <span class="color-value">143.74deg · teal-300→warm-100</span>
+      </div>
+      <div class="color-row">
+        <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(143.74deg,#6ab5be 0%,#d6cbb3 100%);"></div>
+        <span class="color-name">--color-ai-fab-bg-active</span>
+        <span class="color-usage">FAB active/pressed, nav rail icon active</span>
+        <span class="color-value">143.74deg · teal-400→warm-200</span>
       </div>
       <div class="color-row">
         <div class="color-swatch color-swatch--gradient" style="background:linear-gradient(-44.62deg,#2157f5 2.91%,#258dff 40.71%,#86ffbb 106.85%);"></div>

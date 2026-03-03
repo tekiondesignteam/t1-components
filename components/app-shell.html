@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Shell — Tekion T1 · AI Design Components</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+  <style>
+    /* Resets _components.css body padding for full-bleed app layout */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- ══════════════════════════════════════════════════════════
+       ICON RAIL — permanent narrow strip, always visible
+       ══════════════════════════════════════════════════════════ -->
+    <nav class="sidenav__nav" aria-label="Main navigation">
+
+      <div class="sidenav__nav-logo">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+      </div>
+
+      <div class="sidenav__nav-top">
+        <button class="sidenav__nav-item" data-view="home" aria-label="Home">
+          <span class="sidenav__nav-icon-wrap"><i class="ph-bold ph-house"></i></span>
+          <span class="sidenav__nav-label">Home</span>
+        </button>
+        <button class="sidenav__nav-item sidenav__nav-item--active" data-view="chat" aria-label="Chat">
+          <span class="sidenav__nav-icon-wrap"><i class="ph-bold ph-chat-circle-dots"></i></span>
+          <span class="sidenav__nav-label">Chat</span>
+        </button>
+        <button class="sidenav__nav-item" data-view="tasks" aria-label="Tasks">
+          <span class="sidenav__nav-icon-wrap"><i class="ph-bold ph-list-checks"></i></span>
+          <span class="sidenav__nav-label">Tasks</span>
+        </button>
+      </div>
+
+      <div class="sidenav__nav-bottom">
+        <button class="sidenav__nav-item" aria-label="Settings">
+          <span class="sidenav__nav-icon-wrap"><i class="ph-bold ph-gear"></i></span>
+        </button>
+        <button class="sidenav__nav-item" aria-label="User account">
+          <div class="avatar avatar--md avatar--circle avatar--user">JR</div>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- ══════════════════════════════════════════════════════════
+       MAIN — takes all remaining width
+       Contains: title bar + (panel list | content) row
+       ══════════════════════════════════════════════════════════ -->
+    <main class="main" id="main" data-view="chat">
+
+      <!-- Title bar spans full main width -->
+      <div class="title-bar title-bar--expanded" role="banner">
+        <div class="title-bar__inner">
+          <button class="icon-btn" id="sidebar-toggle" aria-label="Toggle panel">
+            <i class="ph-bold ph-sidebar"></i>
+          </button>
+          <span class="title-bar__title" id="main-title">Draft quote for Model X</span>
+          <button class="icon-btn title-bar__action--chat" aria-label="New chat">
+            <i class="ph-bold ph-plus"></i>
+          </button>
+          <button class="icon-btn title-bar__action--chat" aria-label="More options">
+            <i class="ph-bold ph-dots-three-vertical"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body row: panel list (left) + content area (right) -->
+      <div class="main__body">
+
+        <!-- ── Panel list column (toggleable) ─────────────── -->
+        <div class="sidenav-panel-col" id="sidenav-panel">
+
+          <!-- Workspace selector — always visible in panel -->
+          <div class="sidenav__header">
+            <div class="ws-component" id="ws-component">
+              <button class="ws-trigger" type="button" id="ws-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <div class="avatar avatar--dealer">WM</div>
+                <div class="ws-trigger__text">
+                  <span class="ws-trigger__name">Westside Motors</span>
+                  <span class="ws-trigger__context">Southwest Region</span>
+                </div>
+                <i class="ph-bold ph-caret-up-down ws-trigger__caret"></i>
+              </button>
+
+              <div class="ws-dropdown" id="ws-dropdown" role="listbox" hidden>
+
+                <!-- Enterprise -->
+                <div class="ws-section">Enterprise</div>
+                <div class="ws-item" role="option">
+                  <div class="avatar avatar--sm avatar--enterprise"><i class="ph-bold ph-buildings"></i></div>
+                  <div class="ws-item__text">
+                    <span class="ws-item__name">Premier Auto Group</span>
+                  </div>
+                </div>
+
+                <!-- Regions -->
+                <div class="ws-section">Regions</div>
+                <div class="ws-item" role="option">
+                  <div class="avatar avatar--sm avatar--region">SW</div>
+                  <div class="ws-item__text">
+                    <span class="ws-item__name">Southwest Region</span>
+                    <span class="ws-item__context">Premier Auto Group</span>
+                  </div>
+                </div>
+
+                <!-- Dealerships -->
+                <div class="ws-section">Dealerships</div>
+                <div class="ws-item ws-item--active" role="option" aria-selected="true">
+                  <div class="avatar avatar--sm avatar--dealer">WM</div>
+                  <div class="ws-item__text">
+                    <span class="ws-item__name">Westside Motors</span>
+                    <span class="ws-item__context">Southwest Region</span>
+                  </div>
+                  <div class="ws-item__indicators">
+                    <i class="ph-bold ph-house ws-item__home"></i>
+                    <i class="ph-bold ph-check ws-item__check"></i>
+                  </div>
+                </div>
+                <div class="ws-item" role="option">
+                  <div class="avatar avatar--sm avatar--dealer">NH</div>
+                  <div class="ws-item__text">
+                    <span class="ws-item__name">Northside Honda</span>
+                    <span class="ws-item__context">Southwest Region</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Home panel ──────────────────────────────── -->
+          <div class="sidenav__panel" data-panel="home">
+            <div class="sidenav__items">
+              <div class="side-nav-item side-nav-item--active" data-home-view="overview">
+                <span class="side-nav-item__text">Overview</span>
+              </div>
+              <div class="side-nav-item" data-home-view="brief">
+                <span class="side-nav-item__text">Brief</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Chat panel ──────────────────────────────── -->
+          <div class="sidenav__panel sidenav__panel--active" data-panel="chat">
+
+            <div class="sidenav__search-container">
+              <div class="search-field search-field--sm">
+                <div class="search-field__wrap">
+                  <i class="ph-bold ph-magnifying-glass search-field__icon"></i>
+                  <input class="search-field__input" type="search" placeholder="Search chats..."
+                    aria-label="Search chats">
+                </div>
+              </div>
+              <button class="btn btn--secondary btn--md" style="width:100%;">
+                <i class="ph-bold ph-note-pencil"></i>
+                Start a New Chat
+              </button>
+            </div>
+
+            <div class="sidenav__chat-groups">
+
+              <div class="sidenav__chat-group">
+                <div class="sidenav__group-label">Pinned</div>
+                <div class="sidenav__items">
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Monthly Sales Review</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Summarize recent hot leads...</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sidenav__chat-group">
+                <div class="sidenav__group-label">Recents</div>
+                <div class="sidenav__items">
+                  <div class="side-nav-item side-nav-item--active">
+                    <span class="side-nav-item__text">Draft quote for Model X</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Last high-priority test drives</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Follow-up on service appt.</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Q3 inventory overview</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Trade-in value for 2021 Camry</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="side-nav-item">
+                    <span class="side-nav-item__text">Finance options for buyer</span>
+                    <button class="side-nav-item__trigger" aria-label="More">
+                      <i class="ph-bold ph-dots-three-vertical"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /chat panel -->
+
+        </div><!-- /sidenav-panel-col -->
+
+        <!-- ── Content area ────────────────────────────────── -->
+        <div class="main__content-area">
+
+          <!-- Chat (default) -->
+          <div class="main__panel main__panel--active" data-main-panel="chat"></div>
+
+          <!-- Home › Overview -->
+          <div class="main__panel" data-main-panel="home-overview">
+            <div class="main__content">
+              <div class="main__section">
+                <div class="main__section-title">Overview</div>
+                <div class="overview-grid">
+                  <div class="overview-stat">
+                    <span class="overview-stat__value">8</span>
+                    <span class="overview-stat__label">New Leads</span>
+                  </div>
+                  <div class="overview-stat">
+                    <span class="overview-stat__value">4</span>
+                    <span class="overview-stat__label">Appointments Today</span>
+                  </div>
+                  <div class="overview-stat">
+                    <span class="overview-stat__value">3</span>
+                    <span class="overview-stat__label">Open Tasks</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home › Brief -->
+          <div class="main__panel" data-main-panel="home-brief">
+            <div class="main__content">
+              <div class="main__section">
+                <div class="main__section-title">Brief</div>
+                <div class="brief-list">
+                  <div class="brief-item">
+                    <i class="ph-bold ph-user brief-item__icon"></i>
+                    <div class="brief-item__body">
+                      <span class="brief-item__title">3 new leads assigned</span>
+                      <span class="brief-item__meta">Today · Sales</span>
+                    </div>
+                  </div>
+                  <div class="brief-item">
+                    <i class="ph-bold ph-calendar-check brief-item__icon"></i>
+                    <div class="brief-item__body">
+                      <span class="brief-item__title">2 test drives at 2 PM</span>
+                      <span class="brief-item__meta">Today · Service</span>
+                    </div>
+                  </div>
+                  <div class="brief-item">
+                    <i class="ph-bold ph-chart-line-up brief-item__icon"></i>
+                    <div class="brief-item__body">
+                      <span class="brief-item__title">Monthly target at 74%</span>
+                      <span class="brief-item__meta">Mar 2026 · Finance</span>
+                    </div>
+                  </div>
+                  <div class="brief-item">
+                    <i class="ph-bold ph-warning brief-item__icon"></i>
+                    <div class="brief-item__body">
+                      <span class="brief-item__title">Quote for Adams expiring</span>
+                      <span class="brief-item__meta">Tomorrow · Sales</span>
+                    </div>
+                  </div>
+                  <div class="brief-item">
+                    <i class="ph-bold ph-envelope brief-item__icon"></i>
+                    <div class="brief-item__body">
+                      <span class="brief-item__title">5 follow-ups pending</span>
+                      <span class="brief-item__meta">This week · CRM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /main__content-area -->
+
+      </div><!-- /main__body -->
+
+    </main><!-- /main -->
+
+  </div><!-- /app-shell -->
+
+  <!-- ══════════════════════════════════════════════════════════
+     CHAT ITEM ACTION MENU
+     ══════════════════════════════════════════════════════════ -->
+  <div class="action-menu action-menu--floating" id="chat-action-menu" role="menu" aria-label="Chat options">
+    <div class="action-menu__section">
+      <button class="action-menu__item" role="menuitem" data-action="pin">
+        <i class="ph-bold ph-push-pin"></i>
+        <span class="action-menu__item-label">Pin</span>
+      </button>
+      <button class="action-menu__item" role="menuitem" data-action="rename">
+        <i class="ph-bold ph-pencil-simple"></i>
+        <span class="action-menu__item-label">Rename</span>
+      </button>
+    </div>
+    <div class="action-menu__section">
+      <button class="action-menu__item action-menu__item--destructive" role="menuitem" data-action="delete">
+        <i class="ph-bold ph-trash"></i>
+        <span class="action-menu__item-label">Delete</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /* ── Panel toggle ─────────────────────────────────────── */
+    document.getElementById('sidebar-toggle').addEventListener('click', function () {
+      document.getElementById('sidenav-panel').classList.toggle('sidenav-panel-col--hidden');
+    });
+
+    /* ── Workspace selector ───────────────────────────────── */
+    (function () {
+      var trigger  = document.getElementById('ws-trigger');
+      var dropdown = document.getElementById('ws-dropdown');
+
+      function openWs() {
+        dropdown.hidden = false;
+        trigger.classList.add('ws-trigger--open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeWs() {
+        dropdown.hidden = true;
+        trigger.classList.remove('ws-trigger--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.hidden ? openWs() : closeWs();
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!document.getElementById('ws-component').contains(e.target)) closeWs();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeWs();
+      });
+    })();
+
+    /* ── Nav view switching ───────────────────────────────── */
+    var mainTitle = document.getElementById('main-title');
+    var mainEl    = document.getElementById('main');
+
+    function showMainPanel(panelId) {
+      document.querySelectorAll('.main__panel').forEach(function (p) {
+        p.classList.toggle('main__panel--active', p.dataset.mainPanel === panelId);
+      });
+    }
+
+    document.querySelectorAll('.sidenav__nav-item[data-view]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var view = btn.dataset.view;
+
+        // Update active rail item
+        document.querySelectorAll('.sidenav__nav-item[data-view]').forEach(function (b) {
+          b.classList.toggle('sidenav__nav-item--active', b === btn);
+        });
+
+        // Show matching panel
+        document.querySelectorAll('.sidenav__panel').forEach(function (panel) {
+          panel.classList.toggle('sidenav__panel--active', panel.dataset.panel === view);
+        });
+
+        mainEl.dataset.view = view;
+
+        if (view === 'home') {
+          showMainPanel('home-overview');
+          mainTitle.textContent = 'Overview';
+          document.querySelectorAll('.side-nav-item[data-home-view]').forEach(function (i) {
+            i.classList.toggle('side-nav-item--active', i.dataset.homeView === 'overview');
+          });
+        } else if (view === 'chat') {
+          showMainPanel('chat');
+          mainTitle.textContent = 'Draft quote for Model X';
+        } else if (view === 'tasks') {
+          showMainPanel('chat');
+          mainTitle.textContent = 'Tasks';
+        }
+      });
+    });
+
+    /* ── Home nav items ───────────────────────────────────── */
+    document.querySelectorAll('.side-nav-item[data-home-view]').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var view = item.dataset.homeView;
+        document.querySelectorAll('.side-nav-item[data-home-view]').forEach(function (i) {
+          i.classList.toggle('side-nav-item--active', i === item);
+        });
+        showMainPanel('home-' + view);
+        mainTitle.textContent = view.charAt(0).toUpperCase() + view.slice(1);
+      });
+    });
+
+    /* ── Chat item action menu ────────────────────────────── */
+    (function () {
+      const menu = document.getElementById('chat-action-menu');
+      let activeBtn = null;
+
+      function openMenu(triggerBtn) {
+        const rect  = triggerBtn.getBoundingClientRect();
+        const menuW = 160;
+        const menuH = menu.offsetHeight || 120;
+        let top     = rect.bottom + 4;
+        let left    = rect.left;
+        if (left + menuW > window.innerWidth - 8)  left = rect.right - menuW;
+        if (top  + menuH > window.innerHeight - 8) top  = rect.top - menuH - 4;
+        menu.style.top  = top  + 'px';
+        menu.style.left = left + 'px';
+        menu.classList.add('action-menu--open');
+        activeBtn = triggerBtn;
+      }
+
+      function closeMenu() {
+        menu.classList.remove('action-menu--open');
+        activeBtn = null;
+      }
+
+      document.addEventListener('click', function (e) {
+        const trigger = e.target.closest('.side-nav-item__trigger');
+        if (trigger) {
+          e.stopPropagation();
+          activeBtn === trigger ? closeMenu() : openMenu(trigger);
+          return;
+        }
+        const item = e.target.closest('.action-menu__item');
+        if (item) {
+          const action  = item.dataset.action;
+          const navItem = activeBtn ? activeBtn.closest('.side-nav-item') : null;
+          const label   = navItem ? navItem.querySelector('.side-nav-item__text')?.textContent.trim() : '';
+          if (action === 'delete' && label) {
+            if (!window.confirm('Delete "' + label + '"?')) { closeMenu(); return; }
+            navItem.remove();
+          }
+          closeMenu();
+          return;
+        }
+        if (!menu.contains(e.target)) closeMenu();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
