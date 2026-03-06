@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal — Tekion T1 · AI Design Components</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+
+/* ── Demo helpers ──────────────────────────────────────────── */
+
+.section-title {
+  font-size:    var(--font-size-lg);
+  font-weight:  var(--font-weight-semibold);
+  color:        var(--color-text-primary);
+  margin:       0;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border-primary);
+  width:         100%;
+}
+
+.variants-row {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       var(--gap-xl);
+  width:     100%;
+  align-items: flex-start;
+}
+
+.variant-col {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-xs);
+  flex:           1;
+  min-width:      280px;
+}
+
+/* ── Trigger buttons row ───────────────────────────────────── */
+.trigger-row {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       var(--gap-md);
+  width:     100%;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ─────────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>T1 · AI Design Components</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="alert.html">
+        <span class="nav-item-name">Alert</span>
+        <span class="nav-item-desc">Inline feedback — info, success, warning, error</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
+      <a class="nav-item" href="badge.html">
+        <span class="nav-item-name">Badge</span>
+        <span class="nav-item-desc">Status labels, counts &amp; notification overlays</span>
+      </a>
+      <a class="nav-item" href="bottomsheet.html">
+        <span class="nav-item-name">Bottom Sheet</span>
+        <span class="nav-item-desc">Slide-up panel with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="card.html">
+        <span class="nav-item-name">Card</span>
+        <span class="nav-item-desc">Base content container with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="empty-state.html">
+        <span class="nav-item-name">Empty State</span>
+        <span class="nav-item-desc">Zero-data &amp; onboarding placeholder</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item active" href="modal.html">
+        <span class="nav-item-name">Modal</span>
+        <span class="nav-item-desc">Dialog overlay with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
+      </a>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
+    </div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
+  </nav>
+
+  <!-- Nav: auto-active + search filter -->
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Modal</h1>
+    <p class="page-desc">A dialog overlay with a header, scrollable body, and an optional footer. Used for confirmations, forms, and contextual detail views.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1 — ANATOMY
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Anatomy</span>
+    <div class="modal-canvas">
+      <!-- Annotated modal showing all structural parts -->
+      <div class="modal modal--md" style="position:relative;">
+        <div class="modal__header">
+          <i class="ph-bold ph-books modal__header-icon"></i>
+          <h2 class="modal__title">Modal Title</h2>
+          <button class="modal__close" aria-label="Close">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p style="margin:0 0 var(--space-md);"><strong style="color:var(--color-text-primary);">Body</strong> — accepts any content: text, inputs, lists, or custom layouts. Scrolls independently when content overflows.</p>
+          <label class="modal__body-label">Example input</label>
+          <input type="text" class="modal__input" placeholder="Enter a value…">
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary">Cancel</button>
+          <button class="btn btn--primary">Confirm</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2 — VARIANTS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Variants</span>
+    <div class="variants-row">
+
+      <!-- Info / content (no footer) -->
+      <div class="variant-col">
+        <span class="demo-label">Info — no footer</span>
+        <div class="modal-canvas">
+          <div class="modal modal--sm">
+            <div class="modal__header">
+              <i class="ph-bold ph-info modal__header-icon"></i>
+              <h2 class="modal__title">Sources</h2>
+              <button class="modal__close" aria-label="Close">
+                <i class="ph-bold ph-x"></i>
+              </button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0 0 var(--space-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);font-size:var(--font-size-sm);">1. Title goes here</p>
+              <a href="#" style="font-size:var(--font-size-sm);color:var(--color-ai-brand-text);text-decoration:underline;line-height:var(--line-height-normal);">https://crm.example.com/records/leads</a>
+            </div>
+            <!-- No footer -->
+          </div>
+      </div>
+
+      <!-- Confirm (with footer) -->
+      <div class="variant-col">
+        <span class="demo-label">Confirm — with footer</span>
+        <div class="modal-canvas">
+          <div class="modal modal--sm">
+            <div class="modal__header">
+              <h2 class="modal__title">Rename Chat</h2>
+              <button class="modal__close" aria-label="Close">
+                <i class="ph-bold ph-x"></i>
+              </button>
+            </div>
+            <div class="modal__body">
+              <label class="modal__body-label">Chat name</label>
+              <input type="text" class="modal__input" value="Summarize recent hot lead…">
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Cancel</button>
+              <button class="btn btn--primary">Save</button>
+            </div>
+          </div>
+      </div>
+
+      <!-- Danger / destructive (with footer) -->
+      <div class="variant-col">
+        <span class="demo-label">Danger — destructive action</span>
+        <div class="modal-canvas">
+          <div class="modal modal--sm">
+            <div class="modal__header">
+              <i class="ph-bold ph-trash modal__header-icon" style="color:var(--color-negative-text);"></i>
+              <h2 class="modal__title">Delete Conversation</h2>
+              <button class="modal__close" aria-label="Close">
+                <i class="ph-bold ph-x"></i>
+              </button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0;">Are you sure you want to delete this conversation? This action cannot be undone.</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Cancel</button>
+              <button class="btn btn--destructive">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3 — SIZES
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Sizes</span>
+    <div class="variants-row">
+
+      <!-- Small -->
+      <div class="variant-col">
+        <span class="demo-label">Small — 320px</span>
+        <div class="modal-canvas">
+          <div class="modal modal--sm">
+            <div class="modal__header">
+              <h2 class="modal__title">Small Modal</h2>
+              <button class="modal__close" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0;">Compact dialogs for simple confirmations or short messages.</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Cancel</button>
+              <button class="btn btn--primary">OK</button>
+            </div>
+          </div>
+      </div>
+
+      <!-- Medium -->
+      <div class="variant-col">
+        <span class="demo-label">Medium — 480px (default)</span>
+        <div class="modal-canvas">
+          <div class="modal modal--md">
+            <div class="modal__header">
+              <h2 class="modal__title">Medium Modal</h2>
+              <button class="modal__close" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0 0 var(--space-sm);">Standard size for forms, settings, and most use cases.</p>
+              <label class="modal__body-label">Filter by status</label>
+              <input type="text" class="modal__input" placeholder="Search filters…">
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Reset</button>
+              <button class="btn btn--primary">Apply Filters</button>
+            </div>
+          </div>
+      </div>
+
+      <!-- Large -->
+      <div class="variant-col" style="min-width:360px;">
+        <span class="demo-label">Large — 640px</span>
+        <div class="modal-canvas">
+          <div class="modal modal--lg">
+            <div class="modal__header">
+              <i class="ph-bold ph-funnel modal__header-icon"></i>
+              <h2 class="modal__title">Advanced Filters</h2>
+              <button class="modal__close" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0 0 var(--space-md);">Wide modals accommodate multi-column layouts, data tables, or rich content previews.</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-md);">
+                <div>
+                  <label class="modal__body-label">Date range</label>
+                  <input type="text" class="modal__input" placeholder="Last 30 days">
+                </div>
+                <div>
+                  <label class="modal__body-label">Assigned to</label>
+                  <input type="text" class="modal__input" placeholder="Any agent">
+                </div>
+              </div>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Clear All</button>
+              <button class="btn btn--primary">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4 — BODY CONTENT TYPES
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Body content types</span>
+    <div class="variants-row">
+
+      <!-- Text only -->
+      <div class="variant-col">
+        <span class="demo-label">Text body</span>
+        <div class="modal-canvas">
+          <div class="modal modal--sm">
+            <div class="modal__header">
+              <h2 class="modal__title">Session Expired</h2>
+              <button class="modal__close" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal__body">
+              <p style="margin:0;">Your session has expired. Please sign in again to continue using the AI assistant.</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--primary">Sign In</button>
+            </div>
+          </div>
+      </div>
+
+      <!-- Form body -->
+      <div class="variant-col">
+        <span class="demo-label">Form body</span>
+        <div class="modal-canvas">
+          <div class="modal modal--md">
+            <div class="modal__header">
+              <i class="ph-bold ph-sliders modal__header-icon"></i>
+              <h2 class="modal__title">Customize Response</h2>
+              <button class="modal__close" aria-label="Close"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal__body" style="display:flex;flex-direction:column;gap:var(--gap-md);">
+              <div>
+                <label class="modal__body-label">Tone</label>
+                <input type="text" class="modal__input" placeholder="e.g. Professional, Casual…">
+              </div>
+              <div>
+                <label class="modal__body-label">Max response length</label>
+                <input type="text" class="modal__input" placeholder="e.g. 3 sentences">
+              </div>
+              <div>
+                <label class="modal__body-label">Additional instructions</label>
+                <textarea class="modal__input modal__textarea" placeholder="Add any extra instructions for the AI…"></textarea>
+              </div>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--secondary">Cancel</button>
+              <button class="btn btn--primary">Save Settings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 5 — INTERACTIVE DEMO
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Interactive — click to open</span>
+    <div class="trigger-row">
+      <button class="btn btn--secondary" onclick="openModal('modal-info')">
+        <i class="ph-bold ph-info"></i> Info (no footer)
+      </button>
+      <button class="btn btn--secondary" onclick="openModal('modal-confirm')">
+        <i class="ph-bold ph-pencil-simple"></i> Confirm
+      </button>
+      <button class="btn btn--destructive" onclick="openModal('modal-danger')">
+        <i class="ph-bold ph-trash"></i> Danger
+      </button>
+      <button class="btn btn--secondary" onclick="openModal('modal-form')">
+        <i class="ph-bold ph-sliders"></i> Form
+      </button>
+      <button class="btn btn--secondary" onclick="openModal('modal-large')">
+        <i class="ph-bold ph-arrows-out"></i> Large
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LIVE MODALS (portal-style, appended to body)
+  ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Info modal (no footer) -->
+  <div class="modal-backdrop" id="modal-info" role="dialog" aria-modal="true" aria-labelledby="modal-info-title" onclick="handleBackdropClick(event,'modal-info')">
+      <div class="modal modal--sm">
+        <div class="modal__header">
+          <i class="ph-bold ph-books modal__header-icon"></i>
+          <h2 class="modal__title" id="modal-info-title">Sources</h2>
+          <button class="modal__close" aria-label="Close" onclick="closeModal('modal-info')">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p style="margin:0 0 var(--space-md);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);font-size:var(--font-size-sm);">1. Lead Management Overview</p>
+          <a href="#" style="font-size:var(--font-size-sm);color:var(--color-ai-brand-text);text-decoration:underline;">https://crm.example.com/records/leads</a>
+          <p style="margin:var(--space-md) 0 var(--space-md);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);font-size:var(--font-size-sm);">2. Q3 Sales Performance Report</p>
+          <a href="#" style="font-size:var(--font-size-sm);color:var(--color-ai-brand-text);text-decoration:underline;">https://crm.example.com/reports/q3-2024</a>
+        </div>
+        <!-- No footer — close via X button only -->
+      </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div class="modal-backdrop" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title" onclick="handleBackdropClick(event,'modal-confirm')">
+      <div class="modal modal--sm">
+        <div class="modal__header">
+          <h2 class="modal__title" id="modal-confirm-title">Rename Chat</h2>
+          <button class="modal__close" aria-label="Close" onclick="closeModal('modal-confirm')">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <label class="modal__body-label">Chat name</label>
+          <input type="text" class="modal__input" value="Summarize recent hot leads in the Bay Area">
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" onclick="closeModal('modal-confirm')">Cancel</button>
+          <button class="btn btn--primary" onclick="closeModal('modal-confirm')">Save</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Danger modal -->
+  <div class="modal-backdrop" id="modal-danger" role="dialog" aria-modal="true" aria-labelledby="modal-danger-title" onclick="handleBackdropClick(event,'modal-danger')">
+      <div class="modal modal--sm">
+        <div class="modal__header">
+          <i class="ph-bold ph-trash modal__header-icon" style="color:var(--color-negative-text);"></i>
+          <h2 class="modal__title" id="modal-danger-title">Delete Conversation</h2>
+          <button class="modal__close" aria-label="Close" onclick="closeModal('modal-danger')">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p style="margin:0;">Are you sure you want to delete this conversation? This action cannot be undone.</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" onclick="closeModal('modal-danger')">Cancel</button>
+          <button class="btn btn--destructive" onclick="closeModal('modal-danger')">Delete</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Form modal -->
+  <div class="modal-backdrop" id="modal-form" role="dialog" aria-modal="true" aria-labelledby="modal-form-title" onclick="handleBackdropClick(event,'modal-form')">
+      <div class="modal modal--md">
+        <div class="modal__header">
+          <i class="ph-bold ph-sliders modal__header-icon"></i>
+          <h2 class="modal__title" id="modal-form-title">Customize Response</h2>
+          <button class="modal__close" aria-label="Close" onclick="closeModal('modal-form')">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body" style="display:flex;flex-direction:column;gap:var(--gap-md);">
+          <div>
+            <label class="modal__body-label">Tone</label>
+            <input type="text" class="modal__input" placeholder="e.g. Professional, Casual, Friendly…">
+          </div>
+          <div>
+            <label class="modal__body-label">Max response length</label>
+            <input type="text" class="modal__input" placeholder="e.g. 3 sentences, 150 words">
+          </div>
+          <div>
+            <label class="modal__body-label">Additional instructions</label>
+            <textarea class="modal__input modal__textarea" placeholder="Add extra instructions for the AI model…"></textarea>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" onclick="closeModal('modal-form')">Cancel</button>
+          <button class="btn btn--primary" onclick="closeModal('modal-form')">Save Settings</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Large modal -->
+  <div class="modal-backdrop" id="modal-large" role="dialog" aria-modal="true" aria-labelledby="modal-large-title" onclick="handleBackdropClick(event,'modal-large')">
+      <div class="modal modal--lg">
+        <div class="modal__header">
+          <i class="ph-bold ph-funnel modal__header-icon"></i>
+          <h2 class="modal__title" id="modal-large-title">Advanced Filters</h2>
+          <button class="modal__close" aria-label="Close" onclick="closeModal('modal-large')">
+            <i class="ph-bold ph-x"></i>
+          </button>
+        </div>
+        <div class="modal__body" style="display:flex;flex-direction:column;gap:var(--gap-md);">
+          <p style="margin:0;color:var(--color-text-secondary);font-size:var(--font-size-sm);">Filter AI-generated results by date, agent, department or topic.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-md);">
+            <div>
+              <label class="modal__body-label">Date range</label>
+              <input type="text" class="modal__input" placeholder="Last 30 days">
+            </div>
+            <div>
+              <label class="modal__body-label">Assigned to</label>
+              <input type="text" class="modal__input" placeholder="Any agent">
+            </div>
+            <div>
+              <label class="modal__body-label">Department</label>
+              <input type="text" class="modal__input" placeholder="All departments">
+            </div>
+            <div>
+              <label class="modal__body-label">Topic</label>
+              <input type="text" class="modal__input" placeholder="Any topic">
+            </div>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" onclick="closeModal('modal-large')">Clear All</button>
+          <button class="btn btn--primary" onclick="closeModal('modal-large')">Apply Filters</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- ── Modal JS ────────────────────────────────────────────── -->
+  <script>
+    function openModal(id) {
+      var backdrop = document.getElementById(id);
+      backdrop.classList.add('modal-backdrop--open');
+      document.body.style.overflow = 'hidden';
+      // Focus first focusable element
+      var focusable = backdrop.querySelector('button, input, textarea, [tabindex]');
+      if (focusable) setTimeout(function(){ focusable.focus(); }, 50);
+    }
+
+    function closeModal(id) {
+      var backdrop = document.getElementById(id);
+      backdrop.classList.remove('modal-backdrop--open');
+      document.body.style.overflow = '';
+    }
+
+    function handleBackdropClick(e, id) {
+      // Close only when clicking the backdrop itself, not the modal
+      if (e.target === document.getElementById(id)) closeModal(id);
+    }
+
+    // Escape key closes any open modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop--open').forEach(function(el) {
+          closeModal(el.id);
+        });
+      }
+    });
+  </script>
+
+  <!-- ── Spotlight search ─────────────────────────────────── -->
+  <script src="./_spotlight.js"></script>
+  <!-- ── Mobile nav toggle ──────────────────────────────────── -->
+  <script>
+    (function () {
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      var btn = document.createElement('button');
+      btn.className = 'nav-mobile-toggle';
+      btn.setAttribute('aria-label', 'Toggle navigation');
+      btn.innerHTML = '<span></span><span></span><span></span>';
+      document.body.appendChild(btn);
+
+      function openNav()  { document.body.classList.add('nav-open'); }
+      function closeNav() { document.body.classList.remove('nav-open'); }
+
+      btn.addEventListener('click', function () {
+        document.body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      overlay.addEventListener('click', closeNav);
+    })();
+  </script>
+</body>
+</html>

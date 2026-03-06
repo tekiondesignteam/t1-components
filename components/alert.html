@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert — Tekion T1 · AI Design Components</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+.demo-col {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-md);
+  width:          100%;
+  max-width:      560px;
+}
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ─────────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>T1 · AI Design Components</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item active" href="alert.html">
+        <span class="nav-item-name">Alert</span>
+        <span class="nav-item-desc">Inline feedback — info, success, warning, error</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
+      <a class="nav-item" href="badge.html">
+        <span class="nav-item-name">Badge</span>
+        <span class="nav-item-desc">Status labels, counts &amp; notification overlays</span>
+      </a>
+      <a class="nav-item" href="bottomsheet.html">
+        <span class="nav-item-name">Bottom Sheet</span>
+        <span class="nav-item-desc">Slide-up panel with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="card.html">
+        <span class="nav-item-name">Card</span>
+        <span class="nav-item-desc">Base content container with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="empty-state.html">
+        <span class="nav-item-name">Empty State</span>
+        <span class="nav-item-desc">Zero-data &amp; onboarding placeholder</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="modal.html">
+        <span class="nav-item-name">Modal</span>
+        <span class="nav-item-desc">Dialog overlay with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
+      </a>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
+    </div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
+  </nav>
+
+  <!-- Nav: auto-active + search filter -->
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Alert</h1>
+    <p class="page-desc">Inline contextual feedback. Five severity levels: info, success, warning, error, neutral. Tinted background determined by severity — no variant modifiers needed. Optionally compose with a title, action link, and dismiss button.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1 — SEVERITY (message only)
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Severity</span>
+    <div class="demo-col">
+
+      <div class="alert alert--success" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-check-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This is a success alert.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--info" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-info"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This is an info alert.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--warning" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-warning"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This is a warning alert.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--error" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-x-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This is an error alert.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--neutral" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-bell"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This is a neutral alert.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2 — WITH TITLE
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">With title</span>
+    <div class="demo-col">
+
+      <div class="alert alert--success" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-check-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">Lead updated</p>
+          <p class="alert__message">The lead record was saved and synced to your CRM.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--info" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-info"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">New feature available</p>
+          <p class="alert__message">AI summaries are now available in Fixed Ops. Try it today.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--warning" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-warning"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">Sync delayed</p>
+          <p class="alert__message">Your CRM hasn't synced in 24 hours. Check your connection.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--error" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-x-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">Payment failed</p>
+          <p class="alert__message">We couldn't process your payment. Please update your billing details.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3 — WITH ACTION LINK
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">With action</span>
+    <div class="demo-col">
+
+      <div class="alert alert--warning" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-warning"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This Alert displays the default close icon.</p>
+        </div>
+        <button class="alert__close" aria-label="Dismiss">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+      <div class="alert alert--success" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-check-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">This Alert uses a Button component for its action.</p>
+        </div>
+        <button class="alert__action">UNDO</button>
+      </div>
+
+      <div class="alert alert--info" role="alert">
+        <span class="alert__icon"><i class="ph-bold ph-info"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">CRM sync pending</p>
+          <p class="alert__message">This lead hasn't synced in 24 hours.</p>
+        </div>
+        <button class="alert__action">Retry sync</button>
+        <button class="alert__close" aria-label="Dismiss">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4 — DISMISSIBLE
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Dismissible</span>
+    <div class="demo-col" id="dismiss-col">
+
+      <div class="alert alert--success" role="alert" id="d-success">
+        <span class="alert__icon"><i class="ph-bold ph-check-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">Your changes have been saved successfully.</p>
+        </div>
+        <button class="alert__close" aria-label="Dismiss" onclick="dismissAlert('d-success')">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+      <div class="alert alert--info" role="alert" id="d-info">
+        <span class="alert__icon"><i class="ph-bold ph-info"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">Heads up</p>
+          <p class="alert__message">This page will enter read-only mode after 30 minutes.</p>
+        </div>
+        <button class="alert__close" aria-label="Dismiss" onclick="dismissAlert('d-info')">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+      <div class="alert alert--warning" role="alert" id="d-warning">
+        <span class="alert__icon"><i class="ph-bold ph-warning"></i></span>
+        <div class="alert__body">
+          <p class="alert__title">Low storage</p>
+          <p class="alert__message">You're using 90% of your document storage quota.</p>
+        </div>
+        <button class="alert__close" aria-label="Dismiss" onclick="dismissAlert('d-warning')">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+      <div class="alert alert--error" role="alert" id="d-error">
+        <span class="alert__icon"><i class="ph-bold ph-x-circle"></i></span>
+        <div class="alert__body">
+          <p class="alert__message">Unable to connect to the server. Please try again later.</p>
+        </div>
+        <button class="alert__close" aria-label="Dismiss" onclick="dismissAlert('d-error')">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+
+    </div>
+    <p id="all-dismissed-msg" style="display:none;font-size:var(--font-size-sm);color:var(--color-text-tertiary);margin-top:var(--space-xs);">All alerts dismissed. Reload to reset.</p>
+  </div>
+
+  <script>
+    function dismissAlert(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.style.transition = 'opacity 0.15s, max-height 0.25s, margin 0.25s, padding 0.25s';
+      el.style.opacity = '0';
+      el.style.maxHeight = el.offsetHeight + 'px';
+      requestAnimationFrame(function () {
+        el.style.maxHeight = '0';
+        el.style.marginTop = '0';
+        el.style.marginBottom = '0';
+        el.style.padding = '0';
+      });
+      setTimeout(function () {
+        el.style.display = 'none';
+        checkAllDismissed();
+      }, 260);
+    }
+    function checkAllDismissed() {
+      var col = document.getElementById('dismiss-col');
+      var visible = col ? Array.from(col.querySelectorAll('.alert')).filter(function(a){ return a.style.display !== 'none'; }) : [];
+      if (visible.length === 0) {
+        var msg = document.getElementById('all-dismissed-msg');
+        if (msg) msg.style.display = 'block';
+      }
+    }
+  </script>
+
+    <script src="./_spotlight.js"></script>
+  <!-- ── Mobile nav toggle ──────────────────────────────────── -->
+  <script>
+    (function () {
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      var btn = document.createElement('button');
+      btn.className = 'nav-mobile-toggle';
+      btn.setAttribute('aria-label', 'Toggle navigation');
+      btn.innerHTML = '<span></span><span></span><span></span>';
+      document.body.appendChild(btn);
+
+      function openNav()  { document.body.classList.add('nav-open'); }
+      function closeNav() { document.body.classList.remove('nav-open'); }
+
+      btn.addEventListener('click', function () {
+        document.body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      overlay.addEventListener('click', closeNav);
+    })();
+  </script>
+</body>
+</html>

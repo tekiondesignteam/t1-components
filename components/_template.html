@@ -68,6 +68,10 @@
         <span class="nav-item-name">Action Overflow Menu</span>
         <span class="nav-item-desc">Contextual action dropdown</span>
       </a>
+      <a class="nav-item" href="alert.html">
+        <span class="nav-item-name">Alert</span>
+        <span class="nav-item-desc">Inline feedback — info, success, warning, error</span>
+      </a>
       <a class="nav-item" href="app-bar.html">
         <span class="nav-item-name">App Bar</span>
         <span class="nav-item-desc">AI assistant title bar</span>
@@ -79,6 +83,10 @@
       <a class="nav-item" href="button.html">
         <span class="nav-item-name">Button</span>
         <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item" href="card.html">
+        <span class="nav-item-name">Card</span>
+        <span class="nav-item-desc">Base content container with header, body &amp; footer</span>
       </a>
       <a class="nav-item" href="chat-bubble.html">
         <span class="nav-item-name">Chat Bubble</span>
@@ -192,5 +200,31 @@
     <!-- component markup here -->
   </div>
 
+  <!-- ── Spotlight search ─────────────────────────────────── -->
+  <script src="./_spotlight.js"></script>
+  <!-- ── Mobile nav toggle ──────────────────────────────────── -->
+  <script>
+    (function () {
+      // Create overlay
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      // Create hamburger toggle button
+      var btn = document.createElement('button');
+      btn.className = 'nav-mobile-toggle';
+      btn.setAttribute('aria-label', 'Toggle navigation');
+      btn.innerHTML = '<span></span><span></span><span></span>';
+      document.body.appendChild(btn);
+
+      function openNav()  { document.body.classList.add('nav-open'); }
+      function closeNav() { document.body.classList.remove('nav-open'); }
+
+      btn.addEventListener('click', function () {
+        document.body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      overlay.addEventListener('click', closeNav);
+    })();
+  </script>
 </body>
 </html>

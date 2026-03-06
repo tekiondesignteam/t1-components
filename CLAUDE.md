@@ -21,6 +21,12 @@ dont hardcode values - use tokens
 - Icons in component demos must use Phosphor **bold** weight — use class `ph-bold ph-<icon-name>` and link `https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css`
 - **Component ordering is strictly A–Z** — the AI Components section in `#ds-nav` and the card grid in `index.html` must always be sorted alphabetically by component name. When adding a new component, insert it in the correct alphabetical position in both places (not at the end).
 
+## Button sizing
+- Default button size is **medium (`--md`) on desktop** and **large (`--lg`) on mobile** (≤768px)
+- This is handled automatically in `_components.css` via a `@media (max-width: 768px)` rule targeting `.btn` with no explicit size modifier
+- To pin a button to a fixed size regardless of breakpoint, always add an explicit size class: `btn--sm`, `btn--md`, or `btn--lg`
+- Icon buttons (`.btn--icon`) follow the same default-size rule
+
 ## Sidenav panel / view switching
 - Panel visibility is controlled by `.sidenav__panel` / `.sidenav__panel--active` (defined in `_components.css`)
 - Nav items that switch views must use `data-view` attributes; panels must use `data-panel` attributes

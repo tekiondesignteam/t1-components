@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T1 · AI Design Components — Tekion</title>
   <link rel="stylesheet" href="./css/app-tokens.css">
+  <link rel="stylesheet" href="./components/_spotlight.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
   <style>
 
     * { box-sizing: border-box; }
@@ -252,6 +254,93 @@
       color:     var(--color-text-tertiary);
     }
 
+    /* ── Responsive — Mobile ──────────────────────────────── */
+
+    @media (max-width: 768px) {
+
+      .header {
+        padding: 16px 20px 14px;
+      }
+
+      .header__top {
+        flex-direction: column;
+        gap:            16px;
+        align-items:    stretch;
+        margin-bottom:  12px;
+      }
+
+      .header__title h1 {
+        font-size: 18px;
+      }
+
+      .header__sub {
+        font-size: 12px;
+      }
+
+      /* Search + button row stacks to full width */
+      .header__top > div:last-child {
+        flex-direction: row;
+        align-items:    center;
+        width:          100%;
+      }
+
+      .search-wrap {
+        width:  auto;
+        flex:   1;
+      }
+
+      .section {
+        padding: 24px 20px 0;
+      }
+
+      .section:last-of-type {
+        padding-bottom: 32px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+      }
+
+      .card__preview {
+        height: 100px;
+      }
+
+      .empty {
+        padding: 0 20px 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 14px 16px 12px;
+      }
+
+      .header__top > div:last-child {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-wrap {
+        width: 100%;
+        flex: none;
+      }
+
+      .appshell-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .section {
+        padding: 20px 16px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -272,8 +361,8 @@
             <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
             <path d="M10 10L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <input class="search-input" id="search" type="search" placeholder="Search components…" aria-label="Search components" autocomplete="off">
-          <kbd class="search-kbd">/</kbd>
+          <input class="search-input" id="search" type="search" placeholder="Search components…" aria-label="Search components" autocomplete="off" readonly style="cursor:pointer;">
+          <kbd class="search-kbd">⌘K</kbd>
         </div>
         <button class="appshell-btn" onclick="window.open('./components/app-shell.html','_blank')">Demo</button>
       </div>
@@ -290,20 +379,22 @@
       <!-- Colors -->
       <a class="card" href="./components/colors.html" data-name="colors semantic color tokens palette swatches">
         <div class="card__preview">
-          <div class="card__preview-inner" style="flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:7px;">
-              <div style="width:24px;height:24px;border-radius:50%;background:#2c70f5;"></div>
-              <div style="width:24px;height:24px;border-radius:50%;background:#c87ae7;"></div>
-              <div style="width:24px;height:24px;border-radius:50%;background:#60d156;"></div>
-              <div style="width:24px;height:24px;border-radius:50%;background:#ffd500;"></div>
-              <div style="width:24px;height:24px;border-radius:50%;background:#ef4444;"></div>
+          <div class="card__preview-inner" style="flex-direction:column;gap:6px;">
+            <!-- Row 1: brand + semantic -->
+            <div style="display:flex;gap:5px;">
+              <div style="width:26px;height:26px;border-radius:6px;background:#2c70f5;" title="Blue"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#c87ae7;" title="Purple"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#60d156;" title="Green"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#f5a623;" title="Orange"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#ef4444;" title="Red"></div>
             </div>
-            <div style="display:flex;gap:7px;">
-              <div style="width:24px;height:24px;border-radius:6px;background:#c0d8ff;"></div>
-              <div style="width:24px;height:24px;border-radius:6px;background:#d4d5d6;"></div>
-              <div style="width:24px;height:24px;border-radius:6px;background:#969aa3;"></div>
-              <div style="width:24px;height:24px;border-radius:6px;background:#6d707a;"></div>
-              <div style="width:24px;height:24px;border-radius:6px;background:#444f5c;"></div>
+            <!-- Row 2: neutrals -->
+            <div style="display:flex;gap:5px;">
+              <div style="width:26px;height:26px;border-radius:6px;background:#1a1a2e;"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#444f5c;"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#969aa3;"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#d4d5d6;"></div>
+              <div style="width:26px;height:26px;border-radius:6px;background:#f4f5f6;border:1px solid #edeef0;"></div>
             </div>
           </div>
         </div>
@@ -317,14 +408,13 @@
       <a class="card" href="./components/typography.html" data-name="typography type scale font heading paragraph label">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="display:flex;flex-direction:column;gap:5px;width:150px;padding:4px 0;">
-              <div style="font-family:system-ui,sans-serif;font-size:18px;font-weight:700;color:#1a1a2e;line-height:1.1;letter-spacing:-0.02em;">Heading 1</div>
-              <div style="font-family:system-ui,sans-serif;font-size:13px;font-weight:600;color:#444f5c;line-height:1.2;">Heading 3</div>
-              <div style="font-family:system-ui,sans-serif;font-size:11px;font-weight:400;color:#969aa3;line-height:1.4;">Body / paragraph text at regular weight</div>
-              <div style="display:flex;gap:6px;margin-top:2px;">
-                <div style="font-family:system-ui,sans-serif;font-size:9px;font-weight:600;color:#2c70f5;letter-spacing:0.06em;text-transform:uppercase;">LABEL</div>
-                <div style="font-family:system-ui,sans-serif;font-size:9px;font-weight:400;color:#d4d5d6;">·</div>
-                <div style="font-family:'Courier New',monospace;font-size:9px;font-weight:400;color:#969aa3;">caption</div>
+            <div style="display:flex;flex-direction:column;gap:4px;width:155px;">
+              <div style="font-family:system-ui,sans-serif;font-size:17px;font-weight:700;color:#1a1a2e;line-height:1.1;letter-spacing:-0.02em;">Heading</div>
+              <div style="font-family:system-ui,sans-serif;font-size:12px;font-weight:600;color:#444f5c;line-height:1.2;">Subheading</div>
+              <div style="font-family:system-ui,sans-serif;font-size:10px;font-weight:400;color:#969aa3;line-height:1.4;">Body text at regular weight</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+                <div style="font-family:system-ui,sans-serif;font-size:9px;font-weight:700;color:#2c70f5;letter-spacing:0.07em;text-transform:uppercase;">LABEL</div>
+                <div style="font-family:'Courier New',monospace;font-size:9px;color:#969aa3;">caption</div>
               </div>
             </div>
           </div>
@@ -339,24 +429,24 @@
       <a class="card" href="./components/tokens.html" data-name="tokens css variables primitives design system reference">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="display:flex;flex-direction:column;gap:5px;width:160px;font-family:'Courier New',monospace;font-size:9.5px;line-height:1.5;">
+            <div style="display:flex;flex-direction:column;gap:5px;width:168px;font-family:'Courier New',monospace;font-size:8.5px;line-height:1.4;">
               <div style="display:flex;align-items:center;gap:6px;">
-                <div style="width:10px;height:10px;border-radius:50%;background:#2c70f5;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);"></div>
-                <span style="color:#6d707a;">--color-accent-bg:</span>
-                <span style="color:#2c70f5;">#2c70f5</span>
+                <div style="width:11px;height:11px;border-radius:50%;background:#2c70f5;flex-shrink:0;border:1px solid rgba(0,0,0,0.1);"></div>
+                <span style="color:#6d707a;">--color-accent-bg</span>
+                <span style="color:#2c70f5;margin-left:auto;">#2c70f5</span>
               </div>
               <div style="display:flex;align-items:center;gap:6px;">
-                <div style="width:10px;height:10px;border-radius:50%;background:#1a1a2e;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);"></div>
-                <span style="color:#6d707a;">--color-text-primary:</span>
-                <span style="color:#444f5c;">#1a1a2e</span>
+                <div style="width:11px;height:11px;border-radius:50%;background:#1a1a2e;flex-shrink:0;border:1px solid rgba(0,0,0,0.1);"></div>
+                <span style="color:#6d707a;">--color-text-primary</span>
+                <span style="color:#444f5c;margin-left:auto;">#1a1a2e</span>
               </div>
               <div style="display:flex;align-items:center;gap:6px;">
-                <div style="width:10px;height:10px;border-radius:2px;background:#edeef0;flex-shrink:0;border:1px solid #d4d5d6;"></div>
-                <span style="color:#6d707a;">--radius-md:</span>
-                <span style="color:#444f5c;">8px</span>
+                <div style="width:11px;height:11px;border-radius:3px;background:#edeef0;flex-shrink:0;border:1px solid #d4d5d6;"></div>
+                <span style="color:#6d707a;">--radius-md</span>
+                <span style="color:#444f5c;margin-left:auto;">8px</span>
               </div>
               <div style="display:flex;align-items:center;gap:6px;">
-                <div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#2157f5,#86ffbb);flex-shrink:0;"></div>
+                <div style="width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,#2157f5,#86ffbb);flex-shrink:0;"></div>
                 <span style="color:#6d707a;">--color-ai-logo-bg</span>
               </div>
             </div>
@@ -379,21 +469,21 @@
       <a class="card" href="./components/action-overflow-menu.html" data-name="action overflow menu dropdown contextual">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,0.07);overflow:hidden;width:120px;">
-              <div style="padding:4px 0;border-bottom:1px solid #edeef0;">
+            <div style="border:1.5px solid #a78ee8;border-radius:8px;overflow:hidden;width:120px;">
+              <div style="padding:4px 0;border-bottom:1.5px solid #6b7280;opacity:0.3;">
                 <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
-                  <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
-                  <div style="height:6px;background:#d4d5d6;border-radius:3px;width:45px;"></div>
+                  <div style="width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:45px;"></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
-                  <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
-                  <div style="height:6px;background:#d4d5d6;border-radius:3px;width:55px;"></div>
+                  <div style="width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:55px;"></div>
                 </div>
               </div>
               <div style="padding:4px 0;">
-                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
-                  <div style="width:8px;height:8px;border-radius:2px;background:#fecaca;flex-shrink:0;"></div>
-                  <div style="height:6px;background:#fecaca;border-radius:3px;width:40px;"></div>
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;background:rgba(100,60,220,0.06);">
+                  <div style="width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:40px;"></div>
                 </div>
               </div>
             </div>
@@ -405,21 +495,45 @@
         </div>
       </a>
 
+      <!-- Alert -->
+      <a class="card" href="./components/alert.html" data-name="alert inline feedback info success warning error notification message banner">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:4px;border-left:3px solid #2c70f5;background:#f4f0fd;width:140px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+              <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:55%;"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:4px;border-left:3px solid #8b6dd4;background:#faf8fe;width:140px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#b8a0e8;flex-shrink:0;"></div>
+              <div style="height:4px;background:#b8a0e8;border-radius:2px;width:40%;"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:4px;border-left:3px solid #c4aff0;background:#faf8fe;width:140px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#c4aff0;flex-shrink:0;"></div>
+              <div style="height:4px;background:#c4aff0;border-radius:2px;width:50%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Alert</p>
+          <p class="card__desc">Inline contextual feedback — info, success, warning, error, and neutral variants.</p>
+        </div>
+      </a>
+
       <!-- App Bar -->
       <a class="card" href="./components/app-bar.html" data-name="app bar title header navigation window">
         <div class="card__preview">
           <div class="card__preview-inner" style="flex-direction:column;gap:8px;padding:0 18px;width:100%;box-sizing:border-box;">
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 10px;height:36px;display:flex;align-items:center;gap:9px;width:100%;">
-              <div style="width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
-              <div style="flex:1;height:7px;background:#d4d5d6;border-radius:3px;"></div>
+            <div style="border:1.5px solid #a78ee8;border-radius:8px;padding:0 10px;height:36px;display:flex;align-items:center;gap:9px;width:100%;">
+              <div style="width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+              <div style="flex:1;height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.3;"></div>
               <div style="display:flex;gap:4px;">
-                <div style="width:14px;height:14px;border-radius:3px;background:#edeef0;"></div>
-                <div style="width:14px;height:14px;border-radius:3px;background:#edeef0;"></div>
+                <div style="width:13px;height:13px;border-radius:3px;border:1.5px solid #a78ee8;opacity:0.5;"></div>
+                <div style="width:13px;height:13px;border-radius:3px;border:1.5px solid #a78ee8;opacity:0.5;"></div>
               </div>
             </div>
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 10px;height:26px;display:flex;align-items:center;gap:9px;width:100%;opacity:0.45;">
-              <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
-              <div style="flex:1;height:5px;background:#edeef0;border-radius:3px;"></div>
+            <div style="border:1.5px solid #a78ee8;border-radius:8px;padding:0 10px;height:26px;display:flex;align-items:center;gap:9px;width:100%;opacity:0.4;">
+              <div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+              <div style="flex:1;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.4;"></div>
             </div>
           </div>
         </div>
@@ -432,16 +546,18 @@
       <!-- Avatar -->
       <a class="card" href="./components/avatar.html" data-name="avatar badge initials workspace hierarchy circle user photo">
         <div class="card__preview">
-          <div class="card__preview-inner" style="flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;align-items:center;">
-              <!-- Square with initials -->
-              <div style="width:36px;height:36px;border-radius:8px;background:#2c70f5;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:sans-serif;letter-spacing:0.02em;">JR</div>
-              <!-- Circle with initials -->
-              <div style="width:36px;height:36px;border-radius:50%;background:#0d9488;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:sans-serif;letter-spacing:0.02em;">JR</div>
-              <!-- Circle user icon -->
-              <div style="width:36px;height:36px;border-radius:50%;background:#6d707a;display:flex;align-items:center;justify-content:center;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="white"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-              </div>
+          <div class="card__preview-inner" style="gap:12px;">
+            <!-- Square -->
+            <div style="width:36px;height:36px;border-radius:8px;border:2px solid #a78ee8;display:flex;align-items:center;justify-content:center;">
+              <div style="width:14px;height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.6;"></div>
+            </div>
+            <!-- Circle filled -->
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);display:flex;align-items:center;justify-content:center;">
+              <div style="width:14px;height:5px;background:#fff;border-radius:2px;opacity:0.8;"></div>
+            </div>
+            <!-- Circle outline + user icon -->
+            <div style="width:36px;height:36px;border-radius:50%;border:2px solid #a78ee8;display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#8b6dd4" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#8b6dd4" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
           </div>
         </div>
@@ -451,19 +567,79 @@
         </div>
       </a>
 
+      <!-- Badge -->
+      <a class="card" href="./components/badge.html" data-name="badge label status tag count dot notification overlay pill">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:10px;align-items:center;">
+            <!-- Label badges row -->
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;">
+              <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(100,60,220,0.1);color:#6c3fc7;">Accent</span>
+              <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(44,112,245,0.1);color:#1a56d4;">Info</span>
+              <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(22,163,74,0.1);color:#166534;">Positive</span>
+              <span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(234,88,12,0.1);color:#c2410c;">Warning</span>
+            </div>
+            <!-- Notification count badges on icons -->
+            <div style="display:flex;gap:16px;align-items:center;">
+              <div style="position:relative;display:inline-flex;">
+                <div style="width:32px;height:32px;border-radius:8px;border:1.5px solid #a78ee8;display:flex;align-items:center;justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="#8b6dd4" stroke-width="2"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#8b6dd4" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <span style="position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:999px;background:#e03b3b;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;padding:0 3px;">3</span>
+              </div>
+              <div style="position:relative;display:inline-flex;">
+                <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);display:flex;align-items:center;justify-content:center;">
+                  <div style="width:12px;height:4px;background:#fff;border-radius:2px;opacity:0.8;"></div>
+                </div>
+                <span style="position:absolute;top:0;right:0;width:10px;height:10px;border-radius:50%;background:#22c55e;border:2px solid #fff;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Badge</p>
+          <p class="card__desc">Inline status labels (pill) and notification overlays (count &amp; dot) for icons and avatars.</p>
+        </div>
+      </a>
+
+      <!-- Bottom Sheet -->
+      <a class="card" href="./components/bottomsheet.html" data-name="bottom sheet slide-up overlay panel drawer modal mobile">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="padding:0;align-items:stretch;">
+            <div style="width:100%;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;height:100%;gap:0;">
+              <div style="height:10px;background:rgba(100,60,220,0.06);border-radius:3px 3px 0 0;margin:0 12px;"></div>
+              <div style="border:1.5px solid #a78ee8;border-bottom:none;border-radius:10px 10px 0 0;padding:8px 12px 10px;">
+                <div style="width:24px;height:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;margin:0 auto 8px;opacity:0.4;"></div>
+                <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;margin-bottom:5px;opacity:0.25;"></div>
+                <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:70%;opacity:0.25;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Bottom Sheet</p>
+          <p class="card__desc">Slide-up overlay panel with drag handle, height variants, and full interactive demo.</p>
+        </div>
+      </a>
+
       <!-- Button -->
       <a class="card" href="./components/button.html" data-name="button primary secondary tertiary">
         <div class="card__preview">
           <div class="card__preview-inner">
             <div style="display:flex;flex-direction:column;gap:10px;">
               <div style="display:flex;gap:8px;">
-                <div style="height:28px;width:72px;background:#4285f4;border-radius:6px;"></div>
-                <div style="height:28px;width:72px;background:linear-gradient(135deg,#2c70f5 28%,#c87ae7 111%);border-radius:6px;"></div>
+                <div style="height:28px;width:72px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:32px;height:4px;background:#fff;border-radius:2px;opacity:0.8;"></div>
+                </div>
+                <div style="height:28px;width:72px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:6px;opacity:0.6;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:32px;height:4px;background:#fff;border-radius:2px;opacity:0.8;"></div>
+                </div>
               </div>
               <div style="display:flex;gap:8px;">
-                <div style="height:28px;width:72px;background:#fff;border:1.5px solid #d4d5d6;border-radius:6px;"></div>
+                <div style="height:28px;width:72px;border:1.5px solid #a78ee8;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:32px;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.6;"></div>
+                </div>
                 <div style="height:28px;width:72px;border-radius:6px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:44px;height:6px;background:#c6d4fd;border-radius:3px;"></div>
+                  <div style="width:36px;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.3;"></div>
                 </div>
               </div>
             </div>
@@ -474,11 +650,44 @@
           <p class="card__desc">Primary, secondary, and tertiary button variants with all states.</p>
         </div>
       </a>
+
+      <!-- Card -->
+      <a class="card" href="./components/card.html" data-name="card container base header body footer layout panel">
+        <div class="card__preview">
+          <div class="card__preview-inner">
+            <div style="flex-direction:column;gap:0;display:flex;overflow:hidden;border-radius:8px;border:1.5px solid #a78ee8;width:130px;">
+              <div style="padding:8px 10px 6px;border-bottom:1.5px solid #ddd4f8;background:#f4f0fd;">
+                <div style="width:50px;height:5px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);margin-bottom:4px;"></div>
+                <div style="width:70px;height:3px;border-radius:2px;background:#b8a0e8;"></div>
+              </div>
+              <div style="padding:8px 10px;">
+                <div style="width:88px;height:3px;border-radius:2px;background:#e8e2f8;margin-bottom:5px;"></div>
+                <div style="width:68px;height:3px;border-radius:2px;background:#f4f0fd;"></div>
+              </div>
+              <div style="padding:5px 8px;border-top:1.5px solid #ddd4f8;display:flex;gap:5px;justify-content:flex-end;">
+                <div style="height:16px;width:34px;border-radius:3px;border:1.5px solid #c4aff0;"></div>
+                <div style="height:16px;width:34px;border-radius:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Card</p>
+          <p class="card__desc">Base content container with header, body, and footer slots for composing any component inside.</p>
+        </div>
+      </a>
+
       <!-- Chat Bubble -->
       <a class="card" href="./components/chat-bubble.html" data-name="chat bubble user message conversation reply edit copy">
         <div class="card__preview">
-          <div class="card__preview-inner" style="align-items:flex-end;">
-            <div style="max-width:140px;background:#edeef0;border-radius:8px 8px 0 8px;padding:8px 10px;font-size:11px;color:#161616;font-family:sans-serif;line-height:1.4;">Show me Honda Civics in white</div>
+          <div class="card__preview-inner" style="align-items:flex-end;flex-direction:column;gap:6px;">
+            <div style="background:#f4f0fd;border-radius:8px 8px 0 8px;padding:7px 10px;display:flex;flex-direction:column;gap:4px;width:120px;">
+              <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:85%;"></div>
+              <div style="height:4px;background:#b8a0e8;border-radius:2px;width:60%;"></div>
+            </div>
+            <div style="background:#f4f0fd;border-radius:8px 8px 0 8px;padding:7px 10px;width:90px;">
+              <div style="height:4px;background:#b8a0e8;border-radius:2px;width:75%;"></div>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -487,11 +696,35 @@
         </div>
       </a>
 
+      <!-- Empty State -->
+      <a class="card" href="./components/empty-state.html" data-name="empty state zero data onboarding placeholder no results">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="flex-direction:column;gap:7px;">
+            <div style="width:28px;height:28px;border-radius:5px;border:2px solid #a78ee8;display:flex;align-items:center;justify-content:center;opacity:0.6;">
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="none"><path d="M168,32H88a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V40A8,8,0,0,0,168,32Zm-8,176H96V48h64ZM104,80h48a8,8,0,0,1,0,16H104a8,8,0,0,1,0-16Z" fill="#8b6dd4"/></svg>
+            </div>
+            <div style="width:72px;height:6px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);opacity:0.8;"></div>
+            <div style="width:100px;height:4px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);opacity:0.3;"></div>
+            <div style="width:86px;height:4px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);opacity:0.3;"></div>
+            <div style="display:flex;gap:6px;margin-top:2px;">
+              <div style="height:22px;width:52px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.5;"></div>
+              <div style="height:22px;width:52px;border-radius:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Empty State</p>
+          <p class="card__desc">Centered placeholder for zero-data screens with icon, title, subtitle, and optional actions.</p>
+        </div>
+      </a>
+
       <!-- FAB -->
       <a class="card" href="./components/fab.html" data-name="fab floating action button">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);border:1px solid #d4d5d6;box-shadow:0 4px 16px rgba(0,0,0,0.10);"><img src="./assets/aiLogo.svg" style="width:100%;height:100%;padding:14px;"></div>
+            <div style="width:54px;height:54px;border-radius:50%;border:2px solid #a78ee8;display:flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#8b6dd4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="#8b6dd4" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -504,7 +737,9 @@
       <a class="card" href="./components/fav-bar-icon.html" data-name="fav bar icon favourite sidebar">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);box-shadow:0 4px 16px rgba(33,87,245,0.28);"><img src="./assets/aiLogo.svg" style="width:100%;height:100%;padding:13px;filter:brightness(10);"></div>
+            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2c70f5,#c87ae7);display:flex;align-items:center;justify-content:center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="white" opacity="0.5"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="white" opacity="0.5"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="white" opacity="0.25"/></svg>
+            </div>
           </div>
         </div>
         <div class="card__body">
@@ -518,19 +753,19 @@
         <div class="card__preview">
           <div class="card__preview-inner">
             <div style="display:flex;align-items:center;gap:4px;">
-              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
-                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              <div style="width:24px;height:24px;border-radius:4px;border:1.5px solid #a78ee8;display:flex;align-items:center;justify-content:center;opacity:0.6;">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 10 L7 5 L11 10" stroke="#8b6dd4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
-                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              <div style="width:24px;height:24px;border-radius:4px;border:1.5px solid #a78ee8;display:flex;align-items:center;justify-content:center;opacity:0.6;">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 6 L7 11 L11 6" stroke="#8b6dd4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div style="width:24px;height:24px;border-radius:2px;background:var(--color-bg-hover);display:flex;align-items:center;justify-content:center;">
-                <div style="width:12px;height:12px;border-radius:50%;background:var(--color-icon-light);"></div>
+              <div style="width:24px;height:24px;border-radius:4px;border:1.5px solid #a78ee8;display:flex;align-items:center;justify-content:center;opacity:0.6;">
+                <div style="width:3px;height:3px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);box-shadow:0 0 0 0 #6b7280, 5px 0 0 0 #6b7280, -5px 0 0 0 #6b7280;"></div>
               </div>
-              <div style="width:1px;height:14px;background:var(--color-border-default);margin:0 2px;"></div>
-              <div style="display:flex;align-items:center;gap:4px;height:20px;padding:0 6px;border:1px solid var(--color-text-tertiary);border-radius:9999px;">
-                <div style="width:8px;height:8px;border-radius:50%;background:var(--color-text-tertiary);"></div>
-                <div style="width:16px;height:6px;border-radius:2px;background:var(--color-text-tertiary);"></div>
+              <div style="width:1px;height:14px;background:linear-gradient(135deg,#2c70f5,#c87ae7);margin:0 2px;opacity:0.2;"></div>
+              <div style="display:flex;align-items:center;gap:4px;height:20px;padding:0 7px;border:1.5px solid #a78ee8;border-radius:9999px;opacity:0.7;">
+                <div style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
+                <div style="width:14px;height:4px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
               </div>
             </div>
           </div>
@@ -541,19 +776,48 @@
         </div>
       </a>
 
+      <!-- Modal -->
+      <a class="card" href="./components/modal.html" data-name="modal dialog overlay popup confirm alert form footer header">
+        <div class="card__preview">
+          <div class="card__preview-inner" style="padding:0;">
+            <div style="background:rgba(100,60,220,0.05);width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+              <div style="border:1.5px solid #a78ee8;border-radius:8px;width:130px;overflow:hidden;">
+                <div style="padding:7px 10px;display:flex;align-items:center;gap:6px;border-bottom:1.5px solid #ddd4f8;">
+                  <div style="flex:1;height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.4;"></div>
+                  <div style="width:10px;height:10px;border-radius:2px;border:1.5px solid #a78ee8;opacity:0.5;"></div>
+                </div>
+                <div style="padding:10px;display:flex;flex-direction:column;gap:5px;">
+                  <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:90%;opacity:0.2;"></div>
+                  <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:70%;opacity:0.2;"></div>
+                  <div style="height:18px;border:1.5px solid #a78ee8;border-radius:4px;margin-top:3px;opacity:0.5;"></div>
+                </div>
+                <div style="padding:6px 10px;border-top:1.5px solid #ddd4f8;display:flex;justify-content:flex-end;gap:5px;">
+                  <div style="height:16px;width:36px;border:1.5px solid #a78ee8;border-radius:3px;opacity:0.4;"></div>
+                  <div style="height:16px;width:36px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:3px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__name">Modal</p>
+          <p class="card__desc">Dialog overlay with header, scrollable body, and optional footer for confirmations and forms.</p>
+        </div>
+      </a>
+
       <!-- Prompt Input -->
       <a class="card" href="./components/prompt-input.html" data-name="prompt input text area send chat compose">
         <div class="card__preview">
           <div class="card__preview-inner" style="padding:0 16px;width:100%;box-sizing:border-box;">
-            <div style="background:#fff;border:1.5px solid #2157f5;border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box;box-shadow:0 0 0 3px rgba(33,87,245,0.07);">
-              <div style="height:6px;background:#edeef0;border-radius:3px;width:60%;margin-bottom:8px;"></div>
-              <div style="height:6px;background:#edeef0;border-radius:3px;width:40%;margin-bottom:12px;"></div>
+            <div style="border:1.5px solid #a78ee8;border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box;">
+              <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:60%;margin-bottom:6px;opacity:0.25;"></div>
+              <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:40%;margin-bottom:12px;opacity:0.25;"></div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="display:flex;gap:6px;">
-                  <div style="width:18px;height:18px;border-radius:4px;background:#edeef0;"></div>
-                  <div style="width:18px;height:18px;border-radius:4px;background:#edeef0;"></div>
+                  <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.4;"></div>
+                  <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.4;"></div>
                 </div>
-                <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);"></div>
+                <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
               </div>
             </div>
           </div>
@@ -568,22 +832,22 @@
       <a class="card" href="./components/search.html" data-name="search input results filter">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;overflow:hidden;width:162px;">
-              <div style="padding:10px 10px;border-bottom:1px solid #edeef0;">
-                <div style="height:28px;border:1.5px solid #2157f5;border-radius:6px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;box-shadow:0 0 0 3px rgba(33,87,245,0.07);">
-                  <div style="width:10px;height:10px;border-radius:50%;border:1.5px solid #d4d5d6;flex-shrink:0;"></div>
-                  <div style="flex:1;height:6px;background:#edeef0;border-radius:3px;"></div>
+            <div style="border:1.5px solid #a78ee8;border-radius:8px;overflow:hidden;width:162px;">
+              <div style="padding:10px 10px;border-bottom:1.5px solid #ddd4f8;">
+                <div style="height:28px;border:1.5px solid #a78ee8;border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 10px;">
+                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4" stroke="#8b6dd4" stroke-width="1.5" opacity="0.7"/><path d="M10 10L13.5 13.5" stroke="#8b6dd4" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/></svg>
+                  <div style="flex:1;height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.2;"></div>
                 </div>
               </div>
               <div style="padding:4px 0;">
-                <div style="padding:6px 10px;background:#ebf4ff;">
-                  <div style="height:6px;background:#c6d4fd;border-radius:3px;width:55%;"></div>
+                <div style="padding:6px 10px;background:rgba(100,60,220,0.06);">
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:55%;opacity:0.6;"></div>
                 </div>
                 <div style="padding:6px 10px;">
-                  <div style="height:6px;background:#edeef0;border-radius:3px;width:70%;"></div>
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:70%;opacity:0.2;"></div>
                 </div>
                 <div style="padding:6px 10px;">
-                  <div style="height:6px;background:#edeef0;border-radius:3px;width:45%;"></div>
+                  <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:45%;opacity:0.2;"></div>
                 </div>
               </div>
             </div>
@@ -598,32 +862,30 @@
       <!-- Side Nav -->
       <a class="card" href="./components/sidenav.html" data-name="side nav chat navigation panel full">
         <div class="card__preview">
-          <div class="card__preview-inner" style="padding:0;width:100%;height:100%;overflow:hidden;">
-            <div style="display:flex;width:100%;height:100%;background:linear-gradient(143.74deg,#e7f7f9 0%,#fbf8f2 100%);">
-              <!-- Icon rail with labels -->
-              <div style="width:36px;display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:0;flex-shrink:0;">
-                <div style="width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);margin-bottom:8px;"></div>
-                <!-- Active nav item with left strip -->
-                <div style="position:relative;width:100%;display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:2px;">
-                  <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(135deg,#2157f5,#86ffbb);border-radius:0 2px 2px 0;"></div>
-                  <div style="width:14px;height:14px;border-radius:4px;background:linear-gradient(135deg,#2157f5,#86ffbb);opacity:0.9;"></div>
-                  <div style="height:4px;background:#2157f5;border-radius:2px;width:20px;opacity:0.7;"></div>
+          <div class="card__preview-inner">
+            <div style="display:flex;border:1.5px solid #ddd4f8;border-radius:8px;overflow:hidden;width:160px;height:88px;">
+              <!-- Icon rail -->
+              <div style="width:30px;display:flex;flex-direction:column;align-items:center;padding:7px 0;gap:0;flex-shrink:0;border-right:1.5px solid #ddd4f8;background:#faf8fe;">
+                <div style="width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);margin-bottom:7px;"></div>
+                <div style="position:relative;width:100%;display:flex;flex-direction:column;align-items:center;padding:3px 0;gap:2px;">
+                  <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:0 1px 1px 0;"></div>
+                  <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);"></div>
+                  <div style="height:3px;background:#b8a0e8;border-radius:2px;width:18px;"></div>
                 </div>
-                <!-- Default nav item -->
-                <div style="display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:2px;">
-                  <div style="width:14px;height:14px;border-radius:4px;background:rgba(255,255,255,0.35);"></div>
-                  <div style="height:4px;background:rgba(255,255,255,0.4);border-radius:2px;width:20px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;padding:3px 0;gap:2px;">
+                  <div style="width:12px;height:12px;border-radius:3px;background:#e8e2f8;"></div>
+                  <div style="height:3px;background:#f4f0fd;border-radius:2px;width:18px;"></div>
                 </div>
                 <div style="flex:1;"></div>
-                <div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.5);"></div>
+                <div style="width:14px;height:14px;border-radius:50%;background:#e8e2f8;"></div>
               </div>
-              <!-- Panel column (white card) -->
-              <div style="flex:1;background:#fff;border-radius:6px;margin:4px 4px 4px 0;display:flex;flex-direction:column;padding:6px;gap:4px;overflow:hidden;">
-                <div style="height:10px;border-radius:3px;background:#edeef0;margin-bottom:2px;"></div>
-                <div style="height:6px;border-radius:3px;background:#c6d4fd;width:70%;"></div>
-                <div style="height:6px;border-radius:3px;background:#ebf4ff;width:85%;"></div>
-                <div style="height:6px;border-radius:3px;background:#edeef0;width:55%;"></div>
-                <div style="height:6px;border-radius:3px;background:#edeef0;width:70%;"></div>
+              <!-- Panel -->
+              <div style="flex:1;display:flex;flex-direction:column;padding:6px;gap:4px;background:#fff;">
+                <div style="height:6px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);width:75%;margin-bottom:2px;"></div>
+                <div style="height:4px;border-radius:2px;background:#e8e2f8;width:85%;"></div>
+                <div style="height:4px;border-radius:2px;background:#f4f0fd;width:65%;"></div>
+                <div style="height:4px;border-radius:2px;background:#f4f0fd;width:75%;"></div>
+                <div style="height:4px;border-radius:2px;background:#f4f0fd;width:55%;"></div>
               </div>
             </div>
           </div>
@@ -638,16 +900,16 @@
       <a class="card" href="./components/sidenav-footer.html" data-name="side nav footer settings utility bottom nav">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;overflow:hidden;width:172px;">
-              <div style="padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;">
-                <div style="height:6px;background:#d4d5d6;border-radius:3px;width:60%;"></div>
-                <div style="height:6px;background:#edeef0;border-radius:3px;width:40%;"></div>
+            <div style="border:1.5px solid #ddd4f8;border-radius:8px;overflow:hidden;width:155px;">
+              <div style="padding:10px 10px 8px;display:flex;flex-direction:column;gap:5px;">
+                <div style="height:4px;background:#b8a0e8;border-radius:2px;width:55%;"></div>
+                <div style="height:4px;background:#e8e2f8;border-radius:2px;width:38%;"></div>
               </div>
-              <div style="border-top:1px solid #edeef0;padding:10px 12px;display:flex;align-items:center;gap:7px;">
-                <div style="width:26px;height:26px;border-radius:6px;background:#edeef0;flex-shrink:0;"></div>
-                <div style="width:26px;height:26px;border-radius:6px;background:#edeef0;flex-shrink:0;"></div>
+              <div style="border-top:1.5px solid #ddd4f8;padding:8px 10px;display:flex;align-items:center;gap:6px;background:#faf8fe;">
+                <div style="width:22px;height:22px;border-radius:5px;background:#e8e2f8;flex-shrink:0;"></div>
+                <div style="width:22px;height:22px;border-radius:5px;background:#f4f0fd;flex-shrink:0;"></div>
                 <div style="flex:1;"></div>
-                <div style="width:28px;height:28px;border-radius:50%;background:#2c70f5;flex-shrink:0;"></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
               </div>
             </div>
           </div>
@@ -662,16 +924,16 @@
       <a class="card" href="./components/side-nav-item.html" data-name="side nav item chat list row">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="width:170px;display:flex;flex-direction:column;gap:3px;">
-              <div style="height:32px;border-radius:6px;background:#ebf4ff;display:flex;align-items:center;padding:0 12px;gap:10px;">
-                <div style="flex:1;height:6px;background:#c6d4fd;border-radius:3px;"></div>
-                <div style="width:10px;height:10px;border-radius:3px;background:#c6d4fd;flex-shrink:0;"></div>
+            <div style="width:155px;display:flex;flex-direction:column;gap:3px;">
+              <div style="height:28px;border-radius:5px;background:#f4f0fd;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="flex:1;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;"></div>
+                <div style="width:9px;height:9px;border-radius:2px;background:#b8a0e8;flex-shrink:0;"></div>
               </div>
-              <div style="height:32px;border-radius:6px;display:flex;align-items:center;padding:0 12px;">
-                <div style="width:65%;height:6px;background:#d4d5d6;border-radius:3px;"></div>
+              <div style="height:28px;border-radius:5px;background:#faf8fe;display:flex;align-items:center;padding:0 10px;">
+                <div style="width:60%;height:4px;background:#e8e2f8;border-radius:2px;"></div>
               </div>
-              <div style="height:32px;border-radius:6px;display:flex;align-items:center;padding:0 12px;">
-                <div style="width:48%;height:6px;background:#d4d5d6;border-radius:3px;"></div>
+              <div style="height:28px;border-radius:5px;background:#faf8fe;display:flex;align-items:center;padding:0 10px;">
+                <div style="width:44%;height:4px;background:#f4f0fd;border-radius:2px;"></div>
               </div>
             </div>
           </div>
@@ -686,16 +948,16 @@
       <a class="card" href="./components/side-nav-section-header.html" data-name="side nav section header group label">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="width:162px;display:flex;flex-direction:column;gap:3px;">
-              <div style="display:flex;align-items:center;padding:4px 4px 6px;gap:8px;">
-                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:36px;"></div>
+            <div style="width:150px;display:flex;flex-direction:column;gap:3px;">
+              <div style="display:flex;align-items:center;padding:4px 4px 5px;gap:6px;">
+                <div style="height:4px;background:#b8a0e8;border-radius:2px;width:32px;"></div>
                 <div style="flex:1;"></div>
-                <div style="width:10px;height:10px;border-radius:2px;background:#d4d5d6;"></div>
+                <div style="width:9px;height:9px;border-radius:2px;background:#e8e2f8;"></div>
               </div>
-              <div style="height:26px;border-radius:5px;background:#edeef0;"></div>
-              <div style="height:26px;border-radius:5px;background:#edeef0;"></div>
-              <div style="padding:7px 4px 2px;">
-                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:44px;"></div>
+              <div style="height:24px;border-radius:4px;background:#f4f0fd;"></div>
+              <div style="height:24px;border-radius:4px;background:#faf8fe;"></div>
+              <div style="padding:6px 4px 2px;">
+                <div style="height:4px;background:#e8e2f8;border-radius:2px;width:40px;"></div>
               </div>
             </div>
           </div>
@@ -711,17 +973,17 @@
         <div class="card__preview">
           <div class="card__preview-inner">
             <div style="width:170px;display:flex;flex-direction:column;gap:3px;">
-              <div style="height:30px;border-radius:6px;background:#ebf4ff;display:flex;align-items:center;padding:0 10px;gap:8px;">
-                <div style="width:8px;height:8px;border-radius:2px;background:#c6d4fd;flex-shrink:0;"></div>
-                <div style="flex:1;height:5px;background:#c6d4fd;border-radius:3px;"></div>
+              <div style="height:30px;border-radius:6px;background:rgba(100,60,220,0.06);border:1.5px solid #a78ee8;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;opacity:0.7;"></div>
+                <div style="flex:1;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;opacity:0.5;"></div>
               </div>
-              <div style="height:30px;border-radius:6px;display:flex;align-items:center;padding:0 10px;gap:8px;">
-                <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
-                <div style="flex:1;height:5px;background:#d4d5d6;border-radius:3px;width:75%;"></div>
+              <div style="height:30px;border-radius:6px;border:1.5px solid #e8e2f8;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;border:1.5px solid #a78ee8;flex-shrink:0;opacity:0.4;"></div>
+                <div style="flex:1;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:75%;opacity:0.2;"></div>
               </div>
-              <div style="height:30px;border-radius:6px;display:flex;align-items:center;padding:0 10px;gap:8px;">
-                <div style="width:8px;height:8px;border-radius:2px;background:#d4d5d6;flex-shrink:0;"></div>
-                <div style="flex:1;height:5px;background:#d4d5d6;border-radius:3px;width:55%;"></div>
+              <div style="height:30px;border-radius:6px;border:1.5px solid #e8e2f8;display:flex;align-items:center;padding:0 10px;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:2px;border:1.5px solid #a78ee8;flex-shrink:0;opacity:0.4;"></div>
+                <div style="flex:1;height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:55%;opacity:0.2;"></div>
               </div>
             </div>
           </div>
@@ -736,11 +998,11 @@
       <a class="card" href="./components/thinking-indicator.html" data-name="thinking indicator reasoning ai progress loading">
         <div class="card__preview">
           <div class="card__preview-inner">
-            <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #edeef0;border-radius:8px;padding:8px 12px;">
-              <div style="width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,#2157f5,#258dff,#86ffbb);flex-shrink:0;"></div>
-              <div style="display:flex;flex-direction:column;gap:4px;">
-                <div style="height:6px;background:linear-gradient(90deg,#1a6cc4,#25c8a5,#1a6cc4);border-radius:3px;width:60px;"></div>
-                <div style="height:5px;background:#edeef0;border-radius:3px;width:44px;"></div>
+            <div style="display:flex;align-items:center;gap:8px;border:1.5px solid #a78ee8;border-radius:8px;padding:8px 12px;">
+              <div style="width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:60px;opacity:0.6;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:44px;opacity:0.25;"></div>
               </div>
             </div>
           </div>
@@ -755,16 +1017,16 @@
       <a class="card" href="./components/title-bar.html" data-name="title bar chat header navigation">
         <div class="card__preview">
           <div class="card__preview-inner" style="padding:0 18px;width:100%;box-sizing:border-box;">
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:8px;padding:0 12px;height:44px;display:flex;align-items:center;gap:10px;width:100%;">
-              <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;flex-shrink:0;"></div>
+            <div style="border:1.5px solid #a78ee8;border-radius:8px;padding:0 12px;height:44px;display:flex;align-items:center;gap:10px;width:100%;">
+              <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;flex-shrink:0;opacity:0.5;"></div>
               <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
-                <div style="height:7px;background:#444f5c;border-radius:3px;width:52%;opacity:0.6;"></div>
-                <div style="height:5px;background:#d4d5d6;border-radius:3px;width:32%;"></div>
+                <div style="height:5px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:52%;opacity:0.6;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:32%;opacity:0.25;"></div>
               </div>
               <div style="display:flex;gap:5px;flex-shrink:0;">
-                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
-                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
-                <div style="width:20px;height:20px;border-radius:5px;background:#edeef0;"></div>
+                <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.3;"></div>
+                <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.3;"></div>
+                <div style="width:18px;height:18px;border-radius:4px;border:1.5px solid #a78ee8;opacity:0.3;"></div>
               </div>
             </div>
           </div>
@@ -780,27 +1042,27 @@
         <div class="card__preview">
           <div class="card__preview-inner" style="flex-direction:column;gap:6px;">
             <!-- Trigger -->
-            <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #edeef0;border-radius:7px;padding:7px 10px;width:150px;box-sizing:border-box;">
-              <div style="width:18px;height:18px;border-radius:4px;background:#2c70f5;flex-shrink:0;"></div>
+            <div style="display:flex;align-items:center;gap:8px;border:1.5px solid #a78ee8;border-radius:7px;padding:7px 10px;width:150px;box-sizing:border-box;">
+              <div style="width:18px;height:18px;border-radius:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
               <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
-                <div style="height:5px;background:#444f5c;border-radius:3px;width:65%;opacity:0.6;"></div>
-                <div style="height:4px;background:#d4d5d6;border-radius:3px;width:85%;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:65%;opacity:0.5;"></div>
+                <div style="height:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;width:85%;opacity:0.25;"></div>
               </div>
-              <div style="width:8px;height:8px;border-left:1.5px solid #d4d5d6;border-bottom:1.5px solid #d4d5d6;transform:rotate(-45deg) translateY(-2px);"></div>
+              <div style="width:7px;height:7px;border-left:1.5px solid #a78ee8;border-bottom:1.5px solid #6b7280;transform:rotate(-45deg) translateY(-2px);opacity:0.5;"></div>
             </div>
             <!-- Dropdown -->
-            <div style="background:#fff;border:1px solid #edeef0;border-radius:7px;width:150px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.07);">
-              <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#ebf4ff;">
-                <div style="width:12px;height:12px;border-radius:3px;background:#2c70f5;flex-shrink:0;"></div>
-                <div style="height:5px;background:#c6d4fd;border-radius:3px;flex:1;"></div>
+            <div style="border:1.5px solid #ddd4f8;border-radius:7px;width:150px;overflow:hidden;">
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(100,60,220,0.06);">
+                <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#2c70f5,#c87ae7);flex-shrink:0;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;flex:1;opacity:0.5;"></div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;">
-                <div style="width:12px;height:12px;border-radius:3px;background:#0d9488;flex-shrink:0;"></div>
-                <div style="height:5px;background:#edeef0;border-radius:3px;flex:1;"></div>
+                <div style="width:12px;height:12px;border-radius:3px;border:1.5px solid #a78ee8;flex-shrink:0;opacity:0.4;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;flex:1;opacity:0.2;"></div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;">
-                <div style="width:12px;height:12px;border-radius:3px;background:#ea7317;flex-shrink:0;"></div>
-                <div style="height:5px;background:#edeef0;border-radius:3px;flex:1;"></div>
+                <div style="width:12px;height:12px;border-radius:3px;border:1.5px solid #a78ee8;flex-shrink:0;opacity:0.4;"></div>
+                <div style="height:4px;background:linear-gradient(135deg,#2c70f5,#c87ae7);border-radius:2px;flex:1;opacity:0.2;"></div>
               </div>
             </div>
           </div>
@@ -815,34 +1077,17 @@
   </section>
 
   <script>
-    const input = document.getElementById("search");
-    const cards = document.querySelectorAll(".card");
-    const empty = document.getElementById("empty");
-    const grid  = document.getElementById("grid");
-
-    function filter(q) {
-      q = q.trim().toLowerCase();
-      let visible = 0;
-      cards.forEach(card => {
-        const text = (card.dataset.name + " " + card.textContent).toLowerCase();
-        const show = !q || text.includes(q);
-        card.style.display = show ? "" : "none";
-        if (show) visible++;
-      });
-      empty.style.display = visible === 0 ? "block" : "none";
-      grid.style.display  = visible === 0 ? "none"  : "";
-    }
-
-    input.addEventListener("input", e => filter(e.target.value));
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "/" && document.activeElement !== input) {
+    // "/" shortcut opens spotlight (CMD+K is handled by _spotlight.js)
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
         e.preventDefault();
-        input.focus();
-        input.select();
+        if (window.Spotlight) window.Spotlight.open();
       }
     });
   </script>
+
+  <!-- ── Spotlight search ─────────────────────────────────── -->
+  <script src="./components/_spotlight.js"></script>
 
 </body>
 </html>

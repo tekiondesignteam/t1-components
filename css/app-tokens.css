@@ -1284,28 +1284,87 @@
   --modal-backdrop-z-index: var(--z-index-modal-backdrop);
 
 
-  /* ── Badge ───────────────────────────────────────────────── */
+  /* ── Badge — circular notification indicator ─────────────── */
+  /* Three types: dot / number / icon — six sizes: S M L XL 2XL 3XL */
 
-  --badge-height: var(--height-xs);
-  /* 20px */
-  --badge-padding-x: var(--space-2xs);
-  /* 4px  */
-  --badge-border-radius: var(--radius-full);
-  --badge-font-size: var(--font-size-xs);
-  /* 10px */
-  --badge-font-weight: var(--font-weight-semibold);
+  /* Dot badge diameters */
+  --badge-dot-s:     4px;
+  --badge-dot-m:     8px;
+  --badge-dot-l:     12px;
+  --badge-dot-xl:    16px;
+  --badge-dot-2xl:   24px;
+  --badge-dot-3xl:  32px;
 
-  /* Colors */
-  --badge-neutral-bg: var(--color-bg-secondary);
-  --badge-neutral-text: var(--color-text-secondary);
-  --badge-accent-bg: var(--color-accent-bg-light);
-  --badge-accent-text: var(--color-accent-text);
-  --badge-negative-bg: var(--color-negative-bg-light);
-  --badge-negative-text: var(--color-negative-text);
-  --badge-warning-bg: var(--color-warning-bg-light);
-  --badge-warning-text: var(--color-warning-text);
-  --badge-positive-bg: var(--color-positive-bg-light);
-  --badge-positive-text: var(--color-positive-text);
+  /* Number badge diameters */
+  --badge-num-s:     16px;
+  --badge-num-m:     18px;
+  --badge-num-l:     20px;
+  --badge-num-xl:    24px;
+  --badge-num-2xl:   28px;
+  --badge-num-3xl:  36px;
+
+  /* Number badge font sizes */
+  --badge-num-font-s:     8px;
+  --badge-num-font-m:     10px;
+  --badge-num-font-l:     11px;
+  --badge-num-font-xl:    12px;
+  --badge-num-font-2xl:   14px;
+  --badge-num-font-3xl:  16px;
+
+  /* Icon badge diameters */
+  --badge-icon-s:     18px;
+  --badge-icon-m:     20px;
+  --badge-icon-l:     22px;
+  --badge-icon-xl:    24px;
+  --badge-icon-2xl:   30px;
+  --badge-icon-3xl:  36px;
+
+  /* Icon badge icon font sizes */
+  --badge-icon-font-s:     10px;
+  --badge-icon-font-m:     12px;
+  --badge-icon-font-l:     13px;
+  --badge-icon-font-xl:    14px;
+  --badge-icon-font-2xl:   18px;
+  --badge-icon-font-3xl:  22px;
+
+  /* Badge border (white gap separating badge from parent) */
+  --badge-border: 2px;
+
+  /* Badge colours */
+  --badge-bg:           var(--color-negative-bg);            /* default = error */
+  --badge-text:         var(--color-text-on-color);         /* white — accessible on red */
+  --badge-primary-bg:   var(--color-accent-bg);
+  --badge-primary-text: var(--color-text-on-color);         /* white — accessible on blue-500 */
+  --badge-success-bg:   var(--color-positive-bg);
+  --badge-success-text: var(--color-text-on-color);         /* white — accessible on green-400 */
+  --badge-warning-bg:   var(--color-warning-bg);
+  --badge-warning-text: var(--color-text-primary);          /* dark — white fails on yellow-400 */
+  --badge-info-bg:      var(--primitive-color-blue-600);
+  --badge-info-text:    var(--color-text-on-color);         /* white — accessible on blue-600 */
+  --badge-neutral-bg:   var(--primitive-color-neutral-500);
+  --badge-neutral-text: var(--color-text-on-color);         /* white — passes on neutral-500 */
+
+  /* ── Tag — inline status pill (standalone label) ─────────── */
+  --tag-height:        20px;
+  --tag-padding-x:     var(--space-xs);
+  --tag-border-radius: var(--radius-full);
+  --tag-font-size:     var(--font-size-xs);
+  --tag-font-weight:   var(--font-weight-semibold);
+  --tag-dot-size:      6px;
+
+  /* Tag colours */
+  --tag-neutral-bg:    var(--color-bg-secondary);
+  --tag-neutral-text:  var(--color-text-secondary);
+  --tag-accent-bg:     var(--color-accent-bg-light);
+  --tag-accent-text:   var(--color-accent-text);
+  --tag-negative-bg:   var(--color-negative-bg-light);
+  --tag-negative-text: var(--color-negative-text);
+  --tag-warning-bg:    var(--color-warning-bg-light);
+  --tag-warning-text:  var(--color-warning-text);
+  --tag-positive-bg:   var(--color-positive-bg-light);
+  --tag-positive-text: var(--color-positive-text);
+  --tag-info-bg:       var(--primitive-color-blue-50);
+  --tag-info-text:     var(--primitive-color-blue-600);
 
 
   /* ── Tooltip ─────────────────────────────────────────────── */
@@ -1441,7 +1500,7 @@
 
   /* ── Side Nav (full panel) ───────────────────────────────── */
 
-  --sidenav-width: 300px;
+  --sidenav-width: 324px;
   --sidenav-height: 800px;
   --sidenav-bg: var(--color-bg-primary);
   --sidenav-body-gap: 8px;
@@ -2123,5 +2182,77 @@
   /* Soft pill (evidence section) */
   --feedback-pill-soft-bg:             var(--color-bg-secondary);          /* #edeef0                            */
   --feedback-pill-soft-text:           var(--color-text-secondary);
+
+  /* ============================================================
+     Alert
+     ============================================================ */
+
+  /* ── Structure ────────────────────────────────────────────── */
+  --alert-padding:           var(--space-sm) var(--space-md);  /* 12px 16px */
+  --alert-gap:               var(--space-xs);                  /* 8px  icon ↔ body */
+  --alert-body-gap:          var(--space-2xs);                 /* 4px  title ↔ message */
+  --alert-border-radius:     var(--radius-sm);
+  --alert-title-size:        var(--font-size-md);              /* 14px */
+  --alert-title-weight:      var(--font-weight-semibold);
+  --alert-title-line-height: 20px;
+  --alert-desc-size:         var(--font-size-md);              /* 14px */
+  --alert-desc-line-height:  20px;
+  --alert-icon-size:         20px;
+  --alert-close-size:        28px;
+  --alert-close-icon-size:   16px;
+  --alert-action-size:       var(--font-size-sm);
+  /* ── Shared ────────────────────────────────────────────────── */
+  --alert-desc-color:        var(--color-text-secondary);
+  --alert-title-color:       var(--color-text-primary);
+  /* ── Info ──────────────────────────────────────────────────── */
+  --alert-info-bg:           var(--primitive-color-blue-50);
+  --alert-info-icon:         var(--primitive-color-blue-500);
+  --alert-info-action:       var(--primitive-color-blue-600);
+  /* ── Error ─────────────────────────────────────────────────── */
+  --alert-error-bg:          var(--color-negative-bg-light);
+  --alert-error-icon:        var(--primitive-color-red-600);
+  --alert-error-action:      var(--color-negative-text);
+  /* ── Success ───────────────────────────────────────────────── */
+  --alert-success-bg:        var(--color-positive-bg-light);
+  --alert-success-icon:      var(--primitive-color-green-700);
+  --alert-success-action:    var(--color-positive-text);
+  /* ── Warning ───────────────────────────────────────────────── */
+  --alert-warning-bg:        var(--color-warning-bg-light);
+  --alert-warning-icon:      var(--color-warning-icon);
+  --alert-warning-action:    var(--color-warning-text);
+  /* ── Neutral ───────────────────────────────────────────────── */
+  --alert-neutral-bg:        var(--primitive-color-neutral-100);
+  --alert-neutral-icon:      var(--color-text-secondary);
+  --alert-neutral-action:    var(--color-text-secondary);
+
+  /* ══════════════════════════════════════════════════════════
+     EMPTY STATE
+     Centered placeholder for empty screens, zero-data views,
+     and onboarding prompts.
+     ══════════════════════════════════════════════════════════ */
+  --empty-state-padding:             var(--space-md);          /* 16px  outer padding   */
+  --empty-state-gap:                 var(--space-sm);          /* 12px  icon/text/btns  */
+  --empty-state-content-gap:         var(--space-2xs);         /* 4px   title ↔ subtitle */
+  --empty-state-actions-gap:         var(--gap-xs);            /* 8px   between buttons  */
+  --empty-state-max-width:           320px;                    /* cap for floating use   */
+
+  /* Icon wrap */
+  --empty-state-icon-wrap-size:      40px;
+  --empty-state-icon-wrap-radius:    var(--radius-sm);         /* 6px  */
+  --empty-state-icon-wrap-bg:        var(--color-bg-muted);    /* #f4f5f6 ≈ #f5f5f5 */
+  --empty-state-icon-size:           20px;
+  --empty-state-icon-color:          var(--color-text-primary);
+
+  /* Title */
+  --empty-state-title-size:          var(--font-size-lg);      /* 16px */
+  --empty-state-title-weight:        var(--font-weight-medium);
+  --empty-state-title-line-height:   24px;
+  --empty-state-title-color:         var(--color-text-primary);
+
+  /* Subtitle */
+  --empty-state-subtitle-size:       var(--font-size-md);      /* 14px */
+  --empty-state-subtitle-weight:     var(--font-weight-regular);
+  --empty-state-subtitle-line-height: 20px;
+  --empty-state-subtitle-color:      var(--color-text-secondary);
 
 }

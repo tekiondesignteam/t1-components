@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card — Tekion T1 · AI Design Components</title>
+  <link rel="stylesheet" href="../css/app-tokens.css">
+  <link rel="stylesheet" href="./_nav.css">
+  <link rel="stylesheet" href="./_components.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <style>
+.demo-cards-row {
+  display:     flex;
+  flex-wrap:   wrap;
+  gap:         var(--gap-xl);
+  align-items: flex-start;
+  width:       100%;
+}
+.demo-card-wrap {
+  width: 320px;
+  flex-shrink: 0;
+}
+.demo-card-label {
+  font-size:      var(--font-size-xs);
+  font-weight:    var(--font-weight-semibold);
+  color:          var(--color-text-tertiary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom:  var(--space-xs);
+}
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar nav ─────────────────────────────────────────── -->
+  <nav id="ds-nav" aria-label="Component navigation">
+    <div class="nav-header">
+      <a class="nav-logo" href="../index.html">
+        <img src="../assets/aiLogo.svg" alt="Tekion AI">
+        <span>T1 · AI Design Components</span>
+      </a>
+      <div class="nav-search-wrap">
+        <i class="ph-bold ph-magnifying-glass nav-search-icon"></i>
+        <input class="nav-search" id="nav-search" type="search" placeholder="Search components…" aria-label="Search components">
+      </div>
+    </div>
+    <div class="nav-body">
+      <div class="nav-category">Foundation</div>
+      <a class="nav-item" href="colors.html">
+        <span class="nav-item-name">Colors</span>
+        <span class="nav-item-desc">Semantic color tokens</span>
+      </a>
+      <a class="nav-item" href="typography.html">
+        <span class="nav-item-name">Typography</span>
+        <span class="nav-item-desc">Type scale &amp; text styles</span>
+      </a>
+      <a class="nav-item" href="tokens.html">
+        <span class="nav-item-name">Tokens</span>
+        <span class="nav-item-desc">All CSS variables</span>
+      </a>
+      <div class="nav-category">AI Components</div>
+      <a class="nav-item" href="action-overflow-menu.html">
+        <span class="nav-item-name">Action Overflow Menu</span>
+        <span class="nav-item-desc">Contextual action dropdown</span>
+      </a>
+      <a class="nav-item" href="alert.html">
+        <span class="nav-item-name">Alert</span>
+        <span class="nav-item-desc">Inline feedback — info, success, warning, error</span>
+      </a>
+      <a class="nav-item" href="app-bar.html">
+        <span class="nav-item-name">App Bar</span>
+        <span class="nav-item-desc">AI assistant title bar</span>
+      </a>
+      <a class="nav-item" href="avatar.html">
+        <span class="nav-item-name">Avatar</span>
+        <span class="nav-item-desc">Initials badge for workspaces</span>
+      </a>
+      <a class="nav-item" href="badge.html">
+        <span class="nav-item-name">Badge</span>
+        <span class="nav-item-desc">Status labels, counts &amp; notification overlays</span>
+      </a>
+      <a class="nav-item" href="bottomsheet.html">
+        <span class="nav-item-name">Bottom Sheet</span>
+        <span class="nav-item-desc">Slide-up panel with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="button.html">
+        <span class="nav-item-name">Button</span>
+        <span class="nav-item-desc">Primary, secondary, tertiary</span>
+      </a>
+      <a class="nav-item active" href="card.html">
+        <span class="nav-item-name">Card</span>
+        <span class="nav-item-desc">Base content container with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="chat-bubble.html">
+        <span class="nav-item-name">Chat Bubble</span>
+        <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="empty-state.html">
+        <span class="nav-item-name">Empty State</span>
+        <span class="nav-item-desc">Zero-data &amp; onboarding placeholder</span>
+      </a>
+      <a class="nav-item" href="fab.html">
+        <span class="nav-item-name">FAB</span>
+        <span class="nav-item-desc">Floating action button</span>
+      </a>
+      <a class="nav-item" href="fav-bar-icon.html">
+        <span class="nav-item-name">Fav Bar Icon</span>
+        <span class="nav-item-desc">Favorite bar logo icon</span>
+      </a>
+      <a class="nav-item" href="feedback-action.html">
+        <span class="nav-item-name">Feedback Action</span>
+        <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="modal.html">
+        <span class="nav-item-name">Modal</span>
+        <span class="nav-item-desc">Dialog overlay with header, body &amp; footer</span>
+      </a>
+      <a class="nav-item" href="prompt-input.html">
+        <span class="nav-item-name">Prompt Input</span>
+        <span class="nav-item-desc">Contextual message composer</span>
+      </a>
+      <a class="nav-item" href="search.html">
+        <span class="nav-item-name">Search</span>
+        <span class="nav-item-desc">Search input with results</span>
+      </a>
+      <a class="nav-item" href="sidenav.html">
+        <span class="nav-item-name">Side Nav</span>
+        <span class="nav-item-desc">Full chat navigation panel</span>
+      </a>
+      <a class="nav-item" href="sidenav-footer.html">
+        <span class="nav-item-name">Side Nav Footer</span>
+        <span class="nav-item-desc">Utility links at nav bottom</span>
+      </a>
+      <a class="nav-item" href="side-nav-item.html">
+        <span class="nav-item-name">Side Nav Item</span>
+        <span class="nav-item-desc">Chat list row</span>
+      </a>
+      <a class="nav-item" href="side-nav-section-header.html">
+        <span class="nav-item-name">Side Nav Section Header</span>
+        <span class="nav-item-desc">Chat list group label</span>
+      </a>
+      <a class="nav-item" href="suggestion-list-item.html">
+        <span class="nav-item-name">Suggestion List Item</span>
+        <span class="nav-item-desc">Autocomplete &amp; prompt suggestion row</span>
+      </a>
+      <a class="nav-item" href="thinking-indicator.html">
+        <span class="nav-item-name">Thinking Indicator</span>
+        <span class="nav-item-desc">AI reasoning &amp; progress states</span>
+      </a>
+      <a class="nav-item" href="title-bar.html">
+        <span class="nav-item-name">Title Bar</span>
+        <span class="nav-item-desc">Chat title navigation bar</span>
+      </a>
+      <a class="nav-item" href="workspace-selector.html">
+        <span class="nav-item-name">Workspace Selector</span>
+        <span class="nav-item-desc">Switch between workspaces</span>
+      </a>
+    </div>
+    <div class="nav-footer">TEKION · Alloy Design System</div>
+  </nav>
+
+  <!-- Nav: auto-active + search filter -->
+  <script>
+    (function () {
+      var cur = location.pathname.split('/').pop();
+      document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+        if (a.getAttribute('href') === cur) a.classList.add('active');
+      });
+      document.getElementById('nav-search').addEventListener('input', function (e) {
+        var q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('#ds-nav .nav-item').forEach(function (a) {
+          a.hidden = !!(q && !a.textContent.toLowerCase().includes(q));
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        var inp = document.getElementById('nav-search');
+        if (e.key === '/' && document.activeElement !== inp) {
+          e.preventDefault(); inp.focus(); inp.select();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ── Page header ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <p class="page-eyebrow">AI Components</p>
+    <h1 class="page-title">Card</h1>
+    <p class="page-desc">Base surface container. Compose with <code>card__header</code>, <code>card__media</code>, <code>card__content</code>, <code>card__actions</code>, and <code>card__action-area</code>. Any component can be nested inside. Use <code>card--outlined</code> for a flat border-only style, or <code>card--raised</code> for stronger elevation.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1 — BASIC CARD
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Basic card — content + actions</span>
+    <div class="demo-cards-row">
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Default</div>
+        <div class="card">
+          <div class="card__content">
+            <p class="card__title" style="margin-bottom:var(--space-2xs);">Word of the Day</p>
+            <p class="card__subheader" style="margin-bottom:var(--space-sm);">adjective</p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              <em>be·nev·o·lent</em> — well meaning and kindly; a benevolent smile.
+            </p>
+          </div>
+          <div class="card__actions">
+            <button class="btn btn--tertiary btn--md">Share</button>
+            <button class="btn btn--tertiary btn--md">Learn more</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Outlined</div>
+        <div class="card card--outlined">
+          <div class="card__content">
+            <p class="card__title" style="margin-bottom:var(--space-2xs);">Word of the Day</p>
+            <p class="card__subheader" style="margin-bottom:var(--space-sm);">adjective</p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              <em>be·nev·o·lent</em> — well meaning and kindly; a benevolent smile.
+            </p>
+          </div>
+          <div class="card__actions">
+            <button class="btn btn--tertiary btn--md">Share</button>
+            <button class="btn btn--tertiary btn--md">Learn more</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Raised</div>
+        <div class="card card--raised">
+          <div class="card__content">
+            <p class="card__title" style="margin-bottom:var(--space-2xs);">Word of the Day</p>
+            <p class="card__subheader" style="margin-bottom:var(--space-sm);">adjective</p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              <em>be·nev·o·lent</em> — well meaning and kindly; a benevolent smile.
+            </p>
+          </div>
+          <div class="card__actions">
+            <button class="btn btn--tertiary btn--md">Share</button>
+            <button class="btn btn--tertiary btn--md">Learn more</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2 — MEDIA CARD
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Media card — card__media at top</span>
+    <div class="demo-cards-row">
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Image + content + actions</div>
+        <div class="card">
+          <div class="card__media card__media--md" style="background:linear-gradient(135deg,#1a3a6e 0%,#2157f5 60%,#7b4fdc 100%);display:flex;align-items:center;justify-content:center;">
+            <i class="ph-bold ph-mountains" style="font-size:48px;color:rgba(255,255,255,0.4);"></i>
+          </div>
+          <div class="card__content">
+            <p class="card__title" style="margin-bottom:var(--space-2xs);">Lizard</p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              Lizards are a widespread group of squamate reptiles, with over 6,000 species.
+            </p>
+          </div>
+          <div class="card__actions">
+            <button class="btn btn--tertiary btn--md">Share</button>
+            <button class="btn btn--tertiary btn--md">Learn more</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Image + header + content</div>
+        <div class="card">
+          <div class="card__media card__media--lg" style="background:linear-gradient(160deg,#0f2027,#203a43,#2c5364);display:flex;align-items:center;justify-content:center;">
+            <i class="ph-bold ph-planet" style="font-size:56px;color:rgba(255,255,255,0.3);"></i>
+          </div>
+          <div class="card__header">
+            <div class="card__header-content">
+              <p class="card__title">Space exploration</p>
+              <p class="card__subheader">September 14, 2016</p>
+            </div>
+          </div>
+          <div class="card__content">
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3 — CARD HEADER (avatar + title + action)
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">card__header — avatar, title, subheader, action</span>
+    <div class="demo-cards-row">
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Full header + media + actions</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__avatar">
+              <div class="avatar avatar--md avatar--dealer">SK</div>
+            </div>
+            <div class="card__header-content">
+              <p class="card__title">Shrimp and Chorizo Paella</p>
+              <p class="card__subheader">September 14, 2016</p>
+            </div>
+            <div class="card__header-action">
+              <button class="btn btn--icon btn--tertiary btn--sm" aria-label="More options">
+                <i class="ph-bold ph-dots-three-vertical"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card__media card__media--md" style="background:linear-gradient(135deg,#b5451b 0%,#e8742a 100%);display:flex;align-items:center;justify-content:center;">
+            <i class="ph-bold ph-cooking-pot" style="font-size:48px;color:rgba(255,255,255,0.4);"></i>
+          </div>
+          <div class="card__content">
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
+            </p>
+          </div>
+          <div class="card__actions card__actions--spread">
+            <div style="display:flex;gap:var(--gap-xs);">
+              <button class="btn btn--icon btn--tertiary btn--sm" aria-label="Like">
+                <i class="ph-bold ph-heart"></i>
+              </button>
+              <button class="btn btn--icon btn--tertiary btn--sm" aria-label="Share">
+                <i class="ph-bold ph-share-network"></i>
+              </button>
+            </div>
+            <button class="card__expand-btn btn btn--icon btn--tertiary btn--sm" aria-label="Show more" aria-expanded="false" onclick="var b=this;var p=b.closest('.card').querySelector('.card__expandable');var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!open);p.classList.toggle('card__expandable--open',!open);">
+              <i class="ph-bold ph-caret-down"></i>
+            </button>
+          </div>
+          <div class="card__expandable">
+            <div class="card__content" style="padding-top:0;">
+              <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10 minutes. Toast the breadcrumbs and set aside. Add the remaining broth to the pan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Header + content + divider + actions</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__avatar">
+              <div class="avatar avatar--md avatar--user">JR</div>
+            </div>
+            <div class="card__header-content">
+              <p class="card__title">Jrana Rajkumar</p>
+              <p class="card__subheader">Service Advisor · Active</p>
+            </div>
+            <div class="card__header-action">
+              <button class="btn btn--icon btn--tertiary btn--sm" aria-label="More options">
+                <i class="ph-bold ph-dots-three-vertical"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card__content">
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              12 open ROs · 3 appointments today · Last active 5 min ago
+            </p>
+          </div>
+          <hr class="card__divider">
+          <div class="card__actions card__actions--end">
+            <button class="btn btn--secondary btn--md">Message</button>
+            <button class="btn btn--primary btn--md">View profile</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4 — ACTION AREA (full card clickable)
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">card__action-area — entire card is clickable</span>
+    <div class="demo-cards-row">
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Action area wraps media + content</div>
+        <div class="card">
+          <button class="card__action-area" onclick="">
+            <div class="card__media card__media--md" style="background:linear-gradient(135deg,#1b4332 0%,#2d6a4f 60%,#52b788 100%);display:flex;align-items:center;justify-content:center;">
+              <i class="ph-bold ph-tree-evergreen" style="font-size:48px;color:rgba(255,255,255,0.4);"></i>
+            </div>
+            <div class="card__content">
+              <p class="card__title" style="margin-bottom:var(--space-2xs);">Forest reserve</p>
+              <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+                Click anywhere on this card to navigate. The whole surface is the touch target.
+              </p>
+            </div>
+          </button>
+          <div class="card__actions">
+            <button class="btn btn--tertiary btn--md">Share</button>
+            <button class="btn btn--tertiary btn--md">Learn more</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Action area — full card</div>
+        <div class="card">
+          <button class="card__action-area" onclick="">
+            <div class="card__media card__media--md" style="background:linear-gradient(135deg,#4a0e8f 0%,#7b4fdc 60%,#c87ae7 100%);display:flex;align-items:center;justify-content:center;">
+              <i class="ph-bold ph-robot" style="font-size:48px;color:rgba(255,255,255,0.4);"></i>
+            </div>
+            <div class="card__content">
+              <p class="card__title" style="margin-bottom:var(--space-2xs);">AI Agent Setup</p>
+              <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+                Tap this card to open the agent configuration wizard.
+              </p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 5 — COMPOSING COMPONENTS INSIDE A CARD
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Composing other components inside a card</span>
+    <div class="demo-cards-row">
+
+      <!-- Alert inside a card -->
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Alert inside card</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__header-content">
+              <p class="card__title">Lead update</p>
+            </div>
+          </div>
+          <div class="card__content" style="display:flex;flex-direction:column;gap:var(--space-sm);">
+            <div class="alert alert--warning" role="alert">
+              <span class="alert__icon"><i class="ph-bold ph-warning"></i></span>
+              <div class="alert__body">
+                <p class="alert__title">CRM sync pending</p>
+                <p class="alert__message">This lead hasn't synced in 24 hours. Check your connection.</p>
+              </div>
+            </div>
+            <p style="font-size:var(--font-size-sm);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              Last synced: <strong>Feb 28, 2026 · 10:41 AM</strong>
+            </p>
+          </div>
+          <div class="card__actions card__actions--end">
+            <button class="btn btn--primary btn--md">Retry sync</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state inside a card -->
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Empty state inside card</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__header-content">
+              <p class="card__title">Documents</p>
+            </div>
+            <div class="card__header-action">
+              <button class="btn btn--secondary btn--sm">Upload</button>
+            </div>
+          </div>
+          <div class="card__content">
+            <div class="empty-state" style="padding:var(--space-sm) 0;">
+              <div class="empty-state__icon-wrap">
+                <i class="empty-state__icon ph-bold ph-file-text"></i>
+              </div>
+              <div class="empty-state__content">
+                <p class="empty-state__title">No documents yet</p>
+                <p class="empty-state__subtitle">Upload a file or generate one with AI.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat card -->
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Stat / metric</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__header-content">
+              <p class="card__title">Conversations</p>
+              <p class="card__subheader">This month</p>
+            </div>
+            <div class="card__header-action">
+              <i class="ph-bold ph-chats" style="font-size:20px;color:var(--color-text-tertiary);"></i>
+            </div>
+          </div>
+          <div class="card__content" style="display:flex;align-items:baseline;gap:var(--gap-xs);">
+            <span style="font-size:32px;font-weight:var(--font-weight-semibold);color:var(--color-text-primary);line-height:1;">142</span>
+            <span style="font-size:var(--font-size-sm);color:var(--color-text-success);font-weight:var(--font-weight-medium);">↑ 18%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 6 — CONTEXTUAL EXAMPLES
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="demo-row">
+    <span class="demo-label">Contextual examples</span>
+    <div class="demo-cards-row">
+
+      <!-- AI Agent card -->
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">AI Agent</div>
+        <div class="card card--raised">
+          <div class="card__header">
+            <div class="card__avatar">
+              <div class="avatar avatar--md avatar--dealer">SE</div>
+            </div>
+            <div class="card__header-content">
+              <p class="card__title">Service Agent</p>
+              <p class="card__subheader">Fixed Ops · Active</p>
+            </div>
+            <div class="card__header-action">
+              <button class="btn btn--icon btn--tertiary btn--sm" aria-label="More options">
+                <i class="ph-bold ph-dots-three-vertical"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card__content">
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;line-height:var(--line-height-md);">
+              Handles RO updates, service reminders, and appointment scheduling automatically.
+            </p>
+          </div>
+          <div class="card__actions card__actions--end">
+            <button class="btn btn--tertiary btn--md">Configure</button>
+            <button class="btn btn--primary btn--md">View agent</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead / CRM card -->
+      <div class="demo-card-wrap">
+        <div class="demo-card-label">Lead / CRM</div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__avatar">
+              <div class="avatar avatar--md avatar--user">MW</div>
+            </div>
+            <div class="card__header-content">
+              <p class="card__title">Marcus Webb</p>
+              <p class="card__subheader">Interested in F-150 · Hot lead</p>
+            </div>
+          </div>
+          <hr class="card__divider">
+          <div class="card__content" style="display:flex;flex-direction:column;gap:var(--space-xs);">
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;display:flex;align-items:center;gap:var(--space-xs);">
+              <i class="ph-bold ph-phone" style="font-size:var(--font-size-md);flex-shrink:0;"></i> (512) 555-0147
+            </p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;display:flex;align-items:center;gap:var(--space-xs);">
+              <i class="ph-bold ph-envelope" style="font-size:var(--font-size-md);flex-shrink:0;"></i> m.webb@email.com
+            </p>
+            <p style="font-size:var(--font-size-md);color:var(--color-text-secondary);margin:0;display:flex;align-items:center;gap:var(--space-xs);">
+              <i class="ph-bold ph-clock" style="font-size:var(--font-size-md);flex-shrink:0;"></i> Last contact: 2 days ago
+            </p>
+          </div>
+          <div class="card__actions card__actions--end">
+            <button class="btn btn--secondary btn--md">Schedule call</button>
+            <button class="btn btn--primary btn--md">Open lead</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- ── Spotlight search ─────────────────────────────── -->
+  <script src="./_spotlight.js"></script>
+  <!-- ── Mobile nav toggle ──────────────────────────────── -->
+  <script>
+    (function () {
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      var btn = document.createElement('button');
+      btn.className = 'nav-mobile-toggle';
+      btn.setAttribute('aria-label', 'Toggle navigation');
+      btn.innerHTML = '<span></span><span></span><span></span>';
+      document.body.appendChild(btn);
+
+      function openNav()  { document.body.classList.add('nav-open'); }
+      function closeNav() { document.body.classList.remove('nav-open'); }
+
+      btn.addEventListener('click', function () {
+        document.body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      overlay.addEventListener('click', closeNav);
+    })();
+  </script>
+</body>
+</html>

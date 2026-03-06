@@ -64,6 +64,10 @@
         <span class="nav-item-name">Action Overflow Menu</span>
         <span class="nav-item-desc">Contextual action dropdown</span>
       </a>
+      <a class="nav-item" href="alert.html">
+        <span class="nav-item-name">Alert</span>
+        <span class="nav-item-desc">Inline feedback — info, success, warning, error</span>
+      </a>
       <a class="nav-item" href="app-bar.html">
         <span class="nav-item-name">App Bar</span>
         <span class="nav-item-desc">AI assistant title bar</span>
@@ -72,13 +76,29 @@
         <span class="nav-item-name">Avatar</span>
         <span class="nav-item-desc">Initials badge for workspaces</span>
       </a>
+      <a class="nav-item" href="badge.html">
+        <span class="nav-item-name">Badge</span>
+        <span class="nav-item-desc">Status labels, counts &amp; notification overlays</span>
+      </a>
+      <a class="nav-item" href="bottomsheet.html">
+        <span class="nav-item-name">Bottom Sheet</span>
+        <span class="nav-item-desc">Slide-up panel with header, body &amp; footer</span>
+      </a>
       <a class="nav-item" href="button.html">
         <span class="nav-item-name">Button</span>
         <span class="nav-item-desc">Primary, secondary, tertiary</span>
       </a>
+      <a class="nav-item" href="card.html">
+        <span class="nav-item-name">Card</span>
+        <span class="nav-item-desc">Base content container with header, body &amp; footer</span>
+      </a>
       <a class="nav-item" href="chat-bubble.html">
         <span class="nav-item-name">Chat Bubble</span>
         <span class="nav-item-desc">User message bubble</span>
+      </a>
+      <a class="nav-item" href="empty-state.html">
+        <span class="nav-item-name">Empty State</span>
+        <span class="nav-item-desc">Zero-data &amp; onboarding placeholder</span>
       </a>
       <a class="nav-item" href="fab.html">
         <span class="nav-item-name">FAB</span>
@@ -91,6 +111,10 @@
       <a class="nav-item" href="feedback-action.html">
         <span class="nav-item-name">Feedback Action</span>
         <span class="nav-item-desc">AI response action bar</span>
+      </a>
+      <a class="nav-item" href="modal.html">
+        <span class="nav-item-name">Modal</span>
+        <span class="nav-item-desc">Dialog overlay with header, body &amp; footer</span>
       </a>
       <a class="nav-item" href="prompt-input.html">
         <span class="nav-item-name">Prompt Input</span>
@@ -353,5 +377,107 @@
     </div>
   </div>
 
+  <!-- ── Avatar Group ────────────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Avatar Group</span>
+    <div class="avatar-row">
+
+      <div class="avatar-col">
+        <div class="avatar-group">
+          <div class="avatar avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--circle avatar-group__overflow">+2</div>
+        </div>
+        <span class="demo-label">md · initials</span>
+      </div>
+
+      <div class="avatar-col">
+        <div class="avatar-group avatar-group--sm">
+          <div class="avatar avatar--sm avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--sm avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--sm avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--sm avatar--circle avatar-group__overflow">+4</div>
+        </div>
+        <span class="demo-label">sm · initials</span>
+      </div>
+
+      <div class="avatar-col">
+        <div class="avatar-group avatar-group--lg">
+          <div class="avatar avatar--lg avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--lg avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--lg avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--lg avatar--circle avatar-group__overflow">+2</div>
+        </div>
+        <span class="demo-label">lg · initials</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Avatar Group Spacing ────────────────────────────── -->
+  <div class="demo-row">
+    <span class="demo-label">Avatar Group — Spacing</span>
+    <div class="avatar-row">
+
+      <div class="avatar-col">
+        <div class="avatar-group avatar-group--spacing-loose">
+          <div class="avatar avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--circle avatar-group__overflow">+2</div>
+        </div>
+        <span class="demo-label">Loose</span>
+      </div>
+
+      <div class="avatar-col">
+        <div class="avatar-group avatar-group--spacing-medium">
+          <div class="avatar avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--circle avatar-group__overflow">+2</div>
+        </div>
+        <span class="demo-label">Medium (default)</span>
+      </div>
+
+      <div class="avatar-col">
+        <div class="avatar-group avatar-group--spacing-tight">
+          <div class="avatar avatar--circle avatar--dealer">JR</div>
+          <div class="avatar avatar--circle avatar--region">AB</div>
+          <div class="avatar avatar--circle avatar--enterprise">KL</div>
+          <div class="avatar avatar--circle avatar-group__overflow">+2</div>
+        </div>
+        <span class="demo-label">Tight</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Spotlight search ─────────────────────────────────── -->
+  <script src="./_spotlight.js"></script>
+  <!-- ── Mobile nav toggle ──────────────────────────────────── -->
+  <script>
+    (function () {
+      // Create overlay
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      // Create hamburger toggle button
+      var btn = document.createElement('button');
+      btn.className = 'nav-mobile-toggle';
+      btn.setAttribute('aria-label', 'Toggle navigation');
+      btn.innerHTML = '<span></span><span></span><span></span>';
+      document.body.appendChild(btn);
+
+      function openNav()  { document.body.classList.add('nav-open'); }
+      function closeNav() { document.body.classList.remove('nav-open'); }
+
+      btn.addEventListener('click', function () {
+        document.body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      overlay.addEventListener('click', closeNav);
+    })();
+  </script>
 </body>
 </html>

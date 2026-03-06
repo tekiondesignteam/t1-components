@@ -1,0 +1,270 @@
+/* ══════════════════════════════════════════════════════════
+   SPOTLIGHT SEARCH
+   CMD+K command palette overlay. Shared by index and all
+   component pages via _spotlight.js.
+   ══════════════════════════════════════════════════════════ */
+
+.spotlight-backdrop {
+  position:        fixed;
+  inset:           0;
+  background:      rgba(0, 0, 0, 0.48);
+  z-index:         10100;
+  display:         flex;
+  align-items:     flex-start;
+  justify-content: center;
+  padding-top:     12vh;
+  opacity:         0;
+  pointer-events:  none;
+  transition:      opacity 0.15s;
+  backdrop-filter: blur(2px);
+}
+
+.spotlight-backdrop--open {
+  opacity:        1;
+  pointer-events: auto;
+}
+
+.spotlight {
+  width:          100%;
+  max-width:      620px;
+  background:     var(--color-bg-primary);
+  border-radius:  var(--radius-xl);
+  box-shadow:     0 8px 48px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.08);
+  overflow:       hidden;
+  transform:      translateY(-8px) scale(0.98);
+  transition:     transform 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+  display:        flex;
+  flex-direction: column;
+  max-height:     72vh;
+  margin:         0 var(--space-md);
+}
+
+.spotlight-backdrop--open .spotlight {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Search row ───────────────────────────────────────────── */
+
+.spotlight__search-row {
+  display:       flex;
+  align-items:   center;
+  gap:           var(--gap-sm);
+  padding:       0 var(--space-md);
+  flex-shrink:   0;
+  border-bottom: var(--border-width-2xs) solid var(--color-bg-secondary);
+}
+
+.spotlight__search-icon {
+  font-size:      20px;
+  color:          var(--color-text-tertiary);
+  flex-shrink:    0;
+  pointer-events: none;
+}
+
+.spotlight__input {
+  flex:        1;
+  height:      52px;
+  border:      none;
+  outline:     none;
+  font-size:   var(--font-size-md);
+  font-family: var(--font-family);
+  color:       var(--color-text-primary);
+  background:  transparent;
+  caret-color: var(--color-ai-brand-text);
+}
+
+.spotlight__input::placeholder { color: var(--color-text-tertiary); }
+
+.spotlight__kbd-hint {
+  font-size:     var(--font-size-xs);
+  color:         var(--color-text-tertiary);
+  background:    var(--color-bg-secondary);
+  border:        var(--border-width-2xs) solid var(--color-bg-tertiary);
+  border-radius: var(--radius-xs);
+  padding:       2px 6px;
+  font-family:   var(--font-family);
+  flex-shrink:   0;
+  white-space:   nowrap;
+}
+
+/* ── Results ──────────────────────────────────────────────── */
+
+.spotlight__results {
+  overflow-y: auto;
+  flex:       1;
+  min-height: 0;
+  padding:    var(--space-xs) 0;
+}
+
+.spotlight__group {
+  padding: var(--space-xs) var(--space-md) var(--space-2xs);
+}
+
+.spotlight__group-label {
+  font-size:      var(--font-size-xs);
+  font-weight:    var(--font-weight-semibold);
+  color:          var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.spotlight__item {
+  display:         flex;
+  align-items:     center;
+  gap:             var(--gap-sm);
+  padding:         var(--space-xs) var(--space-md);
+  cursor:          pointer;
+  transition:      background var(--transition-fast);
+  border-radius:   0;
+  text-decoration: none;
+}
+
+.spotlight__item:hover,
+.spotlight__item--active {
+  background: var(--color-bg-muted);
+}
+
+.spotlight__item--active {
+  background: var(--color-bg-secondary);
+}
+
+.spotlight__item-icon {
+  width:           34px;
+  height:          34px;
+  border-radius:   var(--radius-sm);
+  background:      var(--color-bg-secondary);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  font-size:       16px;
+  color:           var(--color-text-secondary);
+  transition:      background var(--transition-fast);
+}
+
+.spotlight__item--active .spotlight__item-icon,
+.spotlight__item:hover .spotlight__item-icon {
+  background: var(--color-bg-tertiary);
+}
+
+.spotlight__item-body {
+  flex:      1;
+  min-width: 0;
+}
+
+.spotlight__item-name {
+  font-size:     var(--font-size-sm);
+  font-weight:   var(--font-weight-medium);
+  color:         var(--color-text-primary);
+  margin:        0;
+  line-height:   var(--line-height-snug);
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+
+.spotlight__item-desc {
+  font-size:     var(--font-size-xs);
+  color:         var(--color-text-tertiary);
+  margin:        0;
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  line-height:   var(--line-height-snug);
+  margin-top:    1px;
+}
+
+.spotlight__item-arrow {
+  font-size:   14px;
+  color:       var(--color-text-tertiary);
+  opacity:     0;
+  transition:  opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.spotlight__item--active .spotlight__item-arrow,
+.spotlight__item:hover .spotlight__item-arrow {
+  opacity: 1;
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+
+.spotlight__empty {
+  padding:    var(--space-2xl) var(--space-md);
+  text-align: center;
+  color:      var(--color-text-tertiary);
+  font-size:  var(--font-size-sm);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+.spotlight__footer {
+  display:     flex;
+  align-items: center;
+  gap:         var(--gap-md);
+  padding:     var(--space-xs) var(--space-md);
+  border-top:  var(--border-width-2xs) solid var(--color-bg-secondary);
+  flex-shrink: 0;
+}
+
+.spotlight__footer-hint {
+  display:     flex;
+  align-items: center;
+  gap:         4px;
+  font-size:   var(--font-size-xs);
+  color:       var(--color-text-tertiary);
+}
+
+.spotlight__footer-hint kbd {
+  font-size:     var(--font-size-xs);
+  background:    var(--color-bg-secondary);
+  border:        var(--border-width-2xs) solid var(--color-bg-tertiary);
+  border-radius: var(--radius-2xs);
+  padding:       1px 5px;
+  font-family:   var(--font-family);
+  color:         var(--color-text-secondary);
+}
+
+/* ── Nav search trigger (component pages) ────────────────── */
+
+.nav-search-trigger {
+  cursor: pointer;
+}
+
+.nav-search-trigger .nav-search {
+  cursor:         pointer;
+  pointer-events: none;
+}
+
+#ds-nav .nav-search-kbd {
+  position:      absolute;
+  right:         var(--space-xs);
+  top:           50%;
+  transform:     translateY(-50%);
+  font-size:     var(--font-size-xs);
+  color:         var(--color-text-tertiary);
+  background:    var(--color-bg-secondary);
+  border:        var(--border-width-2xs) solid var(--color-bg-tertiary);
+  border-radius: var(--radius-2xs);
+  padding:       1px 5px;
+  font-family:   var(--font-family);
+  pointer-events: none;
+  line-height:   1.4;
+}
+
+/* ── Token swatch (color preview in token results) ───────── */
+
+.spotlight__token-swatch {
+  display:       block;
+  width:         16px;
+  height:        16px;
+  border-radius: var(--radius-xs);
+  border:        1px solid rgba(0,0,0,0.12);
+  flex-shrink:   0;
+}
+
+.spotlight__item-name--mono {
+  font-family: var(--font-family-mono);
+  font-size:   var(--font-size-xs);
+  letter-spacing: -0.01em;
+}

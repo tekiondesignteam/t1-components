@@ -176,3 +176,102 @@ body {
   margin:         0;
   line-height:    1.5;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MOBILE NAV — Hamburger toggle + slide-in sidebar
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Overlay (shown when nav is open on mobile) ─────────────── */
+.nav-overlay {
+  display:    none;
+  position:   fixed;
+  inset:      0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index:    9998; /* one below nav */
+}
+
+body.nav-open .nav-overlay {
+  display: block;
+}
+
+/* ── Hamburger toggle button ─────────────────────────────────── */
+.nav-mobile-toggle {
+  display:         none; /* hidden on desktop */
+  position:        fixed;
+  top:             var(--space-md);
+  left:            var(--space-md);
+  z-index:         10000; /* above nav */
+  width:           40px;
+  height:          40px;
+  padding:         0;
+  background:      var(--color-bg-primary);
+  border:          1px solid var(--color-border-primary);
+  border-radius:   var(--radius-sm);
+  cursor:          pointer;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap:             5px;
+  box-shadow:      0 1px 6px rgba(0, 0, 0, 0.08);
+  transition:      background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nav-mobile-toggle:hover {
+  background:    var(--color-bg-muted);
+  border-color:  var(--color-ai-brand-border);
+}
+
+.nav-mobile-toggle span {
+  display:       block;
+  width:         18px;
+  height:        2px;
+  background:    var(--color-text-primary);
+  border-radius: 2px;
+  transition:    transform 0.22s ease, opacity 0.22s ease;
+}
+
+body.nav-open .nav-mobile-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+body.nav-open .nav-mobile-toggle span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+body.nav-open .nav-mobile-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile breakpoint ───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Remove the sidebar offset — sidebar is now an overlay */
+  body {
+    margin-left: 0 !important;
+    padding-top: 60px !important;   /* room for toggle button */
+    padding-left:  var(--space-md) !important;
+    padding-right: var(--space-md) !important;
+  }
+
+  /* Slide sidebar off-screen by default */
+  #ds-nav {
+    transform:  translateX(-100%);
+    transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+  }
+
+  /* Slide sidebar in when nav is open */
+  body.nav-open #ds-nav {
+    transform:  translateX(0);
+    box-shadow: 4px 0 28px rgba(0, 0, 0, 0.14);
+  }
+
+  /* Show hamburger button on mobile */
+  .nav-mobile-toggle {
+    display: flex;
+  }
+
+  /* Page title scale-down on mobile */
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+}
